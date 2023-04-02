@@ -17,7 +17,7 @@ function Header() {
                     <li className=' font-bold text-green-600 hover:text-green-800'><Link to='/services'>services</Link></li>
                     <li className=' font-bold text-green-600 hover:text-green-800'><Link to='/Abo'>Abo</Link></li>
                     <li className=' font-bold text-green-600 hover:text-green-800'><Link to='/contact'>contact</Link></li>
-                    <li className=' font-bold text-green-600 hover:text-green-800'><Link to='/about-us'>About us</Link></li>
+                    <li className=' font-bold text-green-600 hover:text-green-800'><Link to='/About-us'>About us</Link></li>
                 </ul>
                 
             </nav>
@@ -31,7 +31,6 @@ function Header() {
         </div>
         <Outlet />
         </>
-         
     );
 }
 
