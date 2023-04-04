@@ -10,8 +10,7 @@ import useAuthStore from './hooks/useAuthStore';
 //import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AboutUs from "./components/AboutUs";
 //import Contact from "./components/Contact";
-
-
+import CardGrid from './components/AllCars';
 
 
 import { UserCircleIcon } from "@heroicons/react/24/outline";
@@ -36,7 +35,7 @@ function App() {
 
               <Route path='/register' element={<Register />} />
               <Route path='/login' element={<Login />} />
-
+              <Route path='/allcars' element={<CardGrid />} />
               <Route path='/about-us' element={<AboutUs />} />
               <Route element={<PrivateRoute />}>
                 <Route path='/protected' element={<ProtectedPage />} />
