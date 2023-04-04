@@ -13,11 +13,12 @@ function Header() {
 
             <nav className="flex justify-between mx-auto  py-5 px-2">
                 <ul className="flex justify-center items-center gap-4 ">
-                    
+                    <li className=' font-bold text-green-600 hover:text-green-800'><Link to='/Booking'>booking</Link></li>
                     <li className=' font-bold text-green-600 hover:text-green-800'><Link to='/services'>services</Link></li>
                     <li className=' font-bold text-green-600 hover:text-green-800'><Link to='/Abo'>Abo</Link></li>
                     <li className=' font-bold text-green-600 hover:text-green-800'><Link to='/contact'>contact</Link></li>
                     <li className=' font-bold text-green-600 hover:text-green-800'><Link to='/About-us'>About us</Link></li>
+                    
                 </ul>
                 
             </nav>

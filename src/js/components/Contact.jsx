@@ -1,20 +1,42 @@
-import {Link, Outlet} from 'react-router-dom';
-import useAuthStore from '../hooks/useAuthStore';
+import React from "react";
 
-function Footer() {
-    const authStore = useAuthStore();
 
-    return (
-        <>
-		
 
-	<footer className=" footer p-4 bg-white sm:p-6 dark:bg-gray-800 mt-4">
-		
-		{/* <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"> */}
-		<div className="sm:flex sm:items-center sm:justify-between">
-			<span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="https://flowbite.com" target="_blank" class="hover:underline">Flowbite™</a>. All Rights Reserved.
-        </span>
-			<div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
+function Contact() {
+
+
+return (
+
+
+<div className="container flex items-center gap-4 max-w-4xl mx-auto flex-col md:flex-row">
+
+
+
+<div className="max-w-[50%] w-full" >
+    <img src="/public/contact.png" 
+    alt="" className="w-full h-[560px] object-cover" />
+</div>
+
+
+
+<div>
+    <div>
+       <h1 className=" font-bold mt-4 text-4xl">Green Wheels</h1>
+    </div>
+    <h2 className="mt-2 text-xl">Lorem ipsum dolor sit amet consectetur .</h2>
+    <ul className="mt-8">
+        <li>Adresse: </li>
+        <li>Musterstraße 123</li>
+        <li>12345 Musterstadt</li>
+    </ul>
+
+    <ul className="mt-4">
+        <li>Telefonnummer: 01234 123456</li>
+        <li className="mt-1">Email: hallo@superduperseite.de</li>
+        <li></li>
+    </ul>
+
+    <div className="flex mt-8 gap-6  ">
 				<a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
 					<svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 						<path fill-rule="evenodd"
@@ -51,13 +73,19 @@ function Footer() {
 					</svg>
 				</a>
 			</div>
-		</div>
-	</footer>
+
+</div>
+
+</div>
 
 
-        
-        </>
-    );
-}
 
-export default Footer;
+
+
+
+            
+        );
+    }
+    
+
+export default Contact; 

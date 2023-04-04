@@ -7,11 +7,14 @@ import PrivateRoute from './services/privateRout';
 import Register from './components/Register';
 import Login from './components/Login';
 import useAuthStore from './hooks/useAuthStore';
+import Booking from './components/Booking';
 
 
 
 
-import { UserCircleIcon } from "@heroicons/react/24/outline";
+
+/* import { UserCircleIcon } from "@heroicons/react/24/outline"; */
+import Contact from './components/Contact';
 
 
 
@@ -21,8 +24,8 @@ function App() {
 
 
   return (
-    <div className="App w-full h-full ">
-      <div className='container w-full h-full '>
+    <div className="App w-full">
+      <div className='w-full'>
 
         
         
@@ -36,7 +39,15 @@ function App() {
               <Route index element={<h2>zwar musst du dich  jeder refresh anmelden, aber es funktioniert! hoffentlich...</h2>}/>
 
               <Route path='/register' element={<Register/>} />
-              <Route path='/login' element={<Login/>} />
+                <Route path='/login' element={<Login/>} />
+                <Route path='/contact' element={<Contact/>} />
+
+                <Route path='/booking' element={<Booking/>} />
+
+
+
+              
+              
 
               <Route element={<PrivateRoute />}>
                 <Route path='/protected' element={<ProtectedPage />} />
