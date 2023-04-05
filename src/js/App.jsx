@@ -12,7 +12,7 @@ import AboutUs from './components/Abot-us';
 import Services from './components/Services';
 import ContactPage from "./components/Contact";
 import Booking from './components/Booking';
-//import   CardGrid as {AllCars }from "./components/CardGrid"
+import CardGrid from './components/AllCars.jsx';
 
 
 
@@ -42,6 +42,7 @@ function App() {
               <Route path='/services' element={<Services/>} />
               <Route path='/contact' element={<ContactPage/>} />
               <Route path='/booking' element={<Booking/>} />
+              <Route path='/allcars' element={<CardGrid/>} />
               {/* protected wird später verwindet */}
               {/* <Route path='/protected' element={<ProtectedPage />} /> */}
             

@@ -38,7 +38,7 @@ function MainPage() {
 
             <Carousel autoSlide={true} autoSlideInterval ={10000}>
                 {slides.map((s)=>(
-                <img src={s} />
+                <img key={s} src={s} />
                 ))}
             </Carousel>
             </div>
