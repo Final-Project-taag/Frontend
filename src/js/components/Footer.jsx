@@ -8,7 +8,7 @@ function Footer() {
         <>
 		
 
-	<footer className=" footer w-full  bg-gray-800 sm:p-6 dark:bg-gray-800">
+	<footer className=" footer p-4 bg-white sm:p-6 dark:bg-gray-800 mt-4">
 		
 		{/* <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"> */}
 		<div className="sm:flex sm:items-center sm:justify-between">

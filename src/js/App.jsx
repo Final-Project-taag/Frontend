@@ -11,6 +11,17 @@ import Login from './components/Login';
 import AboutUs from './components/Abot-us';
 import Services from './components/Services';
 import ContactPage from "./components/Contact";
+import useAuthStore from './hooks/useAuthStore';
+import Booking from './components/Booking';
+
+
+
+
+
+/* import { UserCircleIcon } from "@heroicons/react/24/outline"; */
+import Contact from './components/Contact';
+
+
 
 /* import { UserCircleIcon } from "@heroicons/react/24/outline"; */
 
@@ -30,7 +41,7 @@ function App() {
               <Route path='/about-us' element={<AboutUs/>} />
               <Route path='/services' element={<Services/>} />
               <Route path='/contact' element={<ContactPage/>} />
-
+              <Route path='/booking' element={<Booking/>} />
               {/* protected wird später verwindet */}
               {/* <Route path='/protected' element={<ProtectedPage />} /> */}
             
