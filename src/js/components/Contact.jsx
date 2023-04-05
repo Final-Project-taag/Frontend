@@ -13,7 +13,7 @@ return (
 
 
 <div className="max-w-[50%] w-full" >
-    <img src="/public/contact.png" 
+    <img src="public/contact.png" 
     alt="" className="w-full h-[560px] object-cover" />
 </div>
 
