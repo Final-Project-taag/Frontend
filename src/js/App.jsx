@@ -12,9 +12,16 @@ import AboutUs from './components/Abot-us';
 import Services from './components/Services';
 import ContactPage from "./components/Contact";
 import useAuthStore from './hooks/useAuthStore';
+<<<<<<< HEAD
 import Booking from './components/Booking';
 
 
+=======
+//import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import AboutUs from "./components/AboutUs";
+//import Contact from "./components/Contact";
+import CardGrid from './components/AllCars';
+>>>>>>> dev
 
 
 
