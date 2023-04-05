@@ -54,16 +54,16 @@ function Register(props) {
     });
 
     return (
-        <>
+        <div className='  justify-center items-center max-w-screen-sm my-5  bg-white  '>
         {
           registerSuccessful
           ?  (successMsg)
           : (
             
-                <form className="max-w-screen-md " onSubmit={submitHandler} >
+                <form className=" flex-col  px-5 py-10" onSubmit={submitHandler} >
                 {(errors.length > 0) && (<ul style={{backgroundColor: 'rgba(255,0,0,0.5)', border: '1px solid red'}}>{errorBox}</ul>)}
                     <div className=" flex-row items-center  justify-center mb-7">
-                        <div className="flex items-center justify-evenly">
+                        
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
                                 Username</label>
                             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" value={username} onChange={(evt) => setUsername(evt.target.value)}/>
@@ -71,9 +71,9 @@ function Register(props) {
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fullname">
                                 Full Name</label>
                             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="fullname" type="text" placeholder="fullname" value={fullname} onChange={(evt) => setFullname(evt.target.value)}/>
-                        </div>
+                        
 
-                        <div className="flex items-center justify-evenly"> 
+                         
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
                                 E-Mail Address</label>
                             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="text" placeholder="email" value={email} onChange={(evt) => setEmail(evt.target.value)}/>
@@ -81,7 +81,7 @@ function Register(props) {
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="city">
                                 City</label>
                             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="city" type="text" placeholder="Mannheim" value={city} onChange={(evt) => setCity(evt.target.value)}/>
-                        </div>
+                        
 
                         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
                             Password</label>
@@ -89,17 +89,18 @@ function Register(props) {
                         
 
                         
-                    </div>
+                    
                     <div className="flex items-center justify-evenly">
                         <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                             Sign Up
                         </button>
                     </div>
+                    </div>
                 </form>
             
           )
         }
-        </>
+        </div>
 
         
     );
