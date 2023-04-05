@@ -75,7 +75,7 @@ function Login() {
     });
 
     return (
-        <div className="w-full max-w-md py-3">
+        <div className=" flex justify-center items-center w-screen h-screen  py-3">
             {/* Wenn eingeloggt, zeige Erfolgsnachricht */}
             {authStore.isAuthenticated() && loginSuccess}
 
@@ -109,9 +109,10 @@ function Login() {
                         </div>
 
                         <div className="flex items-center justify-evenly">
-                            <button   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" type="submit">
+                            <button   className="bg-green-600 hover:bg-gray-800-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" type="submit">
                                 Sign In
                             </button>
+                            
                          </div>
 
                     </form>
