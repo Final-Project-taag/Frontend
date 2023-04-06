@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from 'react';
 
 
+function Card({ imageUrl, paragraph }) {
 
-function Card({ imageUrl }) {
+
     return (
         <div className="flex justify-center">
             <div className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
@@ -11,11 +12,10 @@ function Card({ imageUrl }) {
                 </a>
                 <div className="p-6">
                     <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                        Card title
+                        Card
                     </h5>
                     <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                        Some quick example text to build on the card title and make up the
-                        bulk of the card's content.
+                        {paragraph}
                     </p>
                     <button
                         type="button"
@@ -23,7 +23,7 @@ function Card({ imageUrl }) {
                         data-te-ripple-init
                         data-te-ripple-color="light"
                     >
-                        Reservierung
+                        Details
                     </button>
                 </div>
             </div>
@@ -40,20 +40,23 @@ function CardGrid() {
         "/images/autos_02.jpg",
         "/images/autos_03.jpg" 
          
-/* 
-        "https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg",
-        "https://tecdn.b-cdn.net/img/new/standard/nature/185.jpg",
-        "https://tecdn.b-cdn.net/img/new/standard/nature/186.jpg",
-        "https://tecdn.b-cdn.net/img/new/standard/nature/187.jpg",
-        "https://tecdn.b-cdn.net/img/new/standard/nature/188.jpg",
-        "https://tecdn.b-cdn.net/img/new/standard/nature/189.jpg",  */
     ];
+
+    const [paragraphs, setParagraphs] = useState([
+        'Tesla Model 3',
+        'Paragraph 2 content',
+        'Paragraph 3 content',
+        'Paragraph 4 content',
+        'Paragraph 5 content',
+        'Paragraph 6 content',
+      ]);
+    
 
     return (
         <div className="grid grid-cols-3 gap-4">
-            {images.map((image) => (
+            {images.map((image, index ) => (
                 <div key={image} className="col-span-1">
-                    <Card imageUrl={image} />
+                    <Card imageUrl={image} paragraph={paragraphs[index]} />
                 </div>
             ))}
         </div>

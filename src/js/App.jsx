@@ -4,33 +4,13 @@ import '../scss/App.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import MainPage from './components/MainPage';
-import ProtectedPage from './components/ProtectedPage';
-import PrivateRoute from './services/privateRout';
 import Register from './components/Register';
 import Login from './components/Login';
-import AboutUs from './components/Abot-us';
-import Services from './components/Services';
-import ContactPage from "./components/Contact";
-import useAuthStore from './hooks/useAuthStore';
-<<<<<<< HEAD
-import Booking from './components/Booking';
-
-
-=======
-//import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AboutUs from "./components/AboutUs";
-//import Contact from "./components/Contact";
-import CardGrid from './components/AllCars';
->>>>>>> dev
+import ContactPage from "./components/Contact";
+import Booking from './components/Booking';
+import CardGrid from './components/E-Vehicles';
 
-
-
-/* import { UserCircleIcon } from "@heroicons/react/24/outline"; */
-import Contact from './components/Contact';
-
-
-
-/* import { UserCircleIcon } from "@heroicons/react/24/outline"; */
 
 function App() {
     const authStore = useAuthStore();
@@ -42,15 +22,14 @@ function App() {
             <Header />
                      
             <Routes>
+                
             <Route path='/' element={<MainPage/>} />
               <Route path='/register' element={<Register/>} />
               <Route path='/login' element={<Login/>} />
               <Route path='/about-us' element={<AboutUs/>} />
-              <Route path='/services' element={<Services/>} />
+              <Route path='/e-vehicles' element={<CardGrid/>} />
               <Route path='/contact' element={<ContactPage/>} />
               <Route path='/booking' element={<Booking/>} />
-              {/* protected wird später verwindet */}
-              {/* <Route path='/protected' element={<ProtectedPage />} /> */}
             
             </Routes>
             <Footer />

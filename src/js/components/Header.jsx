@@ -18,9 +18,9 @@ function Header() {
             <div className='flex justify-center  items-center'>
             
                 <ul className="flex justify-center items-center gap-5 "> 
-                    <li className=' font-bold text-2xl text-green-500 hover:text-green-700'><Link to='/services'>services</Link></li>
-                    <li className=' font-bold text-2xl text-green-500 hover:text-green-700'><Link to='/Abo'>Abo</Link></li>
-                    <li className=' font-bold text-2xl text-green-500 hover:text-green-700'><Link to='/contact'>contact</Link></li>
+                    <li className=' font-bold text-2xl text-green-500 hover:text-green-700'><Link to='/e-vehicles'>E-Vehicles</Link></li>
+                     <li className=' font-bold text-2xl text-green-500 hover:text-green-700'><Link to='/booking'>Booking</Link></li>
+                    <li className=' font-bold text-2xl text-green-500 hover:text-green-700'><Link to='/contact'>Contact</Link></li>
                     <li className=' font-bold text-2xl text-green-500 hover:text-green-700'><Link to='/About-us'>About us</Link></li>
                 </ul>
                 
@@ -29,10 +29,6 @@ function Header() {
              <div className='flex justify-center '>
             <button onClick={evt => authStore.logout()}   className=" text-2xl text-green-500 font-sans py-1 px-1 rounded focus:outline-none focus:shadow-outline" type="button">
             <Link to='/login'>Login</Link>
-                
-            </button>
-            <button onClick={evt => authStore.logout()}   className=" text-2xl text-green-500 font-sans py-1 px-1 rounded focus:outline-none focus:shadow-outline" type="button">
-            <Link to='/register'>register</Link>
                 
             </button>
             </div>
