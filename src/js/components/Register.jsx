@@ -1,4 +1,4 @@
-
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -11,7 +11,11 @@ function Register(props) {
     const [city, setCity] = useState('');
     const [errors, setErrors] = useState([]);
     const [registerSuccessful, setRegisterSuccessful] = useState(false);
+    const navigate = useNavigate();
 
+    const handleGoToLoginClick = () => {
+      navigate('/login');
+    };
     function submitHandler(evt) {
         evt.preventDefault();
         
@@ -25,7 +29,7 @@ function Register(props) {
         };
     
         // Sende Request an /register endpoint der API
-        axios.post('http://localhost:8080/auth/register', registrationData)
+        axios.post('http://localhost:8081/auth/register', registrationData)
           .then(response => {
             console.log(response); // TODO
             setErrors([]);
@@ -38,16 +42,25 @@ function Register(props) {
           });
     }
 
-    const successMsg = <p style={{color: 'green'}}>
-      Register successful! <br />
-      We've sent you an e-mail to verify your e-mail address. Please follow the provided link. <br />
-      <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-        Resend E-Mail
-      </a><br />
-      <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-        Go to Login
-      </a>
-    </p>;
+    const successMsg = (
+      <p className="text-green-500">
+        Register successful! <br />
+        We've sent you an e-mail to verify your e-mail address. Please follow the provided link. <br />
+        <button
+          onClick={() => {}}
+          className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+        >
+          Resend E-Mail
+        </button>
+        <br />
+        <button
+          onClick={handleGoToLoginClick}
+          className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+        >
+          Go to Login
+        </button>
+      </p>
+    );
 
     const errorBox = errors.map((error, idx) => {
       return <li key={idx}>{error}</li>;

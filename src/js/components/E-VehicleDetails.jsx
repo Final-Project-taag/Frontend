@@ -1,17 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
+
 import { useNavigate } from "react-router-dom";
 
-import Card from './E-VehicleDetails';
-/* 
+
 function Card({ imageUrls, name, type, driveRange, weight, price, chargingTime }) {
 
+  const navigate = useNavigate()
+
+  const handleReservation = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Bitte anmelden, um eine Reservierung vorzunehmen.");
+      navigate("/auth/login"); // Weiterleitung zur Login-Seite
+      return;
+    }
+    
+
+          const vehicleId = "YOUR_VEHICLE_ID"; // Ersetzen Sie dies durch die entsprechende Fahrzeug-ID
+          const startDate = new Date();
+          const endDate = new Date();
+          endDate.setDate(startDate.getDate() + 3); // Beispiel: Reservierung für 3 Tage
+      
+          try {
+            const response = await axios.post("http://localhost:8081/reservations", {
+              vehicleId,
+              startDate,
+              endDate,
+            }, {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+      
+            alert("Reservierung erfolgreich!");
+          } catch (error) {
+            console.error(error);
+            alert("Reservierung fehlgeschlagen.");
+          }
+        };
+      
 
     return (
         <div className="flex justify-center">
-            <div className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
+            <div className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700 hover:scale-110 transform transition-all duration-300">
                 <a href="#!">
-                    <img className="rounded-t-lg" src={imageUrls} alt="" />
+                <img className="rounded-t-lg" src={imageUrls} alt="" style={{ width: "400px", height: "200px", objectFit: "cover" }} />
+
                 </a>
                 <div className="p-6">
                     <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
@@ -29,53 +64,13 @@ function Card({ imageUrls, name, type, driveRange, weight, price, chargingTime }
                         className="inline-block rounded bg-primary px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-black shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
                         data-te-ripple-init
                         data-te-ripple-color="light"
+                        onClick={() => navigate("/auth/login")} // Weiterleitung zur Login-Seite
                     >
-                        Details
+                        Reservieren
                     </button>
                 </div>
             </div>
         </div>
     );
-} */
-
-function EVehicles() {
-    const navigate = useNavigate();
-    const [cars, setCars] = useState([]);
-
-
-    function handleVehicleSelection() {
-         navigate("/booking");
-      }
-    async function fetchVehicles() {
-        try {
-            const response = await axios.get('http://localhost:8081/vehicles');
-            setCars(response.data);
-        } catch (error) {
-            console.error('Error fetching vehicles:', error);
-        }
-    }
-    useEffect(() => {
-        fetchVehicles();
-    }, []);
-
-
-    return (
-        <div className="grid grid-cols-3 gap-7 p-8">
-            {cars.map((car) => (
-                <div key={car.id} className="col-span-1" onClick={() => handleVehicleSelection(car)}>
-                    <Card 
-                    imageUrls={car.imageUrls} 
-                    name={car.name}
-                    type={car.type}
-                    driveRange={car.driveRange}
-                    weight={car.weight}
-                    price={car.price}
-                    chargingTime={car.chargingTime} 
-                    />
-                </div>
-            ))}
-        </div>
-    );
 }
-
-export default EVehicles;
+export default Card

@@ -1,6 +1,4 @@
 
-
-
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import useAuthStore from '../hooks/useAuthStore';
@@ -17,10 +15,10 @@ function Login() {
     const location = useLocation();
     
 
-    useEffect(() => {
+/*     useEffect(() => {
         console.log('location.state:', location.state);
     }, []);
-    
+ */    
     // Submit Handler fuer das Login Formular
     async function loginSubmitHandler(evt) {
         evt.preventDefault();
@@ -40,7 +38,7 @@ function Login() {
         }
 
         try {
-            let resp = await axios.post('http://localhost:8080/auth/login', body, {
+            let resp = await axios.post('http://localhost:8081/auth/login', body, {
                 // withCredentials: true
             });
 
@@ -56,9 +54,14 @@ function Login() {
 
             console.log('Success: token stored in localStorage and sessionStorage');
 
-            // Falls es einen Referrer (dt. Verweiser) gibt navigiere zurueck zu diesem
-            if (location.state?.from) navigate(location.state.from);
-
+            //die Navigation nach erfolgreicher Anmeldung:
+            if (location.state?.from) {
+                navigate(location.state.from);
+              } else {
+                // Navigiere zur E-Vehicles-Seite
+                navigate('/e-vehicles');
+              }
+              
         } catch (error) {
             console.error(error);
             if (error.response.status === 403) setNotVerified(true);

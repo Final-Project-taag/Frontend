@@ -9,11 +9,10 @@ import Login from './components/Login';
 import AboutUs from "./components/AboutUs";
 import ContactPage from "./components/Contact";
 import Booking from './components/Booking';
-import CardGrid from './components/E-Vehicles';
+import EVehicles from './components/E-Vehicles';
 
 
 function App() {
-    const authStore = useAuthStore();
 
     return (
         <div className='h-screen-full'>
@@ -27,7 +26,7 @@ function App() {
               <Route path='/register' element={<Register/>} />
               <Route path='/login' element={<Login/>} />
               <Route path='/about-us' element={<AboutUs/>} />
-              <Route path='/e-vehicles' element={<CardGrid/>} />
+              <Route path='/e-vehicles' element={<EVehicles/>} />
               <Route path='/contact' element={<ContactPage/>} />
               <Route path='/booking' element={<Booking/>} />
             

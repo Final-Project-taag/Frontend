@@ -8,7 +8,7 @@ function Header() {
 
     return (
         <>
-        <div className=" flex  justify-between items-center  py-1 px-1 bg-gray-800">
+        <div className=" flex  justify-between items-center  py-1 px-1 bg-black">
             <div className='flex  justify-start  '>
             <Link to='/'> <button  className=" py-1 px-1 " type="button">
                 <img src='vite.svg' className=" h-14 w-10 text-gray-700" /></button>
