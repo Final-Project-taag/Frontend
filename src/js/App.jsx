@@ -8,11 +8,11 @@ import ProtectedPage from './components/ProtectedPage';
 import PrivateRoute from './services/privateRout';
 import Register from './components/Register';
 import Login from './components/Login';
-import AboutUs from './components/Abot-us';
+import AboutUs from './components/AboutUs';
 import Services from './components/Services';
 import ContactPage from "./components/Contact";
 import Booking from './components/Booking';
-import CardGrid from './components/AllCars.jsx';
+import CardGrid from './components/AllVehicles';
 
 
 
@@ -42,7 +42,7 @@ function App() {
               <Route path='/services' element={<Services/>} />
               <Route path='/contact' element={<ContactPage/>} />
               <Route path='/booking' element={<Booking/>} />
-              <Route path='/allcars' element={<CardGrid/>} />
+              <Route path='/allvehicles' element={<CardGrid/>} />
               {/* protected wird später verwindet */}
               {/* <Route path='/protected' element={<ProtectedPage />} /> */}
             

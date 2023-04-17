@@ -23,7 +23,7 @@ function Header() {
                         <li className=' font-bold text-2xl text-green-500 hover:text-green-700'><Link to='/Abo'>Abo</Link></li>
                         <li className=' font-bold text-2xl text-green-500 hover:text-green-700'><Link to='/contact'>contact</Link></li>
                         <li className=' font-bold text-2xl text-green-500 hover:text-green-700'><Link to='/about-us'>About us</Link></li>
-                        <li className=' font-bold text-2xl text-green-500 hover:text-green-700'><Link to='/allcars'>All Cars</Link></li>
+                        <li className=' font-bold text-2xl text-green-500 hover:text-green-700'><Link to='/allvehicles'>All Vehicles</Link></li>
 
                     </ul>
 
