@@ -4,24 +4,18 @@ import useAuthStore from '../hooks/useAuthStore';
 
 import Carousel from './Carousel';
 const slides = [
-    "public/images/Tesla-Model-3.webp",
-    "public/images/autos_03.jpg",
-    "public/images/autos_04.jpg",
-    "public/images/autos_05.jpg",
-    "public/images/E-Bike-X.jpg",
-    "public/images/ERoller Xyhundert.webp",
-    "public/images/Eroller-X.jpeg",
-    "public/images/motorrad_01.jpg",
-    "public/images/motorrad_02.jpg",
-    "public/images/SuperScooter 3000.jpg",
-    "public/images/vw_Id5_SUV.avif",
-    "public/images/vw_ID5.jpg"
-
-
-
-
-
-
+    "/images/Tesla-Model-3.webp",
+    "/images/autos_03.jpg",
+    "/images/autos_04.jpg",
+    "/images/autos_05.jpg",
+    "/images/E-Bike-X.jpg",
+    "/images/ERoller Xyhundert.webp",
+    "/images/Eroller-X.jpeg",
+    "/images/motorrad_01.jpg",
+    "/images/motorrad_02.jpg",
+    "/images/SuperScooter 3000.jpg",
+    "/images/vw_Id5_SUV.avif",
+    "/images/vw_ID5.jpg"
 
 
 ];
@@ -47,12 +41,12 @@ function MainPage() {
 
         <div
             className="flex justify-between w-full h-full py-20 px-1"
-            /* style={{
-                backgroundImage: "url('public/images/Contact.png')",
+             style={{
+                backgroundImage: "url('/images/bg für Login.jpg')",
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat"
-            }} */
+            }} 
         >
             <div className='w-2/4 max-w-lg h-full pt-10'>
                 <h1 className="text-5xl font-bold text-green-600">Green <span className='text-green-800'>Wheels</span> </h1>

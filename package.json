@@ -16,6 +16,7 @@
     "react-datepicker": "^4.11.0",
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.10.0",
     "sass": "^1.60.0",
     "zustand": "^4.3.6"

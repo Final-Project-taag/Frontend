@@ -17,3 +17,4 @@ function LogoutIcon() {
     return null;
   }
 }
+export default LogoutIcon

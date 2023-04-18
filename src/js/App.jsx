@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import useAuthStore from './hooks/useAuthStore';
 import '../scss/App.scss';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -29,7 +28,7 @@ function App() {
               <Route path='/e-vehicles' element={<EVehicles/>} />
               <Route path='/contact' element={<ContactPage/>} />
               <Route path='/booking' element={<Booking/>} />
-            
+              <Route path="/booking/:vehicleId" component={Booking} />
             </Routes>
             <Footer />
         </BrowserRouter>
