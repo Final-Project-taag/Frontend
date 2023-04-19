@@ -22,7 +22,6 @@ const slides = [
 
 function MainPage() {
     const navigate = useNavigate();
-    const authStore = useAuthStore();
     const [vehicles, setVehicles] = useState([]);
 
     useEffect(() => {

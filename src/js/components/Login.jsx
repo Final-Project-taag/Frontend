@@ -3,11 +3,9 @@ import axios from 'axios';
 import useAuthStore from '../hooks/useAuthStore';
 import { useLocation, useNavigate } from 'react-router-dom';
 /* import EmailVerificationForm from './EmailVerificationForm'; */
-/* import Modal from 'react-modal';
- */
+ 
 
-/* Modal.setAppElement('#root');
- */function Login() {
+function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
@@ -15,16 +13,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
     const authStore = useAuthStore();
     const navigate = useNavigate();
     const location = useLocation();
-/*     const [showModal, setShowModal] = useState(false);
 
-    const openModal = () => setShowModal(true);
-    const closeModal = () => setShowModal(false);
- */
-    /*     useEffect(() => {
-            console.log('location.state:', location.state);
-        }, []);
-     */
-    // Submit Handler fuer das Login Formular
+
+    
     async function loginSubmitHandler(evt) {
         evt.preventDefault();
 
@@ -94,13 +85,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
         >
 {/* Wenn eingeloggt, zeige Erfolgsnachricht */ }
             {authStore.isAuthenticated() && loginSuccess}
-
+ 
  {
      // Wenn eingeloggt, zeige Logout Button
      authStore.isAuthenticated() ? 
-         (<button onClick={evt => authStore.logout()} className=" flex items-center  justify-center  text-gray-700 font-sans py-1 px-1  focus:outline-none focus:shadow-outline" type="button">
+         ( <button onClick={evt => authStore.logout()} className=" flex items-center  justify-center  text-gray-700 font-sans py-1 px-1  focus:outline-none focus:shadow-outline" type="button">
              <svg className="h-12 w-10 text-gray-700"  width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />  <path d="M7 12h14l-3 -3m0 6l3 -3" /></svg>
-             Logout</button>) 
+             Logout</button> ) 
      : 
          (
          // Wenn nicht verifiziert, zeige Formular zum Versenden der Verifikationsmail
@@ -133,7 +124,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
          </form>
          )
- }
+ } 
  </div>
  
 );

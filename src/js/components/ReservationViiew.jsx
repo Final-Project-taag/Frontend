@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Card from "./Card";
+import Card from './E-VehicleDetails.jsx'
 
 function ReservationView({ location }) {
   const vehicleData = location.state.vehicleData;

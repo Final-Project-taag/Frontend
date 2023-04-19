@@ -1,10 +1,9 @@
 import React from "react";
-import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 
 
-function Card({ imageUrls, name, type, driveRange, weight, price, chargingTime, vehicleId }) {
+function Card({ imageUrls, name, type, driveRange, weight, price, chargingTime, vehicleId, reserved }) {
 
   const navigate = useNavigate()
 
@@ -20,8 +19,12 @@ function Card({ imageUrls, name, type, driveRange, weight, price, chargingTime, 
     const startDate = new Date();
     const endDate = new Date();
     endDate.setDate(startDate.getDate() + 3); // Beispiel: Reservierung für 3 Tage
-    
-    navigate("/reservation-view", {
+    console.log(vehicleId);
+/*      navigate(`/booking/${vehicleId}`);
+ */     navigate(`/booking/${vehicleId}`);
+
+
+     /* navigate("/reservation-view", {
       state: {
         vehicleData: {
           imageUrls,
@@ -34,7 +37,7 @@ function Card({ imageUrls, name, type, driveRange, weight, price, chargingTime, 
           vehicleId,
         },
       },
-    });
+    }); */ 
   };
 
   return (
@@ -55,6 +58,7 @@ function Card({ imageUrls, name, type, driveRange, weight, price, chargingTime, 
             Price: €{price} <br />
             Charging Time: {chargingTime} hours <br />
             vehicleId: {vehicleId}
+            Reserviert: {reserved}
           </p>
           <button
             type="button"

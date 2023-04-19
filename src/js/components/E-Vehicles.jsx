@@ -18,8 +18,8 @@ function EVehicles() {
 
 
     function handleVehicleSelection() {
-        navigate("/booking");
-    }
+/*         navigate("/booking");
+ */    }
     async function fetchVehicles() {
         try {
             const queryParams = new URLSearchParams();
@@ -40,7 +40,7 @@ function EVehicles() {
                 queryParams.append('maxDriveRange', maxDriveRangeFilter);
             }
 
-            const response = await axios.get('http://localhost:8082/vehicles?' + queryParams.toString());
+            const response = await axios.get('http://localhost:8081/vehicles?' + queryParams.toString());
             setCars(response.data);
         } catch (error) {
             console.error('Error fetching vehicles:', error);
