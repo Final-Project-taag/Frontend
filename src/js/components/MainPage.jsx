@@ -49,7 +49,7 @@ function MainPage() {
         >
             <div className='w-2/4 max-w-lg h-full pt-10'>
                 <h1 className="text-5xl font-bold text-green-600">Green <span className='text-green-800'>Wheels</span> </h1>
-                <p className='text-2xl'>"Entdecken Sie mit uns die Zukunft der Mobilität - einfach, bequem und umweltbewusst. Buchen Sie Ihre nächste Fahrt mit unseren Elektrofahrzeugen und tragen Sie dazu bei, unseren Planeten zu schonen und die Lebensqualität in unseren Städten zu verbessern. Machen Sie den ersten Schritt in eine nachhaltige Zukunft und erleben Sie Mobilität neu!"</p>
+                <p className='text-2xl bg-'>"Entdecken Sie mit uns die Zukunft der Mobilität - einfach, bequem und umweltbewusst. Buchen Sie Ihre nächste Fahrt mit unseren Elektrofahrzeugen und tragen Sie dazu bei, unseren Planeten zu schonen und die Lebensqualität in unseren Städten zu verbessern. Machen Sie den ersten Schritt in eine nachhaltige Zukunft und erleben Sie Mobilität neu!"</p>
 
                 <button
                     onClick={handleRegisterClick}
@@ -67,7 +67,7 @@ function MainPage() {
                     {slides.map((s) => (
                         <img src={s} />
                     ))}
-                </Carousel>
+                </Carousel> 
             </div>
 
         </div>

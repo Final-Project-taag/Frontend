@@ -10,7 +10,7 @@ function Header() {
 
     return (
         <>
-            <div className=" flex    py-1 px-1 bg-black">
+            <div className=" flex py-1 px-1 bg-gray-800">
 
                 <div className='flex  justify-start  '>
                     <Link to='/'> <button className=" py-1 px-1 " type="button">
@@ -21,10 +21,10 @@ function Header() {
                 <div className='flex justify-center  items-center'>
 
                     <ul className="flex justify-center items-center gap-5 ">
-                        <li className=' font-bold text-2xl text-green-500 hover:text-green-300'><Link to='/e-vehicles'>E-Vehicles</Link></li>
-                        <li className=' font-bold text-2xl text-green-500 hover:text-green-300'><Link to='/booking'>Booking</Link></li>
-                        <li className=' font-bold text-2xl text-green-500 hover:text-green-300'><Link to='/contact'>Contact</Link></li>
-                        <li className=' font-bold text-2xl text-green-500 hover:text-green-300'><Link to='/About-us'>About us</Link></li>
+                        <li className=' font-light text-2xl text-green-500 hover:text-green-300'><Link to='/e-vehicles'>E-Fahrzeuge</Link></li>
+                        <li className=' font-light text-2xl text-green-500 hover:text-green-300'><Link to='/reservation-view'>Reservierungen</Link></li>
+                        <li className=' font-light text-2xl text-green-500 hover:text-green-300'><Link to='/contact'>Kontakt</Link></li>
+                        <li className=' font-light text-2xl text-green-500 hover:text-green-300'><Link to='/About-us'>Über uns</Link></li>
                     </ul>
                 </div>
 

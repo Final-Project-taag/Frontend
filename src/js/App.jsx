@@ -9,7 +9,8 @@ import AboutUs from "./components/AboutUs";
 import ContactPage from "./components/Contact";
 import Booking from './components/Booking';
 import EVehicles from './components/E-Vehicles';
-import ReservationView from "./components/ReservationViiew";
+import ReservationView from "./components/ReservationView";
+
 function App() {
 
     return (
@@ -27,7 +28,7 @@ function App() {
               <Route path='/e-vehicles' element={<EVehicles/>} />
               <Route path='/contact' element={<ContactPage/>} />
              <Route path='/booking/:vehicleId' element={<Booking/>} />
-             <Route path='/reservationView' element={<ReservationView/>} />
+             <Route path='/reservation-view' element={<ReservationView/>} />
  
             </Routes>
             <Footer />

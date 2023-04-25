@@ -43,23 +43,23 @@ function Register(props) {
     }
 
     const successMsg = (
-      <p className="text-green-500">
+      <h1 className="text-4xl text-center bg-gray-800 text-green-500 border border-2 pt-8">
         Register successful! <br />
         We've sent you an e-mail to verify your e-mail address. Please follow the provided link. <br />
         <button
           onClick={() => {}}
-          className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+          className="button-85 inline-block align-baseline text-sm " role="button"
         >
           Resend E-Mail
         </button>
         <br />
         <button
           onClick={handleGoToLoginClick}
-          className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+          className="button-85 font-bold inline-block align-baseline text-sm " role="button"
         >
           Go to Login
         </button>
-      </p>
+      </h1>
     );
 
     const errorBox = errors.map((error, idx) => {
