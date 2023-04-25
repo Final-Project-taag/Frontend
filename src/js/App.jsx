@@ -43,6 +43,7 @@ function App() {
               <Route path='/contact' element={<ContactPage/>} />
               <Route path='/booking' element={<Booking/>} />
               <Route path='/allvehicles' element={<CardGrid/>} />
+              <Route path="/booking/:vehicleId" element={Booking} />
               {/* protected wird später verwindet */}
               {/* <Route path='/protected' element={<ProtectedPage />} /> */}
             

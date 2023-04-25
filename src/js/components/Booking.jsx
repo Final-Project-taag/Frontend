@@ -1,6 +1,7 @@
-import { useState } from "react";
+ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+ 
 
 function Booking() {
   const [startDate, setStartDate] = useState(null);
@@ -78,4 +79,6 @@ function Booking() {
   );
 }
 
-export default Booking;
+export default Booking; 
+
+ 
