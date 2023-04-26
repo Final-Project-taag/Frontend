@@ -1,64 +1,76 @@
-
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 
 
 function Register(props) {
-  const [username, setUsername] = useState('');
-  const [fullname, setFullname] = useState('');
-  const [email, setEmail] = useState('');
-  const [city, setCity] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState([]);
-  const [registerSuccessful, setRegisterSuccessful] = useState(false);
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [fullname, setFullname] = useState('');
+    const [city, setCity] = useState('');
+    const [errors, setErrors] = useState([]);
+    const [registerSuccessful, setRegisterSuccessful] = useState(false);
+    const navigate = useNavigate();
 
-  function submitHandler(evt) {
-    evt.preventDefault();
-
-    // Erstelle Objekt fuer den Body des Requests
-    let registrationData = {
-      username: username,
-      fullname: fullname,
-      email: email,
-      city: city,
-      password: password
-
+    const handleGoToLoginClick = () => {
+      navigate('/login');
     };
+    function submitHandler(evt) {
+        evt.preventDefault();
+        
+        // Erstelle Objekt fuer den Body des Requests
+        let registrationData = {
+          username: username,
+          email: email,
+          password: password,
+          fullname: fullname,
+          city: city
+        };
+    
+        // Sende Request an /register endpoint der API
+        axios.post('http://localhost:8081/auth/register', registrationData)
+          .then(response => {
+            console.log(response); // TODO
+            setErrors([]);
+            setRegisterSuccessful(true);
+          })
+          .catch(error => {
+            console.error(error);
 
-    // Sende Request an /register endpoint der API
-    axios.post('http://localhost:8081/auth/register', registrationData)
-      .then(response => {
-        console.log(response); 
-        /*      setErrors([]); */
-        setRegisterSuccessful(true);
-      })
-      .catch(error => {
-        console.error(error);
+            setErrors([error.response.data.message.split(',')]);
+          });
+    }
 
-        /* setErrors([error.response.data.message.split(',')]); */
-      });
-  }
+    const successMsg = (
+      <h1 className="text-4xl text-center bg-gray-800 text-green-500 border border-2 pt-8">
+        Register successful! <br />
+        We've sent you an e-mail to verify your e-mail address. Please follow the provided link. <br />
+        <button
+          onClick={() => {}}
+          className="button-85 inline-block align-baseline text-sm " role="button"
+        >
+          Resend E-Mail
+        </button>
+        <br />
+        <button
+          onClick={handleGoToLoginClick}
+          className="button-85 font-bold inline-block align-baseline text-sm " role="button"
+        >
+          Go to Login
+        </button>
+      </h1>
+    );
 
-  const successMsg = <p style={{ color: 'green' }}>
-    Register successful! <br />
-    We've sent you an e-mail to verify your e-mail address. Please follow the provided link. <br />
-    <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-      Resend E-Mail
-    </a><br />
-    <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-      Go to Login
-    </a>
-  </p>;
+    const errorBox = errors.map((error, idx) => {
+      return <li key={idx}>{error}</li>;
+    });
 
-  const errorBox = errors.map((error, idx) => {
-    return <li key={idx}>{error}</li>;
-  });
-
-  return (
-    <div className='  justify-center items-center max-w-screen-sm my-5  bg-white  '>
-      {
-        registerSuccessful
-          ? (successMsg)
+    return (
+        <div className='  justify-center items-center max-w-screen-sm my-5  bg-white  '>
+        {
+          registerSuccessful
+          ?  (successMsg)
           : (
 
             <form className=" flex-col  px-5 py-10" onSubmit={submitHandler} >
