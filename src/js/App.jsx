@@ -8,29 +8,20 @@ import ProtectedPage from './components/ProtectedPage';
 import PrivateRoute from './services/privateRout';
 import Register from './components/Register';
 import Login from './components/Login';
-import AboutUs from './components/Abot-us';
+/* import AboutUs from './components/Abot-us'; */
 import Services from './components/Services';
 import ContactPage from "./components/Contact";
-import useAuthStore from './hooks/useAuthStore';
-<<<<<<< HEAD
+/* import useAuthStore from './hooks/useAuthStore'; */
 import Booking from './components/Booking';
 
 
-=======
 //import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AboutUs from "./components/AboutUs";
-//import Contact from "./components/Contact";
-import CardGrid from './components/AllCars';
->>>>>>> dev
 
 
 
-/* import { UserCircleIcon } from "@heroicons/react/24/outline"; */
-import Contact from './components/Contact';
 
 
-
-/* import { UserCircleIcon } from "@heroicons/react/24/outline"; */
 
 function App() {
     const authStore = useAuthStore();
@@ -56,7 +47,11 @@ function App() {
             <Footer />
         </BrowserRouter>
         
+
+        
         </div>
+
+        
     );
 }
 

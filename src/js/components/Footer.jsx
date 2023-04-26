@@ -14,7 +14,7 @@ function Footer() {
 		<div className="sm:flex sm:items-center sm:justify-between">
 			<span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="https://flowbite.com" target="_blank" className="hover:underline">Flowbite™</a>. All Rights Reserved.
         </span>
-			<div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
+			<div className="flex mt-4 gap-6  sm:justify-center sm:mt-0">
 				<a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
 					<svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 						<path fillRule="evenodd"
