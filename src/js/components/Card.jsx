@@ -40,3 +40,4 @@ console.log(car.car);
 }
 
  export default Card;
+
