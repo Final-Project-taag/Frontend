@@ -55,7 +55,7 @@ function Register(props) {
         <br />
         <button
           onClick={handleGoToLoginClick}
-          className="button-85 font-bold inline-block align-baseline text-sm " role="button"
+          className="b85utton- font-bold inline-block align-baseline text-sm " role="button"
         >
           Go to Login
         </button>

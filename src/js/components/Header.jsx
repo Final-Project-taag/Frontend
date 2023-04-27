@@ -10,27 +10,27 @@ function Header() {
 
     return (
         <>
-            <div className=" flex py-1 px-1 bg-gray-800">
+            <div className=" sticky w-screen h-fit flex justify-center py-1 px-1 bg-white">
 
-                <div className='flex  justify-start  '>
+                <div className='flex  '>
                     <Link to='/'> <button className=" py-1 px-1 " type="button">
-                        <img src='vite.svg' className=" h-14 w-10 text-gray-700" /></button>
+                        <img src='logo-no-background.svg' className=" h-10 w-20 text-gray-700" /></button>
                     </Link>
                 </div>
 
                 <div className='flex justify-center  items-center'>
 
                     <ul className="flex justify-center items-center gap-5 ">
-                        <li className=' font-light text-2xl text-green-500 hover:text-green-300'><Link to='/e-vehicles'>E-Fahrzeuge</Link></li>
-                        <li className=' font-light text-2xl text-green-500 hover:text-green-300'><Link to='/reservation-view'>Reservierungen</Link></li>
-                        <li className=' font-light text-2xl text-green-500 hover:text-green-300'><Link to='/contact'>Kontakt</Link></li>
-                        <li className=' font-light text-2xl text-green-500 hover:text-green-300'><Link to='/About-us'>Über uns</Link></li>
+                        <li className=' font-light text-2xl text-green-600 hover:text-gray-600'><Link to='/e-vehicles'>E-Fahrzeuge</Link></li>
+                        <li className=' font-light text-2xl text-green-600 hover:text-gray-600'><Link to='/reservation-view'>Reservierungen</Link></li>
+                        <li className=' font-light text-2xl text-green-600 hover:text-gray-600'><Link to='/contact'>Kontakt</Link></li>
+                        <li className=' font-light text-2xl text-green-600 hover:text-gray-600'><Link to='/About-us'>Über uns</Link></li>
                     </ul>
                 </div>
 
-                <div className='flex justify-center  '>
+                <div className='  '>
                     {!isAuthenticated && (
-                        <button className="text-2xl text-green-500 font-sans py-1 px-1 rounded focus:outline-none focus:shadow-outline" type="button">
+                        <button className=" font-light text-2xl text-green-600 hover:text-gray-600 font-sans py-1 px-1 rounded focus:outline-none focus:shadow-outline" type="button">
                             <Link to='/login'>Login</Link>
                         </button>
                     )}

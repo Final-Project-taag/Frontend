@@ -8,12 +8,9 @@ function Footer() {
         <>
 		
 
-	<footer className=" footer p-4 bg-white sm:p-6 dark:bg-gray-800 mt-4">
-		
-		{/* <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"> */}
-		<div className="sm:flex sm:items-center sm:justify-between">
+	<footer className="  bottom-0 w-full flex justify-evenly items-center h-13 bg-white sm:p-6 dark:bg-gray-800 mt-4">
 			<span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="https://flowbite.com" target="_blank" className="hover:underline">Flowbite™</a>. All Rights Reserved.
-        </span>
+        	</span>
 			<div className="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
 				<a href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
 					<svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -45,7 +42,7 @@ function Footer() {
 				</a>
 				
 			</div>
-		</div>
+		
 	</footer>
 
 
