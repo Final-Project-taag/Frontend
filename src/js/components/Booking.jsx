@@ -140,7 +140,7 @@ const navigate = useNavigate()
                 </tr>
                 <tr>
                   <td className="font-bold">Preis:</td>
-                  <td>{vehicle.price} €</td>
+                  <td>{vehicle.price} €/St</td>
                 </tr>
                 <tr>
                   <td className="font-bold">Ladezeit:</td>

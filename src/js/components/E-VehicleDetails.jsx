@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-function Card({ imageUrls, name, type, driveRange, price, chargingTime, vehicleId }) {
+function Card({ imageUrls, name, type, driveRange, price, weight ,chargingTime,reserved, vehicleId }) {
 
   const navigate = useNavigate()
 
@@ -33,7 +33,7 @@ function Card({ imageUrls, name, type, driveRange, price, chargingTime, vehicleI
            <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
             {name}
           </h5> 
-          {/*   <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+             {/* <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
             Type: {type} <br />
             Drive Range: {driveRange} km <br />
             Weight: {weight} kg <br />
@@ -41,8 +41,7 @@ function Card({ imageUrls, name, type, driveRange, price, chargingTime, vehicleI
             Charging Time: {chargingTime} hours <br />
             vehicleId: {vehicleId}
             Reserviert: {reserved}
-          </p>  */}
-      
+          </p>    */}
           <table className="min-w-full text-center text-sm font-light">
             <thead
               className="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
@@ -61,7 +60,7 @@ function Card({ imageUrls, name, type, driveRange, price, chargingTime, vehicleI
               <tr className="border-b dark:border-neutral-500">
                 <td className="whitespace-nowrap  px-6 py-4 font-medium">2</td>
                 <td className="whitespace-nowrap  px-6 py-4">Reichweite:</td>
-                <td className="whitespace-nowrap  px-6 py-4">{driveRange}  KM/H</td>
+                <td className="whitespace-nowrap  px-6 py-4">{driveRange}  KM</td>
               </tr>
               <tr className="border-b dark:border-neutral-500">
                 <td className="whitespace-nowrap  px-6 py-4 font-medium">3</td>
@@ -71,7 +70,7 @@ function Card({ imageUrls, name, type, driveRange, price, chargingTime, vehicleI
               <tr className="border-b dark:border-neutral-500">
                 <td className="whitespace-nowrap  px-6 py-4 font-medium">4</td>
                 <td className="whitespace-nowrap  px-6 py-4"> Preis  </td>
-                <td colSpan="2" className="whitespace-nowrap  px-6 py-4"> {price} €</td>
+                <td colSpan="2" className="whitespace-nowrap  px-6 py-4"> {price} €/hrs</td>
               </tr>
             </tbody>
           </table>
