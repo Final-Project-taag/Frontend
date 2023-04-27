@@ -28,8 +28,8 @@ function AboutUs() {
     <div className="container mx-auto">
       <div className="text-center bg-black-500 mb-6">
         <h1 className="text-start text-xl font-bold ml-12"></h1>
-        <h1 className="text-emerald-600 text-6xl p-4 font-medium mb-4">
-        Green Wheels Team <br /> <br />
+        <h1 className="text-green-600 text-6xl p-4 font-medium mb-4">
+        Green <span className=" text-gray-600">Wheels</span>  Team <br /> <br />
         
         </h1>
         <p className="font-sans text-center mx-10">
