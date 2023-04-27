@@ -6,6 +6,8 @@ import Card from './E-VehicleDetails'
 
 
 function EVehicles() {
+    const [vehicleCounts, setVehicleCounts] = useState({});
+
     const [cars, setCars] = useState([]);
 
     const [typeFilter, setTypeFilter] = useState('');
@@ -16,39 +18,51 @@ function EVehicles() {
 
     const navigate = useNavigate();
 
+    
+
     async function fetchVehicles() {
         try {
-          const queryParams = new URLSearchParams();
-      
-          if (typeFilter) {
-            queryParams.append('type', typeFilter);
-          }
-          if (minPriceFilter) {
-            queryParams.append('minPrice', minPriceFilter);
-          }
-          if (maxPriceFilter) {
-            queryParams.append('maxPrice', maxPriceFilter);
-          }
-          if (minDriveRangeFilter) {
-            queryParams.append('minDriveRange', minDriveRangeFilter);
-          }
-          if (maxDriveRangeFilter) {
-            queryParams.append('maxDriveRange', maxDriveRangeFilter);
-          }
-      
-          const response = await axios.get('http://localhost:8081/vehicles?' + queryParams.toString());
-          setCars(response.data);
+            const queryParams = new URLSearchParams();
+
+            if (typeFilter) {
+                queryParams.append('type', typeFilter);
+            }
+            if (minPriceFilter) {
+                queryParams.append('minPrice', minPriceFilter);
+            }
+            if (maxPriceFilter) {
+                queryParams.append('maxPrice', maxPriceFilter);
+            }
+            if (minDriveRangeFilter) {
+                queryParams.append('minDriveRange', minDriveRangeFilter);
+            }
+            if (maxDriveRangeFilter) {
+                queryParams.append('maxDriveRange', maxDriveRangeFilter);
+            }
+
+            const response = await axios.get('http://localhost:8081/vehicles?' + queryParams.toString());
+            setCars(response.data);
         } catch (error) {
-          console.error('Error fetching vehicles:', error);
+            console.error('Error fetching vehicles:', error);
         }
-      }
-    
-      useEffect(() => {
+    }
+    async function fetchVehicleCounts() {
+        try {
+            const response = await axios.get('http://localhost:8081/api/vehicleCounts');
+            setVehicleCounts(response.data);
+        } catch (error) {
+            console.error('Error fetching vehicle counts:', error);
+        }
+    }
+
+
+    useEffect(() => {
         fetchVehicles();
-      }, [typeFilter, minPriceFilter, maxPriceFilter, minDriveRangeFilter, maxDriveRangeFilter]);
-    
+        fetchVehicleCounts();
+    }, [typeFilter, minPriceFilter, maxPriceFilter, minDriveRangeFilter, maxDriveRangeFilter]);
+
     function handleVehicleSelection(vehicleId) {
-        navigate(`/booking/${vehicleId}`);
+      /*   navigate(`/booking/${vehicleId}`); */
     }
 
     function handleTypeFilterChange(event) {
@@ -121,6 +135,8 @@ function EVehicles() {
                         chargingTime={car.chargingTime}
                         weight={car.weight}
                         vehicleId={car._id}
+                        availableQuantity={vehicleCounts[car._id] !== undefined ? vehicleCounts[car._id] : "N/A"}
+
 
                     />
                 </div>

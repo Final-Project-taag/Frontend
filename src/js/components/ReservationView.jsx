@@ -58,7 +58,7 @@ const ReservationView = ({ userId }) => {
             <li key={reservation.id} className="border border-gray-300 p-4 bg-gray-700 text-white rounded-md w-96">
               <h2 className="text-xl font-bold mb-2">{vehicle ? reservation.name : 'Loading...'}</h2>
               <p>Reservierung von: {reservation.startDate}</p>
-              <p>Reservierung bis: {reservation.endDate}</p>
+              <p>Reservierung bis: {reservation.reservedUntil}</p>
               {/* Add more reservation details if needed */}
             </li>
           );

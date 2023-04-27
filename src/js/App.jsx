@@ -15,6 +15,16 @@ function App() {
 
     return (
         <div className='h-screen-full'>
+          {/*   <div>
+      <h1>Verfügbare Fahrzeuge</h1>
+      <ul>
+        {vehicleCounts.map((vehicleCount) => (
+          <li key={vehicleCount._id}>
+            {vehicleCount._id}: {vehicleCount.count} Stück
+          </li>
+        ))}
+      </ul>
+    </div> */}
         <BrowserRouter>
 
             <Header />

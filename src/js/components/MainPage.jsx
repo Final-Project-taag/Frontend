@@ -63,11 +63,11 @@ function MainPage() {
 
             <div className=' max-w-2xl  relative  '>
 
-                <Carousel autoSlide={true} autoSlideInterval={7000}>
+                {/* <Carousel autoSlide={true} autoSlideInterval={7000}>
                     {slides.map((s) => (
                         <img src={s} />
                     ))}
-                </Carousel> 
+                </Carousel>  */}
             </div>
 
         </div>
