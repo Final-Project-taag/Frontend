@@ -4,10 +4,33 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react'
 import Card from './E-VehicleDetails'
 
+// eine Hilfsfunktion aggregateVehicleData, die die Fahrzeugdaten basierend auf den Fahrzeugmodellen gruppiert:
 
+ function aggregateVehicleData(vehicles, vehicleCounts) {
+    const aggregatedVehicles = {};
+  
+    vehicles.forEach((vehicle) => {
+      const vehicleKey = `${vehicle.name}-${vehicle.type}-${vehicle.driveRange}-${vehicle.price}-${vehicle.chargingTime}`;
+  
+      if (!aggregatedVehicles[vehicleKey]) {
+        aggregatedVehicles[vehicleKey] = {
+          ...vehicle,
+          count: 0,
+          _id: vehicle._id
+        };
+      }
+  
+      if (vehicleCounts[vehicle._id] !== undefined) {
+        aggregatedVehicles[vehicleKey].count += vehicleCounts[vehicle._id];
+      }
+    });
+  
+    return Object.values(aggregatedVehicles);
+}
+ 
 function EVehicles() {
     const [vehicleCounts, setVehicleCounts] = useState({});
-
+ 
     const [cars, setCars] = useState([]);
 
     const [typeFilter, setTypeFilter] = useState('');
@@ -41,25 +64,29 @@ function EVehicles() {
             }
 
             const response = await axios.get('http://localhost:8081/vehicles?' + queryParams.toString());
-            setCars(response.data);
+            const aggregatedVehicles = aggregateVehicleData(response.data, vehicleCounts);
+            setCars(aggregatedVehicles);
         } catch (error) {
             console.error('Error fetching vehicles:', error);
         }
     }
-    async function fetchVehicleCounts() {
+    //Fahrzeugzahlen vom Backend abrufen
+     async function fetchVehicleCounts() {
         try {
             const response = await axios.get('http://localhost:8081/api/vehicleCounts');
+            console.log('Fetched vehicle counts:', response.data); // Neue Zeile
             setVehicleCounts(response.data);
         } catch (error) {
             console.error('Error fetching vehicle counts:', error);
         }
     }
-
-
+    console.log(vehicleCounts);
+ 
+console.log(cars);
     useEffect(() => {
         fetchVehicles();
         fetchVehicleCounts();
-    }, [typeFilter, minPriceFilter, maxPriceFilter, minDriveRangeFilter, maxDriveRangeFilter]);
+     }, [typeFilter, minPriceFilter, maxPriceFilter, minDriveRangeFilter, maxDriveRangeFilter]);
 
     function handleVehicleSelection(vehicleId) {
       /*   navigate(`/booking/${vehicleId}`); */
@@ -129,14 +156,13 @@ function EVehicles() {
                     <Card
                         imageUrls={car.imageUrls}
                         name={car.name}
-                        type={car.type}
+                    /*     type={car.type}
                         driveRange={car.driveRange}
                         price={car.price}
                         chargingTime={car.chargingTime}
                         weight={car.weight}
-                        vehicleId={car._id}
-                        availableQuantity={vehicleCounts[car._id] !== undefined ? vehicleCounts[car._id] : "N/A"}
-
+                        vehicleId={car._id} */
+                        quantity={car.quantity}
 
                     />
                 </div>
