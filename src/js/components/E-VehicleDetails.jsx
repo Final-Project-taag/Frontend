@@ -4,6 +4,8 @@ import DatePicker from "react-datepicker";
 
 
 function Card({ imageUrls, name, type, driveRange, price, chargingTime, vehicleId, quantity }) {
+  const [reservationStatus, setReservationStatus] = useState("Reservieren")
+ 
   const [isReserved, setIsReserved] = useState(false);
   const navigate = useNavigate()
   const [timeLeft, setTimeLeft] = useState(null);
