@@ -1,13 +1,25 @@
 import { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+import useAuthStore from '../hooks/useAuthStore';
+import EVehicles from './E-Vehicles';
+import Typewriter from './typeWriterEffect';
+>>>>>>> ahmad
 
 /* import { ScrollScene } from 'scrollscene';
 import { gsap } from 'gsap';
  */
 
 function MainPage() {
+<<<<<<< HEAD
   const navigate = useNavigate();
   const [vehicles, setVehicles] = useState([]);
+=======
+    const navigate = useNavigate();
+    const [vehicles, setVehicles] = useState([]);
+    const introText = " Entdecken Sie mit uns die Zukunft der Mobilität - einfach, bequem und umweltbewusst. Buchen Sie Ihre nächste Fahrt mit unseren Elektrofahrzeugen und tragen Sie dazu bei, unseren Planeten zu schonen und die Lebensqualität in unseren Städten zu verbessern. Machen Sie den ersten Schritt in eine nachhaltige Zukunft und erleben Sie Mobilität neu !"; 
+>>>>>>> ahmad
 
   /*     const elemRef = useRef(null);
       const rectangleRef = useRef(null);
@@ -160,4 +172,3 @@ function MainPage() {
 export default MainPage;
 
 
-/*  */

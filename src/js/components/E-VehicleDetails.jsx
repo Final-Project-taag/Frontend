@@ -160,22 +160,22 @@ function Card({ imageUrls, name, type, driveRange, price, chargingTime, vehicleI
                 <td className="whitespace-nowrap  px-6 py-4 font-medium">1</td>
                 <td className="whitespace-nowrap  px-6 py-4">E-Fahrzeugtyp:</td>
                 <td className="whitespace-nowrap  px-6 py-4">{type}</td>
-              </tr>
-              {/*  <tr className="border-b dark:border-neutral-500">
-                <td className="whitespace-nowrap  px-6 py-4 font-medium">2</td>
+              </tr> 
+              <tr className="border-b dark:border-neutral-500">
+                
                 <td className="whitespace-nowrap  px-6 py-4">Reichweite:</td>
                 <td className="whitespace-nowrap  px-6 py-4">{driveRange}  KM/H</td>
               </tr>
               <tr className="border-b dark:border-neutral-500">
-                <td className="whitespace-nowrap  px-6 py-4 font-medium">3</td>
+                
                 <td className="whitespace-nowrap  px-6 py-4 ">Ladezeit</td>
                 <td className="whitespace-nowrap  px-6 py-4">{chargingTime} St</td>
               </tr>
               <tr className="border-b dark:border-neutral-500">
-                <td className="whitespace-nowrap  px-6 py-4 font-medium">4</td>
+                
                 <td className="whitespace-nowrap  px-6 py-4"> Preis  </td>
                 <td colSpan="2" className="whitespace-nowrap  px-6 py-4"> {price} €</td>
-              </tr> */}
+              </tr> 
               <tr className="border-b dark:border-neutral-500">
                 <td className="whitespace-nowrap  px-6 py-4 font-medium">5</td>
                 <td className="whitespace-nowrap  px-6 py-4">Verfügbare Menge:</td>
