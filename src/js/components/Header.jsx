@@ -4,37 +4,17 @@ import { User } from "react-feather";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from 'react-router-dom';
 
-
-
-
 function Header() {
-
   const authStore = useAuthStore();
   const navigate = useNavigate();
   const isAuthenticated = authStore.isAuthenticated(); // Add this line to check authentication status
   const handleRegisterClick = () => {
     navigate('/register');
+};
 
-  
-  const [mobileNav, setMobileNav]= useState(false);
-  const onToggleMenu = (evt)=> {
-      evt.stopPropagation();
-
-      setMobileNav(!mobileNav);
-  }
-  
-    useEffect(() => { 
-        document.addEventListener('click', () => { setMobileNav(false) }, true); 
-        return () =>
-    { document.removeEventListener('click', () => { setMobileNav(false)}, true); }; }, []);
-
- 
-
-    return (
-        <>
-         {/* <div className="fixed z-50 flex border-b justify-center items-center "></div> */}
-        <nav className='fixed top-0 left-0 w-full shadow z-50'>
-        <div className="  w-screen h-fit flex justify-center py-1 px-1  bg-white">
+  return (
+    <div className="fixed z-50 flex border-b justify-center items-center ">
+      <div className="  w-screen h-fit flex justify-center py-1 px-1  bg-white">
         <div className="flex  ">
           <Link to="/">
             {" "}
@@ -116,43 +96,12 @@ function Header() {
                 Log Out
               </button>
             </div>
-            
-          )}<div class="flex items-center">
-                <ion-icon onClick={(evt)=> onToggleMenu(evt)} name="menu" class="text-3xl  cursor-pointer md:hidden "></ion-icon>
-            </div>
+          )}
         </div>
       </div>
-        <Outlet />
-        
-        
-        <div className={`mobile-nav flex flex-col gap-1 absolute bg-white w-full ${mobileNav ? 'block':'hidden'}`}
-        onClick={ (evt) => evt.stopPropagation()}
-        >
-        <ul>
-        <li className=' font-bold text-2xl text-green-500 hover:text-green-700 py-4 px-6'><Link className='block py-2' to='e-vehicles'>E-Fahrzeuge</Link></li>
-                    <li className=' font-bold text-2xl text-green-500 hover:text-green-700 py-4 px-6'><Link className='block py-2' to='reservation-view'>Reservierungen</Link></li>
-                    <li className=' font-bold text-2xl text-green-500 hover:text-green-700 py-4 px-6'><Link className='block py-2' to='/contact'>Kontakt</Link></li>
-                    <li className=' font-bold text-2xl  text-green-500 hover:text-green-700 py-4 px-6'><Link className='block py-2' to='/About-us'>Über uns</Link></li>  
-        </ul>
-
-    <div className='flex gap-3 p-2  '>
-    <button onClick={evt => authStore.logout()}   className=" text-2xl text-green-500 font-sans py-1 px-1 rounded focus:outline-none focus:shadow-outline" type="button">
-            <Link to='/login'>Login</Link>
-                
-            </button>
-            <button onClick={evt => authStore.logout()}   className=" text-2xl text-green-500 font-sans py-1 px-1 rounded focus:outline-none focus:shadow-outline" type="button">
-            <Link to='/register'>register</Link>
-
-            </button>
+      <Outlet />
     </div>
-
-    </div>
-
-
-
-        </nav>
-        </>
-    );
-}}
+  );
+}
 
 export default Header;
