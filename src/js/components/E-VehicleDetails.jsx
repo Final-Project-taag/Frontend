@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Card({ imageUrls, name, type, driveRange, price, chargingTime, vehicleId, quantity }) {
-/*   const [reservationStatus, setReservationStatus] = useState("Reservieren")
- */  const [isReserved, setIsReserved] = useState(false);
+  const [reservationStatus, setReservationStatus] = useState("Reservieren")
+ 
+  const [isReserved, setIsReserved] = useState(false);
   const navigate = useNavigate()
   const [timeLeft, setTimeLeft] = useState(null);
 
