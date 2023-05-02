@@ -89,9 +89,12 @@ console.log(cars);
      }, [typeFilter, minPriceFilter, maxPriceFilter, minDriveRangeFilter, maxDriveRangeFilter]);
 
     function handleVehicleSelection(vehicleId) {
-      /*   navigate(`/booking/${vehicleId}`); */
-    }
-
+       /* navigate(`/booking/${vehicleId}`);  */
+     } 
+/*  const handleBooking = (vehicleId) => {
+    navigate(`/booking/${vehicleId}`);
+  };
+ */
     function handleTypeFilterChange(event) {
         setTypeFilter(event.target.value);
     }
@@ -156,12 +159,12 @@ console.log(cars);
                     <Card
                         imageUrls={car.imageUrls}
                         name={car.name}
-                    /*     type={car.type}
+                        type={car.type}
                         driveRange={car.driveRange}
                         price={car.price}
                         chargingTime={car.chargingTime}
                         weight={car.weight}
-                        vehicleId={car._id} */
+                        vehicleId={car._id} 
                         quantity={car.quantity}
 
                     />

@@ -82,7 +82,7 @@ const navigate = useNavigate()
       <form className="flex flex-row gap-4 bg-white p-6 rounded-md shadow-lg border-2 border-solid border-black w-5/6 mx-auto" onSubmit={handleSubmit}>
         <div className="flex flex-col">
           <label htmlFor="start-date" className="font-bold mb-1">
-            Reservierung von:
+            Buchung von:
           </label>
           <DatePicker
             id="start-date"
@@ -97,7 +97,7 @@ const navigate = useNavigate()
         </div>
         <div className="flex flex-col">
           <label htmlFor="end-date" className="font-bold mb-1">
-            bis:
+            Buchung bis:
           </label>
           <DatePicker
             id="end-date"
