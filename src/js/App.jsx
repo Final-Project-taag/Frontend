@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "../scss/App.scss";
 import Header from "./components/Header";
-/* import Footer from "./components/Footer"; */
+/* import Footer from "./components/Footer";  */
 import MainPage from "./components/MainPage";
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -13,22 +13,28 @@ import ReservationView from "./components/ReservationView";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
+   
+    <div className='h-full'>
+ 
+      <BrowserRouter>
 
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="/e-vehicles" element={<EVehicles />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/booking/:vehicleId" element={<Booking />} />
-        <Route path="/reservation-view" element={<ReservationView />} />
-      </Routes>
-      
-      {/* <Footer /> */}
-    </BrowserRouter>
+        <Header />
+
+        <Routes>
+
+          <Route path='/' element={<MainPage />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/about-us' element={<AboutUs />} />
+          <Route path='/e-vehicles' element={<EVehicles />} />
+          <Route path='/contact' element={<ContactPage />} /> 
+          <Route path='/booking/:vehicleId' element={<Booking />} />
+          <Route path='/reservation-view' element={<ReservationView />} />
+        </Routes>
+        {/* <Footer /> */}
+      </BrowserRouter>
+
+    </div>
   );
 }
 
