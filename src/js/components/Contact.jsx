@@ -8,9 +8,9 @@ function Contact() {
 return (
 
 
-<div className="container flex items-center gap-4 max-w-4xl mx-auto flex-col md:flex-row pt-6">
+<div className="container  h-full flex items-center gap-4  pt-28  m-auto max-w-4xl mx-auto flex-col md:flex-row">
 
-
+{/* <div className="container flex items-center gap-4 max-w-4xl mx-auto flex-col md:flex-row pt-6"></div> */}
 
 <div className="max-w-[50%] w-full mt-16" >
 <img src="public/images/Contactseite.png" 

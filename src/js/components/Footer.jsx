@@ -1,10 +1,10 @@
-import {Link, Outlet} from 'react-router-dom';
+/* import {Link, Outlet} from 'react-router-dom';
 import useAuthStore from '../hooks/useAuthStore';
 
 function Footer() {
-    const authStore = useAuthStore();
+    const authStore = useAuthStore(); */
 
-    return (
+    //return (
         <>
 		
 
@@ -51,7 +51,7 @@ function Footer() {
 
         
         </>
-    );
-}
+//    );
+//}
 
-export default Footer;
+//export default Footer;

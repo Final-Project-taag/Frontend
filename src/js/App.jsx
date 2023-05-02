@@ -1,17 +1,18 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import '../scss/App.scss';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import MainPage from './components/MainPage';
-import Register from './components/Register';
-import Login from './components/Login';
+import "../scss/App.scss";
+import Header from "./components/Header";
+/* import Footer from "./components/Footer"; */
+import MainPage from "./components/MainPage";
+import Register from "./components/Register";
+import Login from "./components/Login";
 import AboutUs from "./components/AboutUs";
 import ContactPage from "./components/Contact";
-import Booking from './components/Booking';
-import EVehicles from './components/E-Vehicles';
+import Booking from "./components/Booking";
+import EVehicles from "./components/E-Vehicles";
 import ReservationView from "./components/ReservationView";
 
 function App() {
+
 
     return (
         <div className='h-screen-full'>
@@ -43,5 +44,3 @@ function App() {
 }
 
 export default App;
-
-
