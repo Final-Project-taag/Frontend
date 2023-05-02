@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../hooks/useAuthStore';
+import EVehicles from './E-Vehicles';
+import Typewriter from './typeWriterEffect';
 
 import Carousel from './Carousel';
 const slides = [
@@ -23,6 +25,7 @@ const slides = [
 function MainPage() {
     const navigate = useNavigate();
     const [vehicles, setVehicles] = useState([]);
+    const introText = " Entdecken Sie mit uns die Zukunft der Mobilität - einfach, bequem und umweltbewusst. Buchen Sie Ihre nächste Fahrt mit unseren Elektrofahrzeugen und tragen Sie dazu bei, unseren Planeten zu schonen und die Lebensqualität in unseren Städten zu verbessern. Machen Sie den ersten Schritt in eine nachhaltige Zukunft und erleben Sie Mobilität neu !"; 
 
     useEffect(() => {
         fetch('http://localhost:8081/vehicles')
@@ -37,7 +40,7 @@ function MainPage() {
 
     return (
 
-        <div className='h-full'>
+        <div className='pt-14 h-screen'>
             <div className="flex justify-between w-full  py-20 px-1"
                 style={{
                     backgroundImage: "url('/eco-car-forest-road-with-earth-planet.webp')",
@@ -50,8 +53,8 @@ function MainPage() {
             ></div>
 
             <div className='w-3/4 flex max-h-full flex-col   text-center mt-10 mb-10'>
-                    <h1 className="text-6xl font text-green-600">Green <span className='text-gray-600'>Wheels</span> </h1>
-                    <p className='text-2xl text-gray-700'>"Entdecken Sie mit uns die Zukunft der Mobilität - einfach, bequem und umweltbewusst. Buchen Sie Ihre nächste Fahrt mit unseren Elektrofahrzeugen und tragen Sie dazu bei, unseren Planeten zu schonen und die Lebensqualität in unseren Städten zu verbessern. Machen Sie den ersten Schritt in eine nachhaltige Zukunft und erleben Sie Mobilität neu!"</p>
+                    <h1 className="text-6xl  text-green-600">Green <span className='text-gray-600'>Wheels</span> </h1>
+                     <p className='text-xl text-gray-600 font-bold '><Typewriter  text={introText} /></p>
         
                     <button onClick={handleRegisterClick}
                         className="w-fit m-auto  tracking-wider  mt-14 rounded-xl bg-gray-600 p-3  uppercase  text-white "
@@ -61,14 +64,18 @@ function MainPage() {
                     </button>
         
                 </div>
-                <div className=' max-w-2xl  relative  mt-10'>
+                {/* <div className=' max-w-2xl  relative  mt-10'>
         
                     <Carousel autoSlide={true} autoSlideInterval={7000}>
                         {slides.map((s) => (
-                            <img src={s} />
+                            <img  key={s} src={s} />
                         ))}
                     </Carousel> 
                 </div>
+                <div>
+                <EVehicles/>
+                </div> */}
+
         
         
             </div>
@@ -78,4 +85,3 @@ function MainPage() {
         export default MainPage;
 
 
-/*  */
