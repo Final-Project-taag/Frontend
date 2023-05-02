@@ -8,24 +8,27 @@ import { useNavigate } from 'react-router-dom';
 
 
 function Header() {
+
+  const authStore = useAuthStore();
+  const navigate = useNavigate();
+  const isAuthenticated = authStore.isAuthenticated(); // Add this line to check authentication status
+  const handleRegisterClick = () => {
+    navigate('/register');
+
+  
+  const [mobileNav, setMobileNav]= useState(false);
+  const onToggleMenu = (evt)=> {
+      evt.stopPropagation();
+
+      setMobileNav(!mobileNav);
+  }
+  
     useEffect(() => { 
         document.addEventListener('click', () => { setMobileNav(false) }, true); 
         return () =>
     { document.removeEventListener('click', () => { setMobileNav(false)}, true); }; }, []);
 
-    const authStore = useAuthStore();
-    const navigate = useNavigate();
-    const isAuthenticated = authStore.isAuthenticated(); // Add this line to check authentication status
-    const handleRegisterClick = () => {
-      navigate('/register');
-
-    
-    const [mobileNav, setMobileNav]= useState(false);
-    const onToggleMenu = (evt)=> {
-        evt.stopPropagation();
-
-        setMobileNav(!mobileNav);
-    }
+ 
 
     return (
         <>
