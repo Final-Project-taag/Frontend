@@ -43,7 +43,7 @@ function Register(props) {
     }
 
     const successMsg = (
-      <h1 className="text-4xl text-center bg-gray-800 text-green-500 border border-2 pt-8">
+      <h1 className="text-4xl text-center bg-gray-800 text-green-500 border-2 ">
         Register successful! <br />
         We've sent you an e-mail to verify your e-mail address. Please follow the provided link. <br />
         <button
@@ -67,7 +67,7 @@ function Register(props) {
     });
 
     return (
-        <div className='  justify-center items-center max-w-screen-sm my-5  bg-white  '>
+        <div className='justify-center items-center max-w-screen-sm my-5 bg-white mt-16'>
         {
           registerSuccessful
           ?  (successMsg)

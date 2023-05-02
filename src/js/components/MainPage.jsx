@@ -47,7 +47,7 @@ function MainPage() {
                 backgroundRepeat: "no-repeat"
             }} 
         >
-            <div className='w-2/4 max-w-lg h-full pt-10'>
+            <div className='w-2/4 max-w-lg h-full mt-10'>
                 <h1 className="text-5xl font-bold text-green-600">Green <span className='text-green-800'>Wheels</span> </h1>
                 <p className='text-2xl bg-'>"Entdecken Sie mit uns die Zukunft der Mobilität - einfach, bequem und umweltbewusst. Buchen Sie Ihre nächste Fahrt mit unseren Elektrofahrzeugen und tragen Sie dazu bei, unseren Planeten zu schonen und die Lebensqualität in unseren Städten zu verbessern. Machen Sie den ersten Schritt in eine nachhaltige Zukunft und erleben Sie Mobilität neu!"</p>
 
@@ -61,14 +61,14 @@ function MainPage() {
 
             </div>
 
-            <div className=' max-w-2xl  relative  '>
+           {/*  <div className=' max-w-2xl  relative  '>
 
                 <Carousel autoSlide={true} autoSlideInterval={7000}>
                     {slides.map((s) => (
                         <img src={s} />
                     ))}
                 </Carousel> 
-            </div>
+            </div> */}
 
         </div>
 

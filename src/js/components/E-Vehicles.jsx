@@ -72,7 +72,7 @@ function EVehicles() {
     }
 
     return (
-        <div className="grid grid-cols-3 gap-7 p-8">
+        <div className="grid grid-cols-3 gap-7 p-8 mt-16">
             <div className="filter-container col-span-3 flex flex-wrap justify-around items-center bg-gray-100 p-4 rounded-md mb-4">
                 <label htmlFor="typeFilter" className="font-bold">
                     Type:

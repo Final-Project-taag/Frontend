@@ -44,7 +44,7 @@ const ReservationView = ({ userId }) => {
   }, [userId]);
 
   return (
-    <div className="p-6" style={{
+    <div className="p-6 mt-16" style={{
       backgroundImage: "url('public/images/bg für Login.jpg')",
       backgroundPosition: "center",
       backgroundSize: "cover",
