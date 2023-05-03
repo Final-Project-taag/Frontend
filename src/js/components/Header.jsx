@@ -14,7 +14,7 @@ function Header() {
 
   return (
     <div className="fixed z-50 flex border-b justify-center items-center ">
-      <div className="  w-screen h-fit flex justify-center py-1 px-1  bg-white">
+      <div className="  w-screen h-fit flex justify-center py-1 px-1 ">
         <div className="flex  ">
           <Link to="/">
             {" "}
@@ -33,7 +33,7 @@ function Header() {
               <Link to="/e-vehicles">E-Fahrzeuge</Link>
             </li>
             <li className=" font-light text-2xl text-green-600 hover:text-gray-600">
-              <Link to="/reservation-view">Buchungen</Link>
+              <Link to={"/reservation-view/:vehicleId"}>Buchungen</Link>
             </li>
            {/*  <li className=" font-light text-2xl text-green-600 hover:text-gray-600">
               <Link to="/booking/:vehicleId">Buchungen</Link>

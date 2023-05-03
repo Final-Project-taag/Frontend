@@ -27,7 +27,7 @@ function App() {
           <Route path='/e-vehicles' element={<EVehicles />} />
           <Route path='/contact' element={<ContactPage />} /> 
           <Route path='/booking/:vehicleId' element={<Booking />} />
-          <Route path='/reservation-view' element={<ReservationView />} />
+          <Route path='/reservation-view/:vehicleId' element={<ReservationView />} />
         </Routes>
       </BrowserRouter>
 

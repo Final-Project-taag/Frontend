@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import DatePicker from "react-datepicker";
-
+import "react-datepicker/dist/react-datepicker.css";
+import axios from "axios";
 
 function Card({ imageUrls, name, type, driveRange, price, chargingTime, vehicleId, quantity }) {
   const [reservationStatus, setReservationStatus] = useState("Reservieren")
- 
+
   const [isReserved, setIsReserved] = useState(false);
   const navigate = useNavigate()
   const [timeLeft, setTimeLeft] = useState(null);
@@ -15,15 +15,7 @@ function Card({ imageUrls, name, type, driveRange, price, chargingTime, vehicleI
   const [totalPrice, setTotalPrice] = useState(0);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  const [vehicle, setVehicle] = useState("");
-
-  const calculateTotalPrice = (pickupTime, returnTime) => {
-    // Berechnen Sie hier den Gesamtpreis basierend auf den Eingabefeldern
-    // Zum Beispiel:
-    const durationInHours = (returnTime - pickupTime) / (60 * 60 * 1000);
-    const calculatedPrice = durationInHours * price;
-    setTotalPrice(calculatedPrice);
-  };
+const [vehicle, setVehicle] = useState(null)
 
 
   useEffect(() => {
@@ -54,7 +46,7 @@ function Card({ imageUrls, name, type, driveRange, price, chargingTime, vehicleI
     const seconds = totalSeconds % 60;
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
-
+  // ------------------------------------------------RESERVIERUNG--------------------------------------------//
   const handleReservation = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -107,14 +99,12 @@ function Card({ imageUrls, name, type, driveRange, price, chargingTime, vehicleI
     }
   };
 
-  // Buchen Button Funktion
-  /*   const handleBooking = (vehicleId) => {
-      navigate(`/booking/${vehicleId}`);
-    }; */
+
   // das Detailfeld und die Eingabefelder anzuzeigen, wenn auf "Reservierung Fortsetzen" geklickt wird:
   const handleShowDetails = () => {
     setShowDetails(true);
   };
+
   useEffect(() => {
 
     async function fetchVehicle() {
@@ -129,57 +119,81 @@ function Card({ imageUrls, name, type, driveRange, price, chargingTime, vehicleI
       }
     }
 
-    fetchVehicle();
+      fetchVehicle(); 
 
   }, [vehicleId]);
 
+  // Funktion zur Berechnung des Startdatums
+  const calculateStartDate = (price) => {
+    return new Date(Date.now() + price * 60 * 60 * 1000);
+  };
+
+  // Funktion zur Aktualisierung des Startdatums
+  const handleStartDateChange = (event) => {
+    const hoursFromNow = parseInt(event.target.value, 10);
+    setStartDate(calculateStartDate(price));
+  };
+  // Funktion zur Aktualisierung der Dauer
+  const handleDurationChange = (event) => {
+    const durationInHours = parseInt(event.target.value, 10);
+    setEndDate(new Date(startDate.getTime() + durationInHours * 60 * 60 * 1000));
+  };
+  // Funktion zur Berechnung des Gesamtpreises
+  // Funktion zur Berechnung des Gesamtpreises
+  const calculateTotalPrice = (startDate, endDate) => {
+    if (startDate && endDate) {
+      const durationInHours = (endDate - startDate) / (60 * 60 * 1000);
+      return durationInHours * price;
+    }
+    return 0;
+  };
+
+
 
   return (
-    <div className="flex justify-center">
+    <div className="flex b flex-col ">
 
-      <div className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700 hover:scale-110 transform transition-all duration-300">
+      <div className="block evehicleCard px-4 max-w-screen-md rounded-lg bg-green-400 text-center shadow-xl shadow-stone-700 dark:bg-neutral-700 hover:scale-110 transform transition-all duration-300">
         <a href="#!">
-
-          <img className="rounded-t-lg" src={imageUrls} alt="" style={{ width: "500px", height: "300px", objectFit: "inherit" }} />
+          <h5 className="mb-2 pt-4 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+            {name}
+          </h5>
+          <img className="rounded-t-lg" src={imageUrls} alt="" style={{ width: "300px", height: "200px", objectFit: "inherit" }} />
 
         </a>
         <div className="p-2">
-          <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-            {name}
-          </h5>
+
 
           <table className="min-w-full text-center text-sm font-light">
             <thead
-              className="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
+              className="border-b bg-green-900 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
               <tr>
                 <th scope="col" className=" px-6 py-4">Model:</th>
-                <th colSpan="1" className=" px-6 py-4">{name}</th>
+                <th colSpan="2" className=" px-6 py-4">{name}</th>
 
               </tr>
             </thead>
             <tbody>
               <tr className="border-b dark:border-neutral-500">
-                <td className="whitespace-nowrap  px-6 py-4 font-medium">1</td>
-                <td className="whitespace-nowrap  px-6 py-4">E-Fahrzeugtyp:</td>
-                <td className="whitespace-nowrap  px-6 py-4">{type}</td>
-              </tr> 
+                <td className="whitespace-nowrap  px-1 py-2">E-Fahrzeugtyp:</td>
+                <td className="whitespace-nowrap  px-6 py-2">{type}</td>
+              </tr>
               <tr className="border-b dark:border-neutral-500">
-                
+
                 <td className="whitespace-nowrap  px-6 py-4">Reichweite:</td>
                 <td className="whitespace-nowrap  px-6 py-4">{driveRange}  KM/H</td>
               </tr>
               <tr className="border-b dark:border-neutral-500">
-                
+
                 <td className="whitespace-nowrap  px-6 py-4 ">Ladezeit</td>
                 <td className="whitespace-nowrap  px-6 py-4">{chargingTime} St</td>
               </tr>
               <tr className="border-b dark:border-neutral-500">
-                
+
                 <td className="whitespace-nowrap  px-6 py-4"> Preis  </td>
                 <td colSpan="2" className="whitespace-nowrap  px-6 py-4"> {price} €</td>
-              </tr> 
+              </tr>
               <tr className="border-b dark:border-neutral-500">
-                <td className="whitespace-nowrap  px-6 py-4 font-medium">5</td>
                 <td className="whitespace-nowrap  px-6 py-4">Verfügbare Menge:</td>
                 <td className="whitespace-nowrap  px-6 py-4">{quantity}</td>
               </tr>
@@ -226,57 +240,77 @@ function Card({ imageUrls, name, type, driveRange, price, chargingTime, vehicleI
         </div>
 
       </div>
-      {showDetails && (
-        /*  <div>
-           <label htmlFor="pickupTime">Abholzeit:</label>
-           <input type="datetime-local" id="pickupTime" name="pickupTime" />
+<div className=" h-28">
+{showDetails && ( 
+        <div className="mt-6 " style={{ zIndex: 1000, position: "relative" }}>
 
-           <label htmlFor="returnTime">Bringzeit:</label>
-           <input type="datetime-local" id="returnTime" name="returnTime" />
-         </div> */
-        <form className="flex flex-col gap-4 bg-white p-6 rounded-md shadow-lg border-2 border-solid border-black w-5/6 mx-auto" >
-          <div className="flex  flex-col">
-            <label htmlFor="start-date" className="font-bold mb-1">
-              Buchung von:
-            </label>
-            <DatePicker
-              id="start-date"
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              showTimeSelect
-              timeFormat="HH:mm"
-              timeIntervals={15}
-              dateFormat="MMMM d, yyyy h:mm aa"
-              className="p-2 w-96 border border-gray-400 rounded-md"
-            />
+          <div className="flex flex-col gap-36 border-8 border-black bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%p-6 rounded-md shadow-lg  mx-auto">
+            <div className="flex flex-col">
+              <label htmlFor="start-date" className="font-bold mb-1">
+                Buchung von:
+              </label>
+              <select
+                id="start-date"
+                className="p-2 w-96 border border-gray-400 rounded-md"
+                onChange={(e) => {
+                  const startDate = new Date(Date.now() + parseInt(e.target.value) * 60 * 60 * 1000);
+                  setStartDate(startDate);
+                }}
+              >
+                <option value="">Wähle Startzeit</option>
+                {[...Array(10).keys()].map((i) => (
+                  <option key={i} value={i + 1}>
+                    In {i + 1} Stunde(n)
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="flex flex-col">
+              <label htmlFor="duration" className="font-bold mb-1">
+                Dauer:
+              </label>
+              <select
+                id="duration"
+                className="p-2 w-96 border border-gray-400 rounded-md"
+                onChange={(e) => {
+                  const endDate = new Date(startDate.getTime() + parseInt(e.target.value) * 60 * 60 * 1000);
+                  setEndDate(endDate);
+                  setTotalPrice(calculateTotalPrice(startDate, endDate));
+                }}
+
+              >
+                <option value="">Wähle Dauer</option>
+                {[...Array(24).keys()].map((i) => (
+                  <option key={i} value={i + 1}>
+                    {i + 1} Stunde(n)
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="w-36 pt-5">
+              <button
+                type="submit"
+                className=" h-10 bg-green-400 text-white px-4 rounded-md hover:bg-green-500 transition-colors duration-300 mb-4 block w-full"
+                onClick={() => {
+                  if (!startDate || !endDate) {
+                    alert("Bitte wählen Sie Startzeit und Dauer aus.");
+                    return;
+                  }
+                  // Führe hier die erforderlichen Aktionen für die Reservierung aus
+                }}
+              >
+                Submit
+              </button>
+            </div>
+            <div className="font-bold">
+              Gesamtpreis: {totalPrice.toFixed(2)} €
+            </div>
           </div>
-          <div className="flex flex-col">
-            <label htmlFor="end-date" className="font-bold mb-1">
-              Buchung bis:
-            </label>
-            <DatePicker
-              id="end-date"
-              selected={endDate}
-              onChange={(date) => setEndDate(date)}
-              showTimeSelect
-              timeFormat="HH:mm"
-              timeIntervals={15}
-              dateFormat="MMMM d, yyyy h:mm aa"
-              className="p-2 w-96 border border-gray-400 rounded-md"
-            />
-          </div>
-          <div className="w-36 pt-5">
-            <button
-              type="submit"
-              className=" h-10 bg-green-400 text-white px-4 rounded-md hover:bg-green-500 transition-colors duration-300 mb-4 block w-full"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-      )
-}
-      
+        </div>
+      )}
+
+</div>
+
 
     </div >
 

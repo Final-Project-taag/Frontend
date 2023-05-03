@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import { useParams } from "react-router-dom";
-import DatePicker from "react-datepicker";
-
 
 const ReservationView = () => {
   const [reservations, setReservations] = useState([]);
+  const { vehicleId } = useParams(); // Extrahiere die Fahrzeug-ID aus der URL
+
   const [vehicles, setVehicles] = useState([]);
   const [vehicle, setVehicle] = useState(null);
-  const { vehicleId } = useParams(); // Extrahiere die Fahrzeug-ID aus der URL
   const userId = "yourUserId"; // Ersetzen Sie dies durch die Benutzer-ID des angemeldeten Benutzers
 
   const [startDate, setStartDate] = useState(new Date());
@@ -101,14 +100,36 @@ const ReservationView = () => {
   const calculateTotalPrice = () => {
     if (startDate && endDate && vehicle) {
       const durationInHours = (endDate - startDate) / (60 * 60 * 1000);
-      return durationInHours * reservation.vehicle.price;
+      return durationInHours * vehicle.price;
     }
     return 0;
   };
+
   useEffect(() => {
     setTotalPrice(calculateTotalPrice());
   }, [startDate, endDate, vehicle]);
 
+  // -----------------------------------------Zahlungsroute Fetchen------------------------//
+
+  const handlePayment = async () => {
+    try {
+      const response = await axios.post("http://localhost:8081/payment/create-payment", {
+        amount: totalPrice,
+        description: "Vehicle reservation",
+        redirectUrl: "http://localhost:3000/payment-success", // Die URL, zu der der Benutzer nach erfolgreicher Zahlung weitergeleitet wird
+        webhookUrl: "http://localhost:8081/webhook", // Die Webhook-URL, die von Mollie aufgerufen wird, um den Status der Zahlung zu aktualisieren
+      }, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+  
+      // Leiten Sie den Benutzer zur Zahlungs-URL weiter
+      window.location.href = response.data.paymentUrl;
+    } catch (error) {
+      console.error("Error creating payment:", error);
+      alert("An error occurred while creating the payment. Please try again.");
+    }
+  };
+  
 
   return (
     <div className="flex flex-col justify-items-start w-full pt-20 pb-52" >
@@ -208,8 +229,7 @@ const ReservationView = () => {
                     alert("Bitte wählen Sie Startzeit und Dauer aus.");
                     return;
                   }
-                  // Führe hier die erforderlichen Aktionen für die Reservierung aus
-                }}
+                  handlePayment();                }}
               >
                 Submit
               </button>

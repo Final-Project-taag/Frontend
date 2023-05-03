@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const developers = [
   {
     name: "Gabriella",
@@ -26,8 +25,8 @@ const developers = [
 
 function AboutUs() {
   return (
-    <div className=" flex  h-full flex-col container mx-auto pt-24">
-      <div className="flex flex-col text-center  ">
+    <div className="about-us-container pb-28 flex h-full flex-col container mx-auto pt-24">
+      <div className="flex flex-col text-center bg-white bg-opacity-70">
         <h1 className="text-green-600 text-6xl p-6  ">
           Green <span className=" text-gray-600">Wheels</span> Team </h1>
         <p className="font-sans text-xl text-center mx-10">
@@ -61,7 +60,7 @@ function AboutUs() {
             </div>
           ))}
         </div>
-       
+
       </div>
     </div>
   );
