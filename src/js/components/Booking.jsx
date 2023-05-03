@@ -13,7 +13,7 @@ function Booking() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [vehicle, setVehicle] = useState("");
-  const {vehicleId} = useParams()
+  const vehicleId = useParams()
 const navigate = useNavigate()
 
   async function handleSubmit(e) {
@@ -73,7 +73,7 @@ const navigate = useNavigate()
     
   }, [vehicleId]);
 
-
+console.log(vehicleId);
 
 
   return (
@@ -126,7 +126,7 @@ const navigate = useNavigate()
             <table className="table-fixed w-1/3 ml-6">
               <thead>
                 <tr>
-                  <td className="text-xl font-bold pb-2">{vehicle.name}</td>
+                  <td className="text-xl font-bold pb-2">{vehicle._id}</td>
                 </tr>
               </thead>
               <tbody>
