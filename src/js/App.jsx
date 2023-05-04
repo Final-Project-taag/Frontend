@@ -26,8 +26,6 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/about-us' element={<AboutUs />} />
           <Route path='/e-vehicles' element={<EVehicles />} />
-          {/* <Route path='/e-vehicles/:id' element={<EVehiclesDetails />} /> */}
-
           <Route path='/contact' element={<ContactPage />} /> 
           <Route path='/booking/:vehicleId' element={<Booking />} />
           <Route path='/reservation-view/:vehicleId' element={<ReservationView />} />

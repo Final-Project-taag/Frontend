@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const developers = [
   {
     name: "Gabriella",
@@ -26,9 +25,9 @@ const developers = [
 
 function AboutUs() {
   return (
-    <div className=" flex  h-full flex-col container mx-auto pt-24">
-      <div className="flex flex-col text-center  ">
-        <h1 className="text-green-600 text-6xl p-6  ">
+    <div className=" flex  h-full flex-col container mx-auto pt-24 pb-28  about-us-container">
+      <div className="flex flex-col text-center bg-white bg-opacity-90  ">
+        <h1 className="text-green-600 text-6xl p-6   ">
           Green <span className=" text-gray-600">Wheels</span> Team{" "}
         </h1>
         <p className="font-sans text-xl text-center mx-10">
@@ -47,28 +46,27 @@ function AboutUs() {
           unseren Kunden einen Unterschied zu machen und die Natur für
           zukünftige Generationen zu bewahren.
         </p>
-      </div>
-      <div className="flex  items-center pt-16">
-        <div className="flex flex-row flex-wrap justify-center">
-          {developers.map((developer) => (
-            <div className="w-56 mx-4 mb-6" key={developer.name}>
-              <p className="text-green-600 text-xl  text-center">
-                {developer.name}
-              </p>
-              <p className="text-gray-500  font-light text-center">
-                {developer.cite}
-              </p>
-              <img
-                className="bg-contain  w-full  border-solid border border-gray-300 mt-4 rounded-3xl"
-                src={developer.image}
-                alt={developer.role}
-              />
-            </div>
-          ))}
+
+        <div className="flex  items-center pt-16">
+          <div className="flex flex-row flex-wrap justify-center">
+            {developers.map((developer) => (
+              <div className="w-56 mx-4 mb-6" key={developer.name}>
+                <p className="text-green-600 text-xl  text-center">
+                  {developer.name}
+                </p>
+                <p className="text-gray-500  font-light text-center">
+                  {developer.cite}
+                </p>
+                <img
+                  className="bg-contain  w-full  border-solid border border-gray-300 mt-4 rounded-3xl"
+                  src={developer.image}
+                  alt={developer.role}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-
-      
     </div>
   );
 }
