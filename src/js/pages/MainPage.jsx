@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../hooks/useAuthStore';
-import EVehicles from './E-Vehicles';
-import Typewriter from './typeWriterEffect';
 
-import Carousel from './Carousel';
+import Typewriter from '../features/typeWriterEffect';
+
+import Carousel from '../features/Carousel';
+
 const slides = [
     "/images/Tesla-Model-3.webp",
     "/images/autos_03.jpg",
@@ -54,17 +55,23 @@ function MainPage() {
 
             <div className='w-3/4 flex max-h-full flex-col   text-center mt-10 mb-10'>
                     <h1 className="text-6xl  text-green-600">Green <span className='text-gray-600'>Wheels</span> </h1>
-                     <p className='text-xl text-gray-600 font-bold '><Typewriter  text={introText} /></p>
+                     <Typewriter  text={introText} />
         
                     <button onClick={handleRegisterClick}
                         className="w-fit m-auto  tracking-wider  mt-14 rounded-xl bg-gray-600 p-3  uppercase  text-white "
                         type="button"
                     >
                         Register
+                        
                     </button>
+
+                    
         
                 </div>
-                {/* <div className=' max-w-2xl  relative  mt-10'>
+                
+                    
+                
+                <div className=' max-w-2xl  relative  mt-10'>
         
                     <Carousel autoSlide={true} autoSlideInterval={7000}>
                         {slides.map((s) => (
@@ -73,8 +80,9 @@ function MainPage() {
                     </Carousel> 
                 </div>
                 <div>
-                <EVehicles/>
-                </div> */}
+                    <img src="" alt="" />
+                </div>
+               
 
         
         

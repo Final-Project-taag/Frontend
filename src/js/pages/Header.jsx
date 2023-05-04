@@ -3,15 +3,22 @@ import useAuthStore from "../hooks/useAuthStore";
 import { User } from "react-feather";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
+
 
 function Header() {
+  
   const authStore = useAuthStore();
   const navigate = useNavigate();
   const isAuthenticated = authStore.isAuthenticated(); // Add this line to check authentication status
+  const loadUser = authStore.loadUser;
   const handleRegisterClick = () => {
     navigate('/register');
-};
 
+};
+useEffect(()=>{
+loadUser()
+  },[])
   return (
     <div className="fixed z-50 flex border-b justify-center items-center ">
       <div className="  w-screen h-fit flex justify-center py-1 px-1  bg-white">
@@ -68,7 +75,7 @@ function Header() {
               <div>
                 <UserCircleIcon className="h-12 w-10 text-gray-700" />
                 {authStore.isAuthenticated()
-                  ? authStore.user.fullname
+                  ? authStore.user.username
                   : "Anonymous"}
               </div>
 
