@@ -10,7 +10,6 @@ import ContactPage from "./pages/Contact";
 import Booking from "./components/Booking";
 import EVehicles from "./components/E-Vehicles";
 import ReservationView from "./components/ReservationView";
-
 function App() {
   return (
    
@@ -31,10 +30,8 @@ function App() {
 
           <Route path='/contact' element={<ContactPage />} /> 
           <Route path='/booking/:vehicleId' element={<Booking />} />
-          <Route path='/reservation-view' element={<ReservationView />} />
-
+          <Route path='/reservation-view/:vehicleId' element={<ReservationView />} />
         </Routes>
-        {/* <Footer /> */}
       </BrowserRouter>
 
     </div>
