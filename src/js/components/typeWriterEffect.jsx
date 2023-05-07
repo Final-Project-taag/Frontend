@@ -23,8 +23,8 @@ const Typewriter = ({ text }) => {
        } ;
   }, [currentIndex]);
   return (
-    <div className=" typewriter  w-11/12 pt-6 h-40">
-      <h2 className="typing m-auto tracking-widest">{displayText} {showBlinker ? (<span className="blink-caret text-orange-600">|</span>): null} </h2>
+    <div className=" typewriter  w-11/12 md:w11-18 pt-6 h-40 ">
+      <h2 className="typing text-left m-auto tracking-widest">{displayText} {showBlinker ? (<span className="blink-caret text-orange-600">|</span>): null} </h2>
     </div>
   );
 };

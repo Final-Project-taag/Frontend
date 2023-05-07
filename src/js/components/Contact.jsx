@@ -12,16 +12,10 @@ return (
 
 {/* <div className="container flex items-center gap-4 max-w-4xl mx-auto flex-col md:flex-row pt-6"></div> */}
 
-<div className="max-w-[50%] w-full mt-16" >
+<div className="max-w-[100%] md:max-w-[50%] w-full mt-16" >
 <img src="public/images/Contactseite.png" 
-    alt="" className="w-full h-[460px] object-cover" />
+    alt="" className="w-full h-[500px] object-cover" />
 
-{/* <div className="flex flex-row mt-3">
-	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41508.291757421604!2d8.389361554445365!3d49.44164709250191!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479634cc9735e6d3%3A0x2f8a3f92c976b0bf!2s67112%20Mutterstadt!5e0!3m2!1sar!2sde!4v1682423765095!5m2!1sde!2sde"
-    width="450" height="300" style={{border:"0"}}
-	allowfullscreen="" loading="lazy"
-	referrerpolicy="no-referrer-when-downgrade"></iframe>
-</div> */}
     
 </div>
 
@@ -30,7 +24,7 @@ return (
 
 <div>
     <div>
-       <h1 className="font-bold mt-4 text-4xl">Green Wheels</h1>
+	<h1 className="text-6xl  text-green-600">Green <span className='text-gray-600'>Wheels</span> </h1>
     </div>
     <h2 className="mt-2 text-xl">Lorem ipsum dolor sit amet consectetur .</h2>
     <ul className="mt-8">

@@ -113,8 +113,8 @@ console.log(cars);
     }
 
     return (
-        <div className="grid grid-cols-3 gap-7 p-8 mt-16">
-            <div className="filter-container col-span-3 flex flex-wrap justify-around items-center bg-gray-100 p-4 rounded-md mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-7 pt-24">
+            {/* <div className="filter-container col-span-3 flex flex-wrap justify-around items-center bg-gray-100 mt-20 p-4 rounded-md mb-4">
                 <label htmlFor="typeFilter" className="font-bold">
                     Type:
                 </label>
@@ -148,7 +148,7 @@ console.log(cars);
                 <button onClick={fetchVehicles} className="bg-blue-500 text-white px-4 py-2 rounded-md font-bold">
                     Apply Filters
                 </button>
-            </div>
+            </div> */}
 
 
             {cars.map((car) => (

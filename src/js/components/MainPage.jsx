@@ -40,30 +40,34 @@ function MainPage() {
 
     return (
 
-        <div className='pt-14 h-screen'>
-            <div className="flex justify-between w-full  py-20 px-1"
+        <div className='pt-14 h-screen '>
+            <div className="flex justify-between w-full py-20 px-1 h-20 md:w-auto  md:h-[20vh] xl:h-[40vh]"
                 style={{
                     backgroundImage: "url('/eco-car-forest-road-with-earth-planet.webp')",
                     backgroundPositionY: "bottom",
                     backgroundPosition:"center",
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
-                    height:"40vh",   
+                    
+                    
+                    
+                     
                 }} 
             ></div>
 
-            <div className='w-3/4 flex max-h-full flex-col   text-center mt-10 mb-10'>
+            <div className='w-3/4 flex max-h-full flex-col  text-center mt-10 mb-10 '>
                     <h1 className="text-6xl  text-green-600">Green <span className='text-gray-600'>Wheels</span> </h1>
-                     <p className='text-xl text-gray-600 font-bold '><Typewriter  text={introText} /></p>
+                     <p className='text-xl text-gray-600 font-bold min-h-[460px] md:min-h-full'><Typewriter  text={introText} /></p>
         
-                    <button onClick={handleRegisterClick}
-                        className="w-fit m-auto  tracking-wider  mt-14 rounded-xl bg-gray-600 p-3  uppercase  text-white "
+                    
+        
+                </div>
+                <div><button onClick={handleRegisterClick}
+                        className="w-fit m-auto  tracking-wider  rounded-xl bg-gray-600 p-3  uppercase  text-white flex items-center "
                         type="button"
                     >
                         Register
-                    </button>
-        
-                </div>
+                    </button></div>
                 {/* <div className=' max-w-2xl  relative  mt-10'>
         
                     <Carousel autoSlide={true} autoSlideInterval={7000}>

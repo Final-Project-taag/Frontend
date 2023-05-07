@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "../scss/App.scss";
 import Header from "./components/Header";
-/* import Footer from "./components/Footer";  */
+ import Footer from "./components/Footer";  
 import MainPage from "./components/MainPage";
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -10,6 +10,7 @@ import ContactPage from "./components/Contact";
 import Booking from "./components/Booking";
 import EVehicles from "./components/E-Vehicles";
 import ReservationView from "./components/ReservationView";
+
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
           <Route path='/booking/:vehicleId' element={<Booking />} />
           <Route path='/reservation-view' element={<ReservationView />} />
         </Routes>
-        {/* <Footer /> */}
+         <Footer /> 
       </BrowserRouter>
 
     </div>
