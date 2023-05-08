@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 /* import useAuthStore from '../hooks/useAuthStore'; */
 
 import Typewriter from '../features/typeWriterEffect';
-import  EfahrzeueModal from '../features/EfahrzeueModal';
+
 
 
 const slides = [

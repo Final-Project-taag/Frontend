@@ -132,9 +132,9 @@ const ReservationView = () => {
   
 
   return (
-    <div className="flex flex-col justify-items-start w-full pt-20 pb-52" >
+    <div className="flex w-screen flex-col justify-items-start w-full pt-20 pb-52" >
 
-      <div className="w-1/2">
+      <div className="">
 
         {reservations.map((reservation, index) => {
           const vehicle = vehicles[index];

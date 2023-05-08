@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "../scss/App.scss";
+
 import Header from "./pages/Header";
-/* import Footer from "./components/Footer";  */
+import Footer from "./pages/Footer";
 import MainPage from "./pages/MainPage";
 import Register from "./forms/Register";
 import Login from "./forms/Login";
@@ -10,6 +11,11 @@ import ContactPage from "./pages/Contact";
 import Booking from "./components/Booking";
 import EVehicles from "./components/E-Vehicles";
 import ReservationView from "./components/ReservationView";
+
+
+
+
+
 function App() {
   return (
    
@@ -30,6 +36,9 @@ function App() {
           <Route path='/booking/:vehicleId' element={<Booking />} />
           <Route path='/reservation-view/:vehicleId' element={<ReservationView />} />
         </Routes>
+
+        {/*  <Footer />  */}
+
       </BrowserRouter>
 
     </div>

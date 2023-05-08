@@ -72,3 +72,7 @@ function AboutUs() {
 }
 
 export default AboutUs;
+{/* <div className="container mx-auto mt-16">
+<div className="text-center bg-black-500 mb-6">
+  <h1 className="text-start text-xl font-bold ml-12"></h1>
+  <h1 className="text-green-600 text-6xl p-4 font-medium mb-4"> */}

@@ -74,7 +74,7 @@ function Register(props) {
       {registerSuccessful ? (
         successMsg
       ) : (
-        <form className=" h-fit  pt-18 " onSubmit={submitHandler}>
+        <form className=" h-fit  pt-18 mt-40 " onSubmit={submitHandler}>
           {errors.length > 0 && (
             <ul
               style={{
@@ -85,9 +85,9 @@ function Register(props) {
               {errorBox}
             </ul>
           )}
-          <div className=" w-full h-full max-w-lg flex-col items-center justify-center  shadow-xl rounded px-10 pt-36   mb-7">
+          <div className=" w-full h-full max-w-lg flex flex-col gap-3 justify-start items-start shadow-xl rounded px-10 py-24 mt-7">
             <label
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-gray-700 text-sm font-bold m-0"
               htmlFor="username"
             >
               Username
@@ -102,7 +102,7 @@ function Register(props) {
             />
 
             <label
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-gray-700 text-sm font-bold m-0"
               htmlFor="fullname"
             >
               Full Name
@@ -117,7 +117,7 @@ function Register(props) {
             />
 
             <label
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-gray-700 text-sm font-bold m-0"
               htmlFor="email"
             >
               E-Mail Address
@@ -132,7 +132,7 @@ function Register(props) {
             />
 
             <label
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-gray-700 text-sm font-bold m-0"
               htmlFor="city"
             >
               City
@@ -147,13 +147,13 @@ function Register(props) {
             />
 
             <label
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-gray-700 text-sm font-bold m-0"
               htmlFor="password"
             >
               Password
             </label>
             <input
-              className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none  border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type="password"
               placeholder="******************"
