@@ -25,7 +25,7 @@ const developers = [
 
 function AboutUs() {
   return (
-    <div className=" flex  h-full flex-col container mx-auto pt-24 pb-28  about-us-container">
+    <div className=" flex  h-full flex-col container mx-auto top-24 pb-28  about-us-container">
       <div className="flex flex-col text-center bg-white bg-opacity-90  ">
         <h1 className="text-green-600 text-6xl p-6   ">
           Green <span className=" text-gray-600">Wheels</span> Team{" "}

@@ -155,8 +155,8 @@ const ReservationView = () => {
 
               </div>
 
-              <img src={reservation.vehicle.imageUrls[0]} alt="" />
-
+              <img src={'/'+reservation.vehicle.imageUrls[0]} alt="" />
+              <p  >{reservation.vehicle.imageUrls[0]}</p>
               <p>Reservierung von: {reservation.startDate}</p>
               <p>Reservierung bis: {reservation.reservedUntil}</p>
               {/* Add more reservation details if needed */}
@@ -240,9 +240,7 @@ const ReservationView = () => {
           </div>
         </div>
       )}
-      <div>
-        haha
-      </div>
+      
     </div>
   );
 };

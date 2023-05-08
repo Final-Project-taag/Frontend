@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useAuthStore from '../hooks/useAuthStore';
+/* import useAuthStore from '../hooks/useAuthStore'; */
 
 import Typewriter from '../features/typeWriterEffect';
+import  EfahrzeueModal from '../features/EfahrzeueModal';
 
-import Carousel from '../features/Carousel';
 
 const slides = [
     "/images/Tesla-Model-3.webp",
@@ -35,8 +35,8 @@ function MainPage() {
             .catch(error => console.error(error));
     }, []);
 
-    const handleRegisterClick = () => {
-        navigate('/register');
+    const handletovehicle = () => {
+        navigate('/e-vehicles');
     };
 
     return (
@@ -57,11 +57,11 @@ function MainPage() {
                     <h1 className="text-6xl  text-green-600">Green <span className='text-gray-600'>Wheels</span> </h1>
                      <Typewriter  text={introText} />
         
-                    <button onClick={handleRegisterClick}
-                        className="w-fit m-auto  tracking-wider  mt-14 rounded-xl bg-gray-600 p-3  uppercase  text-white "
+                    <button onClick={handletovehicle}
+                        className="w-fit m-auto  tracking-wider  mt-14 rounded-2xl shadow-md shadow-gray-400  bg-green-600 p-3   font-bold text-white  hover:scale-105"
                         type="button"
                     >
-                        Register
+                        zu unsern Fahrzeuge
                         
                     </button>
 
@@ -71,16 +71,9 @@ function MainPage() {
                 
                     
                 
-                <div className=' max-w-2xl  relative  mt-10'>
-        
-                    <Carousel autoSlide={true} autoSlideInterval={7000}>
-                        {slides.map((s) => (
-                            <img  key={s} src={s} />
-                        ))}
-                    </Carousel> 
-                </div>
+               
                 <div>
-                    <img src="" alt="" />
+                
                 </div>
                
 
