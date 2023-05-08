@@ -13,7 +13,7 @@ function Booking() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [vehicle, setVehicle] = useState("");
-  const {vehicleId} = useParams()
+  const vehicleId = useParams()
 const navigate = useNavigate()
 
   async function handleSubmit(e) {
@@ -73,7 +73,7 @@ const navigate = useNavigate()
     
   }, [vehicleId]);
 
-
+console.log(vehicleId);
 
 
   return (
@@ -82,7 +82,7 @@ const navigate = useNavigate()
       <form className="flex flex-row gap-4 bg-white p-6 rounded-md shadow-lg border-2 border-solid border-black w-5/6 mx-auto" onSubmit={handleSubmit}>
         <div className="flex flex-col">
           <label htmlFor="start-date" className="font-bold mb-1">
-            Reservierung von:
+            Buchung von:
           </label>
           <DatePicker
             id="start-date"
@@ -97,7 +97,7 @@ const navigate = useNavigate()
         </div>
         <div className="flex flex-col">
           <label htmlFor="end-date" className="font-bold mb-1">
-            bis:
+            Buchung bis:
           </label>
           <DatePicker
             id="end-date"
@@ -126,7 +126,7 @@ const navigate = useNavigate()
             <table className="table-fixed w-1/3 ml-6">
               <thead>
                 <tr>
-                  <td className="text-xl font-bold pb-2">{vehicle.name}</td>
+                  <td className="text-xl font-bold pb-2">{vehicle._id}</td>
                 </tr>
               </thead>
               <tbody>

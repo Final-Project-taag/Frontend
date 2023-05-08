@@ -21,6 +21,7 @@ body {
     .blink-caret {
       -webkit-animation: blink-1 1s infinite both;
     }
+   
     
     /* The typing effect */
     @keyframes typing {
@@ -38,7 +39,21 @@ body {
       }
     }
     
-
+    .about-us-container {
+      position: relative;
+      background-image: url("/images/189330836_l_normal_none.jpg");
+      background-size: cover;
+      background-position: center;
+      
+ 
+      
+    }
     
+    /* .evehicleCard{
+      background-image: url("/images/card-bg.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+    
+    } */
 
 }
