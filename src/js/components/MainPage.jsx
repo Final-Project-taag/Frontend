@@ -4,9 +4,6 @@ import useAuthStore from '../hooks/useAuthStore';
 import EVehicles from './E-Vehicles';
 import Typewriter from './typeWriterEffect';
 
-/* import { ScrollScene } from 'scrollscene';
-import { gsap } from 'gsap';
- */
 
 function MainPage() {
     const navigate = useNavigate();
@@ -29,12 +26,12 @@ function MainPage() {
 
   return (
     <>
-      <div className="animation-container">
+      <div className="animation-container ">
 
 
 
         <div className='h-full'>
-          <div className="flex justify-between w-full  py-20 px-1"
+          <div className="flex justify-between w-full  py-52 px-1"
             style={{
               backgroundImage: "url('/eco-car-forest-road-with-earth-planet.webp')",
               backgroundPositionY: "bottom",
@@ -57,6 +54,7 @@ function MainPage() {
             </button>
 
           </div>
+          
         </div>
 <div>
 

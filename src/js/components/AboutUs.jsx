@@ -45,7 +45,6 @@ function AboutUs() {
           unseren Kunden einen Unterschied zu machen und die Natur für
           zukünftige Generationen zu bewahren.
         </p>
-      </div>
       <div className="flex  items-center pt-16">
         <div className="flex flex-row flex-wrap justify-center">
           {developers.map((developer) => (
@@ -61,6 +60,7 @@ function AboutUs() {
           ))}
         </div>
 
+      </div>
       </div>
     </div>
   );

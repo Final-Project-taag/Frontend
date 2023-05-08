@@ -91,11 +91,11 @@ console.log(cars);
 
 
     return (
-        <div className="grid grid-cols-3 gap-7 p-28">
+        <div className="grid grid-cols-3 gap-7 p-28 bg-gradient-to-r from-gray-300 ">
             
 
             {cars.map((car) => (
-                <div key={car._id} className="col-span-1 " onClick={() => (car._id)}>
+                <div key={car._id} className="col-span-1" onClick={() => (car._id)}>
                     <Card
                         imageUrls={car.imageUrls}
                         name={car.name}

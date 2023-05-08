@@ -15,6 +15,7 @@ function Register(props) {
   const handleGoToLoginClick = () => {
     navigate("/login");
   };
+
   function submitHandler(evt) {
     evt.preventDefault();
 
@@ -38,7 +39,9 @@ function Register(props) {
       .catch((error) => {
         console.error(error);
 
-        setErrors([error.response.data.message.split(",")]);
+            // Extrahiere das Fehler-Array aus der Antwort
+        const errorMessages = error.response.data.message.split(",");
+        setErrors(errorMessages);
       });
   }
 
@@ -68,7 +71,16 @@ function Register(props) {
   const errorBox = errors.map((error, idx) => {
     return <li key={idx}>{error}</li>;
   });
-
+  {errors.length > 0 && (
+    <ul
+      style={{
+        backgroundColor: "rgba(255,0,0,0.5)",
+        border: "1px solid red",
+      }}
+    >
+      {errorBox}
+    </ul>
+)}
   return (
     <div className=" h-full pt-18 justify-center items-center max-w-screen-sm my-5  bg-white  ">
       {registerSuccessful ? (
@@ -82,7 +94,7 @@ function Register(props) {
                 border: "1px solid red",
               }}
             >
-              {errorBox}
+              {errorBox.message}
             </ul>
           )}
           <div className=" w-full h-full max-w-lg flex-col items-center justify-center  shadow-xl rounded px-10 pt-36   mb-7">

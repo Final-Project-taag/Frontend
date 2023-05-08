@@ -14,13 +14,13 @@ function Header() {
 
   return (
     <div className="fixed z-50 flex border-b justify-center items-center ">
-      <div className="  w-screen h-fit flex justify-center py-1 px-1 ">
+      <div className=" bg-white w-screen h-fit flex justify-center py-1 px-1 ">
         <div className="flex  ">
           <Link to="/">
             {" "}
             <button className=" py-1 px-1 " type="button">
               <img
-                src="logo-tranparint.webp"
+                src="logo-transparint.webp"
                 className=" h-14 w-14 text-gray-700"
               />
             </button>

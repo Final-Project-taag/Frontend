@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Card from './E-VehicleDetails'
 
 import { useParams } from "react-router-dom";
 
@@ -11,8 +12,8 @@ const ReservationView = () => {
   const [vehicle, setVehicle] = useState(null);
   const userId = "yourUserId"; // Ersetzen Sie dies durch die Benutzer-ID des angemeldeten Benutzers
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
   const [showDetails, setShowDetails] = useState(false);
 
@@ -49,7 +50,7 @@ const ReservationView = () => {
 
   useEffect(() => {
     fetchVehicleDetails();
-  }, []);
+  }, [vehicleId]);
 
 
 
@@ -80,56 +81,91 @@ const ReservationView = () => {
     }
   };
   // Funktion zur Berechnung des Startdatums
-  const calculateStartDate = (hoursFromNow) => {
-    return new Date(Date.now() + hoursFromNow * 60 * 60 * 1000);
+  const calculateStartDate = (price) => {
+    return new Date(Date.now() + vehicle.price * 60 * 60 * 1000);
   };
 
   // Funktion zur Aktualisierung des Startdatums
   const handleStartDateChange = (event) => {
     const hoursFromNow = parseInt(event.target.value, 10);
-    setStartDate(calculateStartDate(hoursFromNow));
+    setStartDate(calculateStartDate(price));
   };
 
   // Funktion zur Aktualisierung der Dauer
   const handleDurationChange = (event) => {
+    if (!startDate) {
+      alert("Bitte wählen Sie zuerst die Startzeit aus.");
+      return;
+    }
     const durationInHours = parseInt(event.target.value, 10);
     setEndDate(new Date(startDate.getTime() + durationInHours * 60 * 60 * 1000));
   };
 
   // Funktion zur Berechnung des Gesamtpreises
-  const calculateTotalPrice = () => {
-    if (startDate && endDate && vehicle) {
+  const calculateTotalPrice = (startDate, endDate, price) => {
+    if (startDate && endDate) {
       const durationInHours = (endDate - startDate) / (60 * 60 * 1000);
-      return durationInHours * vehicle.price;
+      return durationInHours * price;
     }
-    return 0;
+    return;
   };
-
-  useEffect(() => {
-    setTotalPrice(calculateTotalPrice());
-  }, [startDate, endDate, vehicle]);
-
-  // -----------------------------------------Zahlungsroute Fetchen------------------------//
-
+  //---------------------------------------Submit Button Funktion für Zahlung--------------------
+ 
+  // Diese Funktion gibt die Reservierungs-ID der aktiven Reservierung zurück, wenn eine vorhanden ist, andernfalls gibt sie null zurück.
+  const getActiveReservationId = () => {
+    const activeReservations = reservations.filter((reservation) => isActiveReservation(reservation));
+    
+    if (activeReservations.length > 0) {
+      return activeReservations[0]._id;
+    }
+  
+    return null;
+  };
+  
+  
   const handlePayment = async () => {
+    if (!startDate || !endDate || !totalPrice) {
+      alert("Bitte wählen Sie Startzeit, Dauer und Gesamtpreis aus.");
+      return;
+    }
+    //In der handlePayment() Funktion können Sie dann die getActiveReservationId() Funktion verwenden, um die Reservierungs-ID abzurufen und im Zahlungsdatenobjekt zu verwenden:
+    const reservationId = getActiveReservationId();
+    if (!reservationId) {
+      alert("Keine aktive Reservierung gefunden.");
+      return;
+    }
+  
+    const paymentData = {
+      amount: totalPrice,
+      description: `Reservierungs-ID: ${reservation._id}`,
+      redirectUrl: "http://localhost:3000/payment/redirect",
+      webhookUrl: "http://localhost:8081/payment/webhook",
+      metadata: {
+        reservationId: reservation._id,
+        userId: userId,
+      },
+    };
+  
     try {
-      const response = await axios.post("http://localhost:8081/payment/create-payment", {
-        amount: totalPrice,
-        description: "Vehicle reservation",
-        redirectUrl: "http://localhost:3000/payment-success", // Die URL, zu der der Benutzer nach erfolgreicher Zahlung weitergeleitet wird
-        webhookUrl: "http://localhost:8081/webhook", // Die Webhook-URL, die von Mollie aufgerufen wird, um den Status der Zahlung zu aktualisieren
-      }, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      const token = localStorage.getItem("token");
+      const response = await axios.post("http://localhost:8081/payment/create-payment", paymentData, {
+        headers: { Authorization: `Bearer ${token}` },
       });
   
-      // Leiten Sie den Benutzer zur Zahlungs-URL weiter
-      window.location.href = response.data.paymentUrl;
+      if (response.data && response.data.checkoutUrl) {
+        // Redirect the user to the Mollie checkout page
+        window.location.href = response.data.checkoutUrl;
+      } else {
+        throw new Error("Failed to create Mollie payment.");
+      }
     } catch (error) {
-      console.error("Error creating payment:", error);
-      alert("An error occurred while creating the payment. Please try again.");
+      console.error("Error creating Mollie payment:", error);
+      alert("Fehler bei der Zahlungsabwicklung. Bitte versuchen Sie es später erneut.");
     }
   };
   
+
+
 
   return (
     <div className="flex flex-col justify-items-start w-full pt-20 pb-52" >
@@ -141,7 +177,7 @@ const ReservationView = () => {
           const isActive = isActiveReservation(reservation);
           const bgColor = isActive ? 'bg-green-500' : 'bg-red-400';
           return (
-            <div key={reservation._id} className={`border border-gray-300 p-4 text-white rounded-md w-96 ${bgColor}`}>
+            <div key={reservation._id} className={`border border-gray-300 p-4 text-white rounded-md w-full ${bgColor}`}>
 
               <div className="flex flex-row">
                 <button
@@ -156,93 +192,154 @@ const ReservationView = () => {
               </div>
 
               <img src={reservation.vehicle.imageUrls[0]} alt="" />
-
+              <p>Reservation ID: {reservation._id}</p>
               <p>Reservierung von: {reservation.startDate}</p>
               <p>Reservierung bis: {reservation.reservedUntil}</p>
-              {/* Add more reservation details if needed */}
-              <button className="h-10 bg-green-400 text-white px-4 rounded-md hover:bg-green-500 transition-colors duration-300 mb-4 block w-full"
-                onClick={() => {
-                  handleShowDetails();
-                }}>
-                  BuchMal.
-              </button>
+              <p>Pro Stunde: {reservation.vehicle.price}€</p>
+
+
+
+
+              <div className="flex flex-col">
+                <label htmlFor="start-date" className="font-bold mb-1">
+                  Buchung von:
+                </label>
+                <select
+                  id="start-date"
+                  className="p-2 w-96 border border-gray-600 rounded-md bg-white text-black"
+                  onChange={(e) => {
+                    const startDate = new Date(Date.now() + parseInt(e.target.value) * 60 * 60 * 1000);
+                    setStartDate(startDate);
+                  }}
+                >
+                  <option value="">Wähle Startzeit</option>
+                  {[...Array(10).keys()].map((i) => (
+                    <option key={i} value={i + 1}>
+                      In {i + 1} Stunde(n)
+                    </option>
+                  ))}
+                </select>
+
+
+                <label htmlFor="duration" className=" font-bold mb-1">
+                  Dauer:
+                </label>
+                <select
+                  id="duration"
+                  className="p-2 w-96 border border-gray-600 rounded-md bg-white text-black"
+                  onChange={(e) => {
+                    const endDate = new Date(startDate.getTime() + parseInt(e.target.value) * 60 * 60 * 1000);
+                    setEndDate(endDate);
+                    setTotalPrice(calculateTotalPrice(startDate, endDate, reservation.vehicle.price));
+
+                  }}
+
+                >
+                  <option value="">Wähle Dauer</option>
+                  {[...Array(24).keys()].map((i) => (
+                    <option key={i} value={i + 1}>
+                      {i + 1} Stunde(n)
+                    </option>
+                  ))}
+                </select>
+
+
+                <div className="font-bold">
+                  Gesamtpreis: {totalPrice.toFixed(2)} €
+                </div>
+              </div>
+              <div className="w-36 pt-5">
+                <button
+                  type="submit"
+                  className=" h-10 bg-green-400 text-white px-4 rounded-md hover:bg-green-500 transition-colors duration-300 mb-4 block w-full"
+                  onClick={() => {
+                    if (!startDate || !endDate) {
+                      alert("Bitte wählen Sie Startzeit und Dauer aus.");
+                      return;
+                    }
+                    handlePayment();
+                  }}
+                >
+                  Submit
+                </button>
+              </div>
+              <div>
+
+
+                {showDetails && (
+                  <div className="mt-6 " style={{ zIndex: 1000, position: "relative" }}>
+
+                    <div className="flex flex-col gap-4 border  bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%p-6 rounded-md shadow-lg  mx-auto">
+                      <div className="flex flex-col">
+                        <label htmlFor="start-date" className="font-bold mb-1">
+                          Buchung von:
+                        </label>
+                        <select
+                          id="start-date"
+                          className="p-2 w-96 border border-gray-400 rounded-md"
+                          onChange={(e) => {
+                            const startDate = new Date(Date.now() + parseInt(e.target.value) * 60 * 60 * 1000);
+                            setStartDate(startDate);
+                          }}
+                        >
+                          <option value="">Wähle Startzeit</option>
+                          {[...Array(10).keys()].map((i) => (
+                            <option key={i} value={i + 1}>
+                              In {i + 1} Stunde(n)
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="flex flex-col">
+                        <label htmlFor="duration" className="font-bold mb-1">
+                          Dauer:
+                        </label>
+                        <select
+                          id="duration"
+                          className="p-2 w-96 border border-gray-400 rounded-md"
+                          onChange={(e) => {
+                            const endDate = new Date(startDate.getTime() + parseInt(e.target.value) * 60 * 60 * 1000);
+                            setEndDate(endDate);
+                            setTotalPrice(calculateTotalPrice(startDate, endDate));
+                          }}
+
+                        >
+                          <option value="">Wähle Dauer</option>
+                          {[...Array(24).keys()].map((i) => (
+                            <option key={i} value={i + 1}>
+                              {i + 1} Stunde(n)
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div className="w-36 pt-5">
+                        <button
+                          type="submit"
+                          className=" h-10 bg-green-400 text-white px-4 rounded-md hover:bg-green-500 transition-colors duration-300 mb-4 block w-full"
+                          onClick={() => {
+                            if (!startDate || !endDate) {
+                              alert("Bitte wählen Sie Startzeit und Dauer aus.");
+                              return;
+                            }
+                            handlePayment();
+                          }}
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
 
             </div>
           );
         })}
       </div>
 
-      {/* --------------------  Dieser Datei wird geöffnet wenn auf Buchen Button geklickt wird           ----------------------------------------- */}
+   
 
-      {showDetails && (
-        <div className="mt-6 " style={{ zIndex: 1000, position: "relative" }}>
-
-          <div className="flex flex-col gap-4 border  bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%p-6 rounded-md shadow-lg  mx-auto">
-            <div className="flex flex-col">
-              <label htmlFor="start-date" className="font-bold mb-1">
-                Buchung von:
-              </label>
-              <select
-                id="start-date"
-                className="p-2 w-96 border border-gray-400 rounded-md"
-                onChange={(e) => {
-                  const startDate = new Date(Date.now() + parseInt(e.target.value) * 60 * 60 * 1000);
-                  setStartDate(startDate);
-                }}
-              >
-                <option value="">Wähle Startzeit</option>
-                {[...Array(10).keys()].map((i) => (
-                  <option key={i} value={i + 1}>
-                    In {i + 1} Stunde(n)
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="flex flex-col">
-              <label htmlFor="duration" className="font-bold mb-1">
-                Dauer:
-              </label>
-              <select
-                id="duration"
-                className="p-2 w-96 border border-gray-400 rounded-md"
-                onChange={(e) => {
-                  const endDate = new Date(startDate.getTime() + parseInt(e.target.value) * 60 * 60 * 1000);
-                  setEndDate(endDate);
-                  setTotalPrice(calculateTotalPrice(startDate, endDate));
-                }}
-
-              >
-                <option value="">Wähle Dauer</option>
-                {[...Array(24).keys()].map((i) => (
-                  <option key={i} value={i + 1}>
-                    {i + 1} Stunde(n)
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="w-36 pt-5">
-              <button
-                type="submit"
-                className=" h-10 bg-green-400 text-white px-4 rounded-md hover:bg-green-500 transition-colors duration-300 mb-4 block w-full"
-                onClick={() => {
-                  if (!startDate || !endDate) {
-                    alert("Bitte wählen Sie Startzeit und Dauer aus.");
-                    return;
-                  }
-                  handlePayment();                }}
-              >
-                Submit
-              </button>
-            </div>
-            <div className="font-bold">
-              Gesamtpreis: {totalPrice.toFixed(2)} €
-            </div>
-          </div>
-        </div>
-      )}
-      <div>
-        haha
-      </div>
     </div>
   );
 };
