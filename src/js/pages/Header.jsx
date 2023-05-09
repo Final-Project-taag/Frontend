@@ -22,7 +22,7 @@ const onToggleMenu = (evt)=> {
 }
   return (
     <div className="fixed z-50 flex border-b justify-center items-center top-0">
-      <div className="  w-screen h-fit flex justify-between  py-1 px-7  bg-white">
+      <div className="w-screen h-fit flex justify-between  py-1 px-7  bg-white">
         <div className="flex  m-0">
           <Link to="/">
             {" "}
