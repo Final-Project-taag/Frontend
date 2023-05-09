@@ -17,9 +17,9 @@ export default function EfahrzeueModal({
 }) {
   const [reservation, setReservation] = useState([]);
   const [authError, setAuthError] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(0);
+ 
   const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+ 
   const [timeLeft, setTimeLeft] = useState(null);
   const [isReserved, setIsReserved] = useState(false);
 
@@ -176,7 +176,7 @@ export default function EfahrzeueModal({
             alt=""
           />
         </div>
-        <div className="h-full border-x border-gray-300 "></div>
+        <div className="my-4   border-x border-gray-300 "></div>
         <div className="  w-1/2 p-4  ">
           <button
             onClick={() => closeModle()}
@@ -201,8 +201,8 @@ export default function EfahrzeueModal({
           </button>
 
           <div className=" flex flex-col bg-white pt-12 w-3/4 max-h-full  ">
-            <table className="min-w-full text-center text-sm font-light">
-              <thead className="border-b bg-gray-500 font-medium text-white">
+            <table className="min-w-full  text-center text-sm font-light">
+              <thead className="border-b  bg-gray-500 font-medium text-white">
                 <tr>
                   <th scope="col" className=" px-6 py-4">
                     Model:
@@ -243,13 +243,13 @@ export default function EfahrzeueModal({
           </div>
 
           {/* reservation button  */}
-          <div className=" py-2 ">
+          <div className=" py-2  flex items-center justify-center pt-10">
             <button
               type="button"
-              className={`inline-block rounded px-6  pt-2.5 pb-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0 ${
+              className={`inline-block rounded-xl p-2 text-sm font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0  w-fit m-auto  tracking-wider  mt-14  shadow-md shadow-gray-400     text-white  hover:scale-105 ${
                 isReserved
-                  ? "bg-red-600 text-white"
-                  : "bg-slate-200 text-green-900 shadow-[0_4px_9px_-4px_#3b71ca] hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
+                  ? "bg-red-600  "
+                  : "bg-green-500 "
               }`}
               onClick={
                 isReserved
@@ -265,12 +265,13 @@ export default function EfahrzeueModal({
                 : "Reservieren"}
             </button>
             {isReserved && (
-              <div className="ml-4 text-red-600">
-                {timeLeft !== null ? formatTimeLeft(timeLeft) : ""}
+              <div className="flex items-center justify-center gap-4 mt-14">
+                <span className="text-red-600 ">{timeLeft !== null ? formatTimeLeft(timeLeft) : ""}</span>
+                
 
                 <button
                   type="button"
-                  className="bg-slate-200 px-6 pt-2.5 pb-2 text-green-900 shadow-[0_4px_9px_-4px_#3b71ca] text-xs font-medium uppercase hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
+                  className="bg-green-500   inline-block rounded-xl p-2  text-sm font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0  w-fit m-auto  tracking-wider   shadow-md shadow-gray-400    text-white  hover:scale-105"
                   onClick={() => {
                     /*  handleBooking(); */
                     goToBooking(vehicleId);
@@ -283,13 +284,13 @@ export default function EfahrzeueModal({
             )}
 
             {authError && (
-              <i className="text-red-500">
+              <i className="text-gray-500">
                 Anmeldung ist erförderlich!{" "}
-                <a className="text-blue-300" onClick={goToLogin}>
+                <a className="text-green-500 px-3" onClick={goToLogin}>
                   Login
                 </a>
-                ,{" "}
-                <a className="text-blue-300" onClick={goToRegister}>
+                ,
+                <a className="text-green-500 px-3" onClick={goToRegister}>
                   register
                 </a>
               </i>
