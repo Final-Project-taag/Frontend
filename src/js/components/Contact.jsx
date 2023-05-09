@@ -8,12 +8,12 @@ function Contact() {
 return (
 
 
-<div className="container  h-full flex items-center gap-4  pt-28  m-auto max-w-4xl mx-auto flex-col md:flex-row">
+<div className="container  h-full flex gap-4  pt-28  m-auto max-w-4xl mx-auto flex-col md:flex-row">
 
 
 
-<div className="max-w-[50%] w-full" >
-    <img src="/public/contact.png" 
+<div className="max-w-[80%] w-full" >
+    <img src="public/images/card-bg.jpg" 
     alt="" className="w-full h-[560px] object-cover" />
 </div>
 

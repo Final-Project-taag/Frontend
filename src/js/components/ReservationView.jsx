@@ -134,11 +134,17 @@ const ReservationView = () => {
       alert("Keine aktive Reservierung gefunden.");
       return;
     }
-  
+   // Get the active reservation
+   const reservation = reservations.find((res) => res._id === reservationId);
+   if (!reservation) {
+     alert("Keine Reservierung gefunden.");
+     return;
+   }
+ 
     const paymentData = {
       amount: totalPrice,
       description: `Reservierungs-ID: ${reservation._id}`,
-      redirectUrl: "http://localhost:3000/payment/redirect",
+      redirectUrl: "http://localhost:5173/paymentsucess",
       webhookUrl: "http://localhost:8081/payment/webhook",
       metadata: {
         reservationId: reservation._id,
