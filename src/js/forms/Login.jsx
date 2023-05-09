@@ -75,7 +75,7 @@ function Login() {
 
     return (
 
-        <div className="flex justify-center items-center w-screen h-screen py-3"
+    <div className="flex justify-center items-center w-screen h-screen py-3"
             style={{
                 backgroundImage: "url('public/images/bg für Login.jpg')",
                 backgroundPosition: "center",
@@ -89,7 +89,7 @@ function Login() {
  {
      // Wenn eingeloggt, zeige Logout Button
      authStore.isAuthenticated() ? 
-         ( <button onClick={evt => authStore.logout()} className=" flex items-center  justify-center  text-gray-700 font-sans py-1 px-1  focus:outline-none focus:shadow-outline" type="button">
+         ( <button onClick={evt => authStore.logout()} className="flex items-center  justify-center  text-gray-700 font-sans py-1 px-1  focus:outline-none focus:shadow-outline" type="button">
              <svg className="h-12 w-10 text-gray-700"  width="24" height="24" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />  <path d="M7 12h14l-3 -3m0 6l3 -3" /></svg>
              Logout</button> ) 
      : 

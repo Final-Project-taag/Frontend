@@ -69,7 +69,17 @@ function Register(props) {
       {registerSuccessful ? (
         successMsg
       ) : (
-        <form className="pt-18 mt-40 " onSubmit={submitHandler}>
+        <form className=" h-fit  pt-18 mt-40 " onSubmit={submitHandler}>
+          {errors.length > 0 && (
+            <ul
+              style={{
+                backgroundColor: "rgba(255,0,0,0.5)",
+                border: "1px solid red",
+              }}
+            >
+              {errorBox}
+            </ul>
+          )}
           <div className=" w-full h-full max-w-lg flex flex-col gap-3 justify-start items-start shadow-xl rounded px-10 py-24 mt-7">
             <label
               className="block text-gray-700 text-sm font-bold m-0"
@@ -134,7 +144,7 @@ function Register(props) {
               Password
             </label>
             <input
-              className="shadow appearance-none  border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none  border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type="password"
               placeholder="******************"

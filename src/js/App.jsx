@@ -1,11 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "../scss/App.scss";
-import Header from "./components/Header";
-import MainPage from "./components/MainPage";
-import Register from "./components/Register";
-import Login from "./components/Login";
-import AboutUs from "./components/AboutUs";
-import ContactPage from "./components/Contact";
+
+import Header from "./pages/Header";
+import Footer from "./pages/Footer";
+import MainPage from "./pages/MainPage";
+import Register from "./forms/Register";
+import Login from "./forms/Login";
+import AboutUs from "./pages/AboutUs";
+import ContactPage from "./pages/Contact";
 import Booking from "./components/Booking";
 import EVehicles from "./components/E-Vehicles";
 import ReservationView from "./components/ReservationView";
@@ -31,6 +33,9 @@ function App() {
           <Route path='/reservation-view/:vehicleId' element={<ReservationView />} />
           <Route path='/paymentsucess' element={<PaymentSuccess/>}></Route>
         </Routes>
+
+        {/*  <Footer />  */}
+
       </BrowserRouter>
 
     </div>
