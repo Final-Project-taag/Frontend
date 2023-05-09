@@ -15,12 +15,12 @@ return (
 
 
 
-<div className="max-w-[100%] md:max-w-[50%] w-full mt-16" >
+{/* <div className="max-w-[100%] md:max-w-[50%] w-full mt-16" >
 <img src="https://investingminister.com/wp-content/uploads/2020/09/carhandshake.jpg" 
     alt="" className="w-full h-[500px] object-cover" />
 
     
-</div>
+</div> */}
 
 
 
