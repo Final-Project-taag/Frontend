@@ -42,14 +42,14 @@ function MainPage() {
     return (
 
         <div className='pt-14 h-screen'>
-            <div className="flex justify-between w-full  py-20 px-1"
+            <div className="flex justify-between w-full py-20 px-1 h-20 md:w-auto  md:h-[20vh] xl:h-[40vh]"
                 style={{
                     backgroundImage: "url('/eco-car-forest-road-with-earth-planet.webp')",
                     backgroundPositionY: "bottom",
                     backgroundPosition:"center",
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
-                    height:"40vh",   
+                
                 }} 
             ></div>
 
@@ -58,7 +58,7 @@ function MainPage() {
                      <Typewriter  text={introText} />
         
                     <button onClick={handletovehicle}
-                        className="w-fit m-auto  tracking-wider  mt-14 rounded-2xl shadow-md shadow-gray-400  bg-green-600 p-3   font-bold text-white  hover:scale-105"
+                        className="w-fit m-auto  tracking-wider  mt-14 rounded-2xl shadow-md shadow-gray-400  bg-green-600 p-3 font-bold  text-white  hover:scale-105"
                         type="button"
                     >
                         zu unsern Fahrzeuge
