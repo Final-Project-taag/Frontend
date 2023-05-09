@@ -19,6 +19,7 @@
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.10.0",
     "sass": "^1.60.0",
+    "typewriter-effect": "^2.19.0",
     "zustand": "^4.3.6"
   },
   "devDependencies": {

@@ -136,7 +136,7 @@ const developers = [
   {
     name: "Tenaw",
     role: "",
-    image: "/images/Tenaw.jpg",
+    image: "/images/tenaw.jpg",
   },
 ];
 function AboutUs() {
@@ -153,7 +153,7 @@ function AboutUs() {
           {developers.map((developer) => (
             <div className="w-56 mx-4 mb-6 mt-10 " key={developer.name}>
               <img
-                className="object-cover w-full h-56 border-solid border-4 border-gray-300 mb-8 rounded-full"
+                className="object-cover w-full h-56 border-solid border-4 border-gray-300 mb-8 rounded"
                 src={developer.image}
                 alt={developer.role}
               />

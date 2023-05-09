@@ -25,6 +25,8 @@ function Header() {
                         <li className=' font-light text-2xl text-green-500 hover:text-green-300'><Link to='/reservation-view'>Reservierungen</Link></li>
                         <li className=' font-light text-2xl text-green-500 hover:text-green-300'><Link to='/contact'>Kontakt</Link></li>
                         <li className=' font-light text-2xl text-green-500 hover:text-green-300'><Link to='/About-us'>Über uns</Link></li>
+                        <li className=' font-light text-2xl text-green-500 hover:text-green-300'><Link to='/register'>Register</Link></li>
+                        {/* <li className=' font-light text-2xl text-green-500 hover:text-green-300'><Link to='/booking-view'>BookingView</Link></li> */}
                     </ul>
                 </div>
 

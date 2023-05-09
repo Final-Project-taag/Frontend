@@ -77,7 +77,7 @@ function Login() {
 
         <div className="flex justify-center items-center w-screen h-screen py-3"
             style={{
-                backgroundImage: "url('public/images/bg für Login.jpg')",
+                backgroundImage: "url('/images/bg für Login.jpg')",
                 backgroundPosition: "center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat"

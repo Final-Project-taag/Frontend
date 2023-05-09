@@ -20,7 +20,7 @@ function ProtectedPage() {
         try {
             // Fuehre axios Request auf protected Route durch
             // und definiere im options Objekt die Authorization, wo der Token reinkommt
-            const resp = await axios.get('http://localhost:8080/protected', {
+            const resp = await axios.get('http://localhost:8081/protected', {
                 // withCredentials: true
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -40,7 +40,7 @@ function ProtectedPage() {
 
     return (
         <>
-            <TodoList />
+            {/* <TodoList /> */}
         </>      
 
     );
