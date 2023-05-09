@@ -1,3 +1,5 @@
+
+
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "react-feather";
 
@@ -47,6 +49,7 @@ export default function Carousel({
         <div className="flex items-center justify-center gap-2">
           {slides.map((_, i) => (
             <div
+            key={i}
               className={`
               transition-all w-3 h-3 bg-white rounded-full
               ${curr === i ? "p-2" : "bg-opacity-50"}
@@ -58,6 +61,7 @@ export default function Carousel({
     </div>
   )
 }
+
 
 
 

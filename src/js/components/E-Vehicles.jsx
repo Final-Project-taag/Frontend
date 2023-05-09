@@ -1,491 +1,149 @@
-// import React from "react";
-// import axios from "axios";
-// import { useNavigate } from "react-router-dom";
-// import { useState, useEffect } from 'react'
-// import Card from './E-V-BookingDetails.jsx'  
-
-
-// function EVehicles() {
-//     const [cars, setCars] = useState([]);
-   
-//     const [typeFilter, setTypeFilter] = useState('');
-//     const [minPriceFilter, setMinPriceFilter] = useState('');
-//     const [maxPriceFilter, setMaxPriceFilter] = useState('');
-//     const [minDriveRangeFilter, setMinDriveRangeFilter] = useState('');
-//     const [maxDriveRangeFilter, setMaxDriveRangeFilter] = useState('');
-
-//     const navigate = useNavigate();
-
-//     async function fetchVehicles() {
-//         try {
-//           const queryParams = new URLSearchParams();
-      
-//           if (typeFilter) {
-//             queryParams.append('type', typeFilter);
-//           }
-//           if (minPriceFilter) {
-//             queryParams.append('minPrice', minPriceFilter);
-//           }
-//           if (maxPriceFilter) {
-//             queryParams.append('maxPrice', maxPriceFilter);
-//           }
-//           if (minDriveRangeFilter) {
-//             queryParams.append('minDriveRange', minDriveRangeFilter);
-//           }
-//           if (maxDriveRangeFilter) {
-//             queryParams.append('maxDriveRange', maxDriveRangeFilter);
-//           }
-      
-//           const response = await axios.get('http://localhost:8081/vehicles?' + queryParams.toString());
-//           setCars(response.data);
-//         } catch (error) {
-//           console.error('Error fetching vehicles:', error);
-//         }
-//       }
-    
-//       useEffect(() => {
-//         fetchVehicles();
-//       }, [typeFilter, minPriceFilter, maxPriceFilter, minDriveRangeFilter, maxDriveRangeFilter]);
-    
-//     function handleVehicleSelection(vehicleId) {
-//         navigate(`/booking/${vehicleId}`);
-//     }
-
-//     function handleTypeFilterChange(event) {
-//         setTypeFilter(event.target.value);
-//     }
-
-//     function handleMinPriceFilterChange(event) {
-//         setMinPriceFilter(event.target.value);
-//     }
-
-//     function handleMaxPriceFilterChange(event) {
-//         setMaxPriceFilter(event.target.value);
-//     }
-
-//     function handleMinDriveRangeFilterChange(event) {
-//         setMinDriveRangeFilter(event.target.value);
-//     }
-
-//     function handleMaxDriveRangeFilterChange(event) {
-//         setMaxDriveRangeFilter(event.target.value);
-//     }
-
-//     return (
-//         <div className="grid grid-cols-3 gap-7 p-8">
-//             <div className="filter-container col-span-3 flex flex-wrap justify-around items-center bg-gray-100 p-4 rounded-md mb-4">
-//                 <label htmlFor="typeFilter" className="font-bold">
-//                     Type:
-//                 </label>
-//                 <select id="typeFilter" value={typeFilter} onChange={handleTypeFilterChange} className="bg-white p-2 rounded-md">
-//                     <option value="">All</option>
-//                     <option value="scooter">Scooter</option>
-//                     <option value="bike">Bike</option>
-//                     <option value="car">Car</option>
-//                 </select>
-
-//                 <label htmlFor="minPriceFilter" className="font-bold">
-//                     Min Price:
-//                 </label>
-//                 <input id="minPriceFilter" type="number" value={minPriceFilter} onChange={handleMinPriceFilterChange} className="bg-white p-2 rounded-md" />
-
-//                 <label htmlFor="maxPriceFilter" className="font-bold">
-//                     Max Price:
-//                 </label>
-//                 <input id="maxPriceFilter" type="number" value={maxPriceFilter} onChange={handleMaxPriceFilterChange} className="bg-white p-2 rounded-md" />
-
-//                 <label htmlFor="minDriveRangeFilter" className="font-bold">
-//                     Min Drive Range
-//                 </label>
-//                 <input id="minDriveRangeFilter" type="number" value={minDriveRangeFilter} onChange={handleMinDriveRangeFilterChange} className="bg-white p-2 rounded-md" />
-
-//                 <label htmlFor="maxDriveRangeFilter" className="font-bold">
-//                     Max Drive Range
-//                 </label>
-//                 <input id="maxDriveRangeFilter" type="number" value={maxDriveRangeFilter} onChange={handleMaxDriveRangeFilterChange} className="bg-white p-2 rounded-md" />
-
-//                 <button onClick={fetchVehicles} className="bg-blue-500 text-white px-4 py-2 rounded-md font-bold">
-//                     Apply Filters
-//                 </button>
-//             </div>
-
-
-//             {cars.map((car) => (
-//                 <div key={car._id} className="col-span-1" onClick={() => handleVehicleSelection(car._id)}>
-//                     <Card
-//                         imageUrls={car.imageUrls}
-//                         name={car.name}
-//                         type={car.type}
-//                         driveRange={car.driveRange}
-//                         price={car.price}
-//                         chargingTime={car.chargingTime}
-//                         weight={car.weight}
-//                         vehicleId={car._id}
-
-//                     />
-//                 </div>
-
-//             ))}
-//         </div>
-
-//     );
-// }
-
-// export default EVehicles;
-
-
-// // import React from "react";
-// // import axios from "axios";
-// // import { useNavigate } from "react-router-dom";
-// // import { useState, useEffect } from 'react'
-// // import Card from './E-VehicleDetails'
-
-// // // eine Hilfsfunktion aggregateVehicleData, die die Fahrzeugdaten basierend auf den Fahrzeugmodellen gruppiert:
-
-// //  function aggregateVehicleData(vehicles, vehicleCounts) {
-// //     const aggregatedVehicles = {};
-  
-// //     vehicles.forEach((vehicle) => {
-// //       const vehicleKey = `${vehicle.name}-${vehicle.type}-${vehicle.driveRange}-${vehicle.price}-${vehicle.chargingTime}`;
-  
-// //       if (!aggregatedVehicles[vehicleKey]) {
-// //         aggregatedVehicles[vehicleKey] = {
-// //           ...vehicle,
-// //           count: 0,
-// //           _id: vehicle._id
-// //         };
-// //       }
-  
-// //       if (vehicleCounts[vehicle._id] !== undefined) {
-// //         aggregatedVehicles[vehicleKey].count += vehicleCounts[vehicle._id];
-// //       }
-// //     });
-  
-// //     return Object.values(aggregatedVehicles);
-// // }
- 
-// // function EVehicles() {
-// //     const [vehicleCounts, setVehicleCounts] = useState({});
- 
-// //     const [cars, setCars] = useState([]);
-
-// //     const [typeFilter, setTypeFilter] = useState('');
-// //     const [minPriceFilter, setMinPriceFilter] = useState('');
-// //     const [maxPriceFilter, setMaxPriceFilter] = useState('');
-// //     const [minDriveRangeFilter, setMinDriveRangeFilter] = useState('');
-// //     const [maxDriveRangeFilter, setMaxDriveRangeFilter] = useState('');
-
-// //     const navigate = useNavigate();
-
-    
-
-// //     async function fetchVehicles() {
-// //         try {
-// //             const queryParams = new URLSearchParams();
-
-// //             if (typeFilter) {
-// //                 queryParams.append('type', typeFilter);
-// //             }
-// //             if (minPriceFilter) {
-// //                 queryParams.append('minPrice', minPriceFilter);
-// //             }
-// //             if (maxPriceFilter) {
-// //                 queryParams.append('maxPrice', maxPriceFilter);
-// //             }
-// //             if (minDriveRangeFilter) {
-// //                 queryParams.append('minDriveRange', minDriveRangeFilter);
-// //             }
-// //             if (maxDriveRangeFilter) {
-// //                 queryParams.append('maxDriveRange', maxDriveRangeFilter);
-// //             }
-
-// //             const response = await axios.get('http://localhost:8081/vehicles?' + queryParams.toString());
-// //             const aggregatedVehicles = aggregateVehicleData(response.data, vehicleCounts);
-// //             setCars(aggregatedVehicles);
-// //         } catch (error) {
-// //             console.error('Error fetching vehicles:', error);
-// //         }
-// //     }
-// //     //Fahrzeugzahlen vom Backend abrufen
-// //      async function fetchVehicleCounts() {
-// //         try {
-// //             const response = await axios.get('http://localhost:8081/api/vehicleCounts');
-// //             console.log('Fetched vehicle counts:', response.data); // Neue Zeile
-// //             setVehicleCounts(response.data);
-// //         } catch (error) {
-// //             console.error('Error fetching vehicle counts:', error);
-// //         }
-// //     }
-// //     console.log(vehicleCounts);
- 
-// // console.log(cars);
-// //     useEffect(() => {
-// //         fetchVehicles();
-// //         fetchVehicleCounts();
-// //      }, [typeFilter, minPriceFilter, maxPriceFilter, minDriveRangeFilter, maxDriveRangeFilter]);
-
-// //     function handleVehicleSelection(vehicleId) {
-// //       /*   navigate(`/booking/${vehicleId}`); */
-// //     }
-
-// //     function handleTypeFilterChange(event) {
-// //         setTypeFilter(event.target.value);
-// //     }
-
-// //     function handleMinPriceFilterChange(event) {
-// //         setMinPriceFilter(event.target.value);
-// //     }
-
-// //     function handleMaxPriceFilterChange(event) {
-// //         setMaxPriceFilter(event.target.value);
-// //     }
-
-// //     function handleMinDriveRangeFilterChange(event) {
-// //         setMinDriveRangeFilter(event.target.value);
-// //     }
-
-// //     function handleMaxDriveRangeFilterChange(event) {
-// //         setMaxDriveRangeFilter(event.target.value);
-// //     }
-
-// //     return (
-// //         <div className="grid grid-cols-3 gap-7 p-8">
-// //             <div className="filter-container col-span-3 flex flex-wrap justify-around items-center bg-gray-100 p-4 rounded-md mb-4">
-// //                 <label htmlFor="typeFilter" className="font-bold">
-// //                     Type:
-// //                 </label>
-// //                 <select id="typeFilter" value={typeFilter} onChange={handleTypeFilterChange} className="bg-white p-2 rounded-md">
-// //                     <option value="">All</option>
-// //                     <option value="scooter">Scooter</option>
-// //                     <option value="bike">Bike</option>
-// //                     <option value="car">Car</option>
-// //                 </select>
-
-// //                 <label htmlFor="minPriceFilter" className="font-bold">
-// //                     Min Price:
-// //                 </label>
-// //                 <input id="minPriceFilter" type="number" value={minPriceFilter} onChange={handleMinPriceFilterChange} className="bg-white p-2 rounded-md" />
-
-// //                 <label htmlFor="maxPriceFilter" className="font-bold">
-// //                     Max Price:
-// //                 </label>
-// //                 <input id="maxPriceFilter" type="number" value={maxPriceFilter} onChange={handleMaxPriceFilterChange} className="bg-white p-2 rounded-md" />
-
-// //                 <label htmlFor="minDriveRangeFilter" className="font-bold">
-// //                     Min Drive Range
-// //                 </label>
-// //                 <input id="minDriveRangeFilter" type="number" value={minDriveRangeFilter} onChange={handleMinDriveRangeFilterChange} className="bg-white p-2 rounded-md" />
-
-// //                 <label htmlFor="maxDriveRangeFilter" className="font-bold">
-// //                     Max Drive Range
-// //                 </label>
-// //                 <input id="maxDriveRangeFilter" type="number" value={maxDriveRangeFilter} onChange={handleMaxDriveRangeFilterChange} className="bg-white p-2 rounded-md" />
-
-// //                 <button onClick={fetchVehicles} className="bg-blue-500 text-white px-4 py-2 rounded-md font-bold">
-// //                     Apply Filters
-// //                 </button>
-// //             </div>
-
-
-// //             {cars.map((car) => (
-// //                 <div key={car._id} className="col-span-1" onClick={() => handleVehicleSelection(car._id)}>
-// //                     <Card
-// //                         imageUrls={car.imageUrls}
-// //                         name={car.name}
-// //                     /*     type={car.type}
-// //                         driveRange={car.driveRange}
-// //                         price={car.price}
-// //                         chargingTime={car.chargingTime}
-// //                         weight={car.weight}
-// //                         vehicleId={car._id} */
-// //                         quantity={car.quantity}
-
-// //                     />
-// //                 </div>
-
-// //             ))}
-// //         </div>
-
-// //     );
-// // }
-
-// // export default EVehicles;
-
- 
-
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from 'react'
-import Card from './E-VehicleDetails'
+import { useState, useEffect } from "react";
+import Card from "./E-VehicleDetails";
+import EfahrzeueModal from "../features/EfahrzeueModal";
 
 // eine Hilfsfunktion aggregateVehicleData, die die Fahrzeugdaten basierend auf den Fahrzeugmodellen gruppiert:
 
- function aggregateVehicleData(vehicles, vehicleCounts) {
-    const aggregatedVehicles = {};
-  
-    vehicles.forEach((vehicle) => {
-      const vehicleKey = `${vehicle.name}-${vehicle.type}-${vehicle.driveRange}-${vehicle.price}-${vehicle.chargingTime}`;
-  
-      if (!aggregatedVehicles[vehicleKey]) {
-        aggregatedVehicles[vehicleKey] = {
-          ...vehicle,
-          count: 0,
-          _id: vehicle._id
-        };
-      }
-  
-      if (vehicleCounts[vehicle._id] !== undefined) {
-        aggregatedVehicles[vehicleKey].count += vehicleCounts[vehicle._id];
-      }
-    });
-  
-    return Object.values(aggregatedVehicles);
+function aggregateVehicleData(vehicles, vehicleCounts) {
+  const aggregatedVehicles = {};
+
+  vehicles.forEach((vehicle) => {
+    const vehicleKey = `${vehicle.name}-${vehicle.type}-${vehicle.driveRange}-${vehicle.price}-${vehicle.chargingTime}`;
+
+    if (!aggregatedVehicles[vehicleKey]) {
+      aggregatedVehicles[vehicleKey] = {
+        ...vehicle,
+        count: 0,
+        _id: vehicle._id,
+      };
+    }
+
+    if (vehicleCounts[vehicle._id] !== undefined) {
+      aggregatedVehicles[vehicleKey].count += vehicleCounts[vehicle._id];
+    }
+  });
+
+  return Object.values(aggregatedVehicles);
 }
- 
+
 function EVehicles() {
-    const [vehicleCounts, setVehicleCounts] = useState({});
- 
-    const [cars, setCars] = useState([]);
+  const [vehicleCounts, setVehicleCounts] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  const [carDetails, setCarDetails] = useState({});
+  const [cars, setCars] = useState([]);
 
-    const [typeFilter, setTypeFilter] = useState('');
-    const [minPriceFilter, setMinPriceFilter] = useState('');
-    const [maxPriceFilter, setMaxPriceFilter] = useState('');
-    const [minDriveRangeFilter, setMinDriveRangeFilter] = useState('');
-    const [maxDriveRangeFilter, setMaxDriveRangeFilter] = useState('');
+  const [typeFilter, setTypeFilter] = useState("");
+  const [minPriceFilter, setMinPriceFilter] = useState("");
+  const [maxPriceFilter, setMaxPriceFilter] = useState("");
+  const [minDriveRangeFilter, setMinDriveRangeFilter] = useState("");
+  const [maxDriveRangeFilter, setMaxDriveRangeFilter] = useState("");
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    
 
-    async function fetchVehicles() {
-        try {
-            const queryParams = new URLSearchParams();
+  function closeModle () {
+    setCarDetails({})
+    setShowModal(false)
+  }
+  async function fetchVehicles() {
+    try {
+      const queryParams = new URLSearchParams();
 
-            if (typeFilter) {
-                queryParams.append('type', typeFilter);
-            }
-            if (minPriceFilter) {
-                queryParams.append('minPrice', minPriceFilter);
-            }
-            if (maxPriceFilter) {
-                queryParams.append('maxPrice', maxPriceFilter);
-            }
-            if (minDriveRangeFilter) {
-                queryParams.append('minDriveRange', minDriveRangeFilter);
-            }
-            if (maxDriveRangeFilter) {
-                queryParams.append('maxDriveRange', maxDriveRangeFilter);
-            }
+      if (typeFilter) {
+        queryParams.append("type", typeFilter);
+      }
+      if (minPriceFilter) {
+        queryParams.append("minPrice", minPriceFilter);
+      }
+      if (maxPriceFilter) {
+        queryParams.append("maxPrice", maxPriceFilter);
+      }
+      if (minDriveRangeFilter) {
+        queryParams.append("minDriveRange", minDriveRangeFilter);
+      }
+      if (maxDriveRangeFilter) {
+        queryParams.append("maxDriveRange", maxDriveRangeFilter);
+      }
 
-            const response = await axios.get('http://localhost:8081/vehicles?' + queryParams.toString());
-            const aggregatedVehicles = aggregateVehicleData(response.data, vehicleCounts);
-            setCars(aggregatedVehicles);
-        } catch (error) {
-            console.error('Error fetching vehicles:', error);
-        }
+      const response = await axios.get(
+        "http://localhost:8081/vehicles?" + queryParams.toString()
+      );
+      const aggregatedVehicles = aggregateVehicleData(
+        response.data,
+        vehicleCounts
+      );
+      setCars(aggregatedVehicles);
+    } catch (error) {
+      console.error("Error fetching vehicles:", error);
     }
-    //Fahrzeugzahlen vom Backend abrufen
-     async function fetchVehicleCounts() {
-        try {
-            const response = await axios.get('http://localhost:8081/api/vehicleCounts');
-            console.log('Fetched vehicle counts:', response.data); // Neue Zeile
-            setVehicleCounts(response.data);
-        } catch (error) {
-            console.error('Error fetching vehicle counts:', error);
-        }
+  }
+  //Fahrzeugzahlen vom Backend abrufen
+  async function fetchVehicleCounts() {
+    try {
+      const response = await axios.get(
+        "http://localhost:8081/api/vehicleCounts"
+      );
+      // console.log('Fetched vehicle counts:', response.data); // Neue Zeile
+      setVehicleCounts(response.data);
+    } catch (error) {
+      console.error("Error fetching vehicle counts:", error);
     }
-    console.log(vehicleCounts);
- 
-console.log(cars);
-    useEffect(() => {
-        fetchVehicles();
-        fetchVehicleCounts();
-     }, [typeFilter, minPriceFilter, maxPriceFilter, minDriveRangeFilter, maxDriveRangeFilter]);
+  }
+  function handleShowModle(carDetails) {
+    setCarDetails(carDetails);
+    // console.log({carDetails})
+    setShowModal(true);
+  }
+  //console.log(vehicleCounts);
 
-    function handleVehicleSelection(vehicleId) {
-      /*   navigate(`/booking/${vehicleId}`); */
-    }
+  //console.log(cars);
+  useEffect(() => {
+    fetchVehicles();
+    fetchVehicleCounts();
+  }, [
+    typeFilter,
+    minPriceFilter,
+    maxPriceFilter,
+    minDriveRangeFilter,
+    maxDriveRangeFilter,
+  ]);
 
-    function handleTypeFilterChange(event) {
-        setTypeFilter(event.target.value);
-    }
-
-    function handleMinPriceFilterChange(event) {
-        setMinPriceFilter(event.target.value);
-    }
-
-    function handleMaxPriceFilterChange(event) {
-        setMaxPriceFilter(event.target.value);
-    }
-
-    function handleMinDriveRangeFilterChange(event) {
-        setMinDriveRangeFilter(event.target.value);
-    }
-
-    function handleMaxDriveRangeFilterChange(event) {
-        setMaxDriveRangeFilter(event.target.value);
-    }
-
-    return (
-        <div className="grid grid-cols-3 gap-7 p-8">
-            <div className="filter-container col-span-3 flex flex-wrap justify-around items-center bg-gray-100 p-4 rounded-md mb-4">
-                <label htmlFor="typeFilter" className="font-bold">
-                    Type:
-                </label>
-                <select id="typeFilter" value={typeFilter} onChange={handleTypeFilterChange} className="bg-white p-2 rounded-md">
-                    <option value="">All</option>
-                    <option value="scooter">Scooter</option>
-                    <option value="bike">Bike</option>
-                    <option value="car">Car</option>
-                </select>
-
-                <label htmlFor="minPriceFilter" className="font-bold">
-                    Min Price:
-                </label>
-                <input id="minPriceFilter" type="number" value={minPriceFilter} onChange={handleMinPriceFilterChange} className="bg-white p-2 rounded-md" />
-
-                <label htmlFor="maxPriceFilter" className="font-bold">
-                    Max Price:
-                </label>
-                <input id="maxPriceFilter" type="number" value={maxPriceFilter} onChange={handleMaxPriceFilterChange} className="bg-white p-2 rounded-md" />
-
-                <label htmlFor="minDriveRangeFilter" className="font-bold">
-                    Min Drive Range
-                </label>
-                <input id="minDriveRangeFilter" type="number" value={minDriveRangeFilter} onChange={handleMinDriveRangeFilterChange} className="bg-white p-2 rounded-md" />
-
-                <label htmlFor="maxDriveRangeFilter" className="font-bold">
-                    Max Drive Range
-                </label>
-                <input id="maxDriveRangeFilter" type="number" value={maxDriveRangeFilter} onChange={handleMaxDriveRangeFilterChange} className="bg-white p-2 rounded-md" />
-
-                <button onClick={fetchVehicles} className="bg-blue-500 text-white px-4 py-2 rounded-md font-bold">
-                    Apply Filters
-                </button>
-            </div>
-
-
-            {cars.map((car) => (
-                <div key={car._id} className="col-span-1" onClick={() => handleVehicleSelection(car._id)}>
-                    <Card
-                        imageUrls={car.imageUrls}
-                        name={car.name}
-                        type={car.type}
-                        driveRange={car.driveRange}
-                        price={car.price}
-                        chargingTime={car.chargingTime}
-                        weight={car.weight}
-                        vehicleId={car._id} 
-                        quantity={car.quantity}
-
-                    />
-                </div>
-
-            ))}
+  return (<>
+    <div className="flex justify-center  items-center p-6">
+      {cars.map((car) => (
+        <div
+          key={car._id}
+          className=" mt-28"
+          onClick={() => handleShowModle(car)}
+        >
+          <Card
+            imageUrls={car.imageUrls}
+            name={car.name}
+            price={car.price}
+            vehicleId={car._id} 
+            
+          />
         </div>
-
-    );
+      ))}
+    </div>
+          {showModal && (
+            <EfahrzeugModal
+              imageUrls={carDetails.imageUrls}
+              name={carDetails.name}
+              type={carDetails.type}
+              driveRange={carDetails.driveRange}
+              price={carDetails.price}
+              chargingTime={carDetails.chargingTime}
+              weight={carDetails.weight}
+              vehicleId={carDetails._id}
+              quantity={carDetails.quantity}
+              closeModle={closeModle}
+            />
+          )}</>
+  );
 }
 
 export default EVehicles;
