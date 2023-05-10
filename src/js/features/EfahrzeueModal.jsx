@@ -167,11 +167,11 @@ export default function EfahrzeueModal({
   }
 
   return (
-    <div className="h-screen w-screen bg-white/80 fixed  top-24 left-0 z-50 flex  flex-col justify-center items-center pb-48  ">
+    <div className="h-max w-screen bg-white/80 fixed  top-24 left-0 z-50 flex  flex-col justify-center items-center pb-52  ">
       <div className="relative border-green-400 border-2 w-3/4 h-3/4 flex flex-row bg-white rounded-lg shadow m-10">
         <div className="  overflow-hidden	 w-1/2 items-center   p-2 ">
           <img
-            className="rounded-l-lg h-auto pt-20 object-cover"
+            className="rounded-l-lg h-auto pt-10 object-cover"
             src={imageUrls}
             alt=""
           />

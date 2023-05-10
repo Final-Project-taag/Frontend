@@ -11,7 +11,7 @@ return (
 <div className="flex flex-col justify-center items-center  h-full mb-10 mt-24 w-screen">
 
 
-<div className="container  h-full flex items-center   mb-28 max-w-4xl mx-auto flex-col md:flex-row">
+<div className="container  h-full flex items-center   mb-12 max-w-4xl mx-auto flex-col md:flex-row">
 
 
 

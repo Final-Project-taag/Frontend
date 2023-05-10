@@ -112,7 +112,7 @@ function EVehicles() {
   ]);
 
   return (<>
-    <div className="flex justify-center  items-center p-6">
+    <div className="flex justify-center  items-center p-6 md:flex flex-wrap">
       {cars.map((car) => (
         <div
           key={car._id}
