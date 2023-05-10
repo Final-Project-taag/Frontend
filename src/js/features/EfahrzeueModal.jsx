@@ -167,11 +167,11 @@ export default function EfahrzeueModal({
   }
 
   return (
-    <div className="h-screen w-screen bg-white/80 fixed  top-24 left-0 z-50 flex  flex-col justify-center items-center pb-24  ">
+    <div className="h-screen w-screen bg-white/80 fixed  top-24 left-0 z-50 flex  flex-col justify-center items-center pb-48  ">
       <div className="relative border-green-400 border-2 w-3/4 h-3/4 flex flex-row bg-white rounded-lg shadow m-10">
         <div className="  overflow-hidden	 w-1/2 items-center   p-2 ">
           <img
-            className="rounded-l-lg h-full object-cover"
+            className="rounded-l-lg h-auto pt-20 object-cover"
             src={imageUrls}
             alt=""
           />
@@ -200,7 +200,7 @@ export default function EfahrzeueModal({
             <span className="right-0 sr-only"> Close modal</span>
           </button>
 
-          <div className=" flex flex-col bg-white pt-12 w-3/4 max-h-full  ">
+          <div className=" flex flex-col bg-white pt-24 w-3/4 max-h-full  ">
             <table className="min-w-full text-center text-sm font-light">
               <thead className="border-b bg-gray-500 font-medium text-white">
                 <tr>
@@ -243,7 +243,7 @@ export default function EfahrzeueModal({
           </div>
 
           {/* reservation button  */}
-          <div className=" py-2 ">
+          <div className=" pt-10 ">
             <button
               type="button"
               className={`inline-block rounded px-6  pt-2.5 pb-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0 ${
