@@ -167,11 +167,11 @@ export default function EfahrzeueModal({
   }
 
   return (
-    <div className="h-screen w-screen bg-white/80 fixed  top-24 left-0 z-50 flex  flex-col justify-center items-center pb-24  ">
-      <div className="relative border-green-400 border-2 w-3/4 h-3/4 flex flex-row bg-white rounded-lg shadow  m-10">
+    <div className="h-max w-screen bg-white/80 fixed  top-24 left-0 z-50 flex  flex-col justify-center items-center pb-52  ">
+      <div className="relative border-green-400 border-2 w-3/4 h-3/4 flex flex-row bg-white rounded-lg shadow m-10">
         <div className="  overflow-hidden	 w-1/2 items-center   p-2 ">
           <img
-            className="rounded-l-lg h-full object-cover"
+            className="rounded-l-lg h-auto pt-10 object-cover"
             src={imageUrls}
             alt=""
           />
@@ -200,9 +200,9 @@ export default function EfahrzeueModal({
             <span className="right-0 sr-only"> Close modal</span>
           </button>
 
-          <div className=" flex flex-col bg-white pt-12 w-3/4 max-h-full  ">
-            <table className="min-w-full  text-center text-sm font-light">
-              <thead className="border-b  bg-gray-500 font-medium text-white">
+          <div className=" flex flex-col bg-white pt-24 w-3/4 max-h-full  ">
+            <table className="min-w-full text-center text-sm font-light">
+              <thead className="border-b bg-gray-500 font-medium text-white">
                 <tr>
                   <th scope="col" className=" px-6 py-4">
                     Model:

@@ -25,7 +25,7 @@ const developers = [
 
 function AboutUs() {
   return (
-    <div className=" flex  h-screen flex-col container mx-auto   relative bg-cover bg-center bg-[url('/images/189330836_l_normal_none.jpg')]  about-us-container">
+    <div className=" flex  h-screen flex-col container mx-auto   relative bg-cover bg-center bg-[url('/images/189330836_l_normal_none.jpg')] ">
 
       <div className="flex   flex-col text-center bg-white  bg-opacity-90  mt-24 ">
         <h1 className="text-green-600 text-6xl p-6   ">

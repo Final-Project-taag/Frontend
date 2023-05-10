@@ -104,29 +104,29 @@ const onToggleMenu = (evt)=> {
             </div>
           )}
         </div>
-        <div className="flex items-center justify-center md:hidden m-0">
-                <ion-icon onClick={(evt)=> onToggleMenu(evt)} name="menu"  className="text-3xl  cursor-pointer md:hidden text-green-500"></ion-icon>
+        <div className="flex items-center  justify-center md:hidden m-0">
+                <ion-icon onClick={(evt)=> onToggleMenu(evt)} name="menu"  className=" text-6xl  cursor-pointer burger-icon md:hidden  "></ion-icon>
             </div>
       </div>
       <Outlet />
-      <div className={`mobile-nav flex flex-col px-4 pt-36 gap-1 absolute bg-white w-full ${mobileNav ? 'block':'hidden'}`}
+      <div className={`mobile-nav flex flex-col  mt-10 gap-1 absolute bg-white w-full ${mobileNav ? 'block':'hidden'}`}
         onClick={ (evt) => evt.stopPropagation()}
         >
-         <ul>
-         <li className=" font-light text-2xl text-green-600 hover:text-gray-600">
+         <ul className="  grid grid-cols-2 gab-8  mt-8 ">
+         <li className=" font-light text-xl text-green-600 hover:text-gray-600">
               <Link to="/e-vehicles">E-Fahrzeuge</Link>
             </li>
-            <li className=" font-light text-2xl text-green-600 hover:text-gray-600">
+            <li className="  font-light text-xl text-green-600 hover:text-gray-600">
               <Link to="/reservation-view">Reservierungen</Link>
             </li>
-            <li className=" font-light text-2xl text-green-600 hover:text-gray-600">
+            <li className=" font-light text-xl text-green-600 hover:text-gray-600">
               <Link to="/contact">Kontakt</Link>
             </li>
-            <li className=" font-light text-2xl text-green-600 hover:text-gray-600">
+            <li className=" font-light text-xl text-green-600 hover:text-gray-600">
               <Link to="/About-us">Über uns</Link>
             </li>
         </ul>
-      <div className='flex gap-3 p-2  '>
+      <div className='flex justify-between item-center gap-8 p-2  '>
     <button onClick={evt => authStore.logout()}   className=" text-2xl text-green-500 font-sans py-1 px-1 rounded focus:outline-none focus:shadow-outline" type="button">
             <Link to='/login'>Login</Link>
             </button>
