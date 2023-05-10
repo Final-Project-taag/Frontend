@@ -132,7 +132,7 @@ const ReservationView = () => {
   
 
   return (
-    <div className="flex w-screen flex-col justify-items-start w-full pt-20 pb-52" >
+    <div className="flex flex-col justify-items-start w-full pt-20 pb-52" >
 
       <div className="">
 

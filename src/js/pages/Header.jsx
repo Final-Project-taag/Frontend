@@ -104,8 +104,8 @@ const onToggleMenu = (evt)=> {
             </div>
           )}
         </div>
-        <div class="flex items-center justify-center md:hidden m-0">
-                <ion-icon onClick={(evt)=> onToggleMenu(evt)} name="menu"  class="text-3xl  cursor-pointer md:hidden text-green-500"></ion-icon>
+        <div className="flex items-center justify-center md:hidden m-0">
+                <ion-icon onClick={(evt)=> onToggleMenu(evt)} name="menu"  className="text-3xl  cursor-pointer md:hidden text-green-500"></ion-icon>
             </div>
       </div>
       <Outlet />
