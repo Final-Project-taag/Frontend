@@ -12,8 +12,6 @@ function Card({
   vehicleId,
   quantity,
 }) {
-  //  Zustand des Detailbereichs zu verwalten:
-  const [showDetails, setShowDetails] = useState(false);
 
   const [vehicle, setVehicle] = useState(null);
 
