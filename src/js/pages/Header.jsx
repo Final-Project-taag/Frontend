@@ -2,8 +2,8 @@ import { Link, Outlet } from "react-router-dom";
 import useAuthStore from "../hooks/useAuthStore";
 import { User } from "react-feather";
 import { UserCircleIcon } from "@heroicons/react/24/outline";
-import { useNavigate } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 function Header() {
   useEffect(() => {
     document.addEventListener('click', () => { setMobileNav(false) }, true);
@@ -21,7 +21,7 @@ const onToggleMenu = (evt)=> {
     setMobileNav(!mobileNav);
 }
   return (
-    <div className="fixed z-50 flex border-b justify-center items-center top-0">
+    <div className="fixed z-50 flex border-b justify-evenly items-center top-0">
       <div className="  w-screen h-fit flex justify-between  py-1 px-7  bg-white">
         <div className="flex  m-0">
           <Link to="/">
@@ -104,37 +104,59 @@ const onToggleMenu = (evt)=> {
             </div>
           )}
         </div>
-        <div className="flex items-center justify-center md:hidden m-0">
-                <ion-icon onClick={(evt)=> onToggleMenu(evt)} name="menu"  className="text-3xl  cursor-pointer md:hidden text-green-500"></ion-icon>
+        <div className="flex items-center  justify-center m-0 text-3xl text-green-600  cursor-pointer burger-icon md:hidden">
+                <ion-icon onClick={(evt)=> onToggleMenu(evt)} name="menu"></ion-icon>
             </div>
       </div>
       <Outlet />
-      <div className={`mobile-nav flex flex-col px-4 pt-36 gap-1 absolute bg-white w-full ${mobileNav ? 'block':'hidden'}`}
-        onClick={ (evt) => evt.stopPropagation()}
-        >
-         <ul>
-         <li className=" font-light text-2xl text-green-600 hover:text-gray-600">
-              <Link to="/e-vehicles">E-Fahrzeuge</Link>
-            </li>
-            <li className=" font-light text-2xl text-green-600 hover:text-gray-600">
-              <Link to="/reservation-view">Reservierungen</Link>
-            </li>
-            <li className=" font-light text-2xl text-green-600 hover:text-gray-600">
-              <Link to="/contact">Kontakt</Link>
-            </li>
-            <li className=" font-light text-2xl text-green-600 hover:text-gray-600">
-              <Link to="/About-us">Über uns</Link>
-            </li>
+      <div
+        className={`mobile-nav flex flex-col px-4 mt-20 lg:pt-36 gap-1  border-b absolute bg-white w-screen ${
+          mobileNav ? "block" : "hidden"
+        }`}
+        onClick={(evt) => evt.stopPropagation()}
+      >
+        <ul className=" list-disc text-left  gap-4 grid grid-cols-2  border-b">
+          <li className="  font-light text-xl text-green-600 hover:text-gray-600">
+            <Link to="/e-vehicles">E-Fahrzeuge</Link>
+          </li>
+          <li className="  font-light text-xl text-green-600 hover:text-gray-600">
+            <Link to="/reservation-view">Reservierungen</Link>
+          </li>
+          <li className=" font-light text-xl text-green-600 hover:text-gray-600">
+            <Link to="/contact">Kontakt</Link>
+          </li>
+          <li className=" font-light text-xl text-green-600 hover:text-gray-600">
+            <Link to="/About-us">Über uns</Link>
+          </li>
         </ul>
-      <div className='flex gap-3 p-2  '>
-    <button onClick={evt => authStore.logout()}   className=" text-2xl text-green-500 font-sans py-1 px-1 rounded focus:outline-none focus:shadow-outline" type="button">
-            <Link to='/login'>Login</Link>
-            </button>
-            <button onClick={evt => authStore.logout()}   className=" text-2xl text-green-500 font-sans py-1 px-1 rounded focus:outline-none focus:shadow-outline" type="button">
-            <Link to='/register'>register</Link>
-            </button>
-    </div>
-    </div>
+        {!isAuthenticated && (
+        
+        <div className="flex gap-20 p-2  ">
+          <button
+            className=" font-light text-2xl text-green-600 focus:outline-none focus:shadow-outline"
+            type="button"
+          >
+            <Link to="/login">Login</Link>
+          </button>
+          <button
+            className=" font-light text-2xl text-green-600  focus:outline-none focus:shadow-outline"
+            type="button"
+          >
+            <Link to="/register">register</Link>
+          </button>
+        </div>
+        )}
+        {isAuthenticated && (
+          <button
+          onClick={(evt) => authStore.logout()}
+          className=" text-2xl text-green-500 font-sans py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+          type="button"
+        >
+          <Link>Logout</Link>
+        </button>
+        )}
+
+      </div>
     </div>
   );
 }

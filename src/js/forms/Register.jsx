@@ -64,14 +64,14 @@ function Register(props) {
   });
 
   return (
-    <div className=" h-full pt-18 justify-center items-center max-w-screen-sm my-5  bg-white  ">
+    <div className=" h-full lg:pt-18 justify-center items-center max-w-screen-sm my-5  bg-white  ">
       {registerSuccessful ? (
         successMsg
       ) : (
-        <form className=" h-fit  pt-18 mt-40 " onSubmit={submitHandler}>
-          <div className=" w-full h-full max-w-lg flex flex-col gap-3 justify-start items-start shadow-xl rounded px-10 py-24 mt-7">
+        <form className=" h-screen  lg:pt-18 lg:mt-40 mt-10 " onSubmit={submitHandler}>
+          <div className=" w-full h-full max-w-lg flex flex-col gap-3 justify-start items-start lg:shadow-xl rounded px-10 py-24 lg:mt-7">
             <label
-              className="block text-gray-700 text-sm font-bold m-0"
+              className="block text-green-500 m-0 font-bold text-md mt-2 "
               htmlFor="username"
             >
               Username
@@ -86,7 +86,7 @@ function Register(props) {
             />
 
             <label
-              className="block text-gray-700 text-sm font-bold m-0"
+              className="block text-green-500 m-0 font-bold text-md mt-2  "
               htmlFor="fullname"
             >
               Full Name
@@ -101,7 +101,7 @@ function Register(props) {
             />
 
             <label
-              className="block text-gray-700 text-sm font-bold m-0"
+              className="block text-green-500 m-0 font-bold text-md mt-2"
               htmlFor="email"
             >
               E-Mail Address
@@ -116,7 +116,7 @@ function Register(props) {
             />
 
             <label
-              className="block text-gray-700 text-sm font-bold m-0"
+              className="block text-green-500 m-0 font-bold text-md mt-2"
               htmlFor="city"
             >
               City
@@ -131,7 +131,7 @@ function Register(props) {
             />
 
             <label
-              className="block text-gray-700 text-sm font-bold m-0"
+              className="block text-green-500 m-0 font-bold text-md mt-2"
               htmlFor="password"
             >
               Password
@@ -154,12 +154,12 @@ function Register(props) {
                 {errorBox}
               </ul>
             )}
-            <div className="flex items-center justify-evenly">
+            <div className="flex items-center justify-center pt-4">
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-green-600 w-fit text-2xl rounded-md hover:bg-gray-700 text-white font-bold py-1 px-2  focus:outline-none focus:shadow-outline"
                 type="submit"
               >
-                Sign Up
+               Register
               </button>
             </div>
           </div>

@@ -43,15 +43,15 @@ body {
     
     .leaflet-container {
       margin: 0 auto;
-      height: 80vh;
-      width: 70vw;
+      height: 50vh;
+      width: 45vw;
       border-radius: 1rem;
     }
     @media not all and (min-width: 640px) { 
       
       .leaflet-container{
         height: 60vh;
-        width: 35vh;
+        width: 33vh;
       }
      }
 

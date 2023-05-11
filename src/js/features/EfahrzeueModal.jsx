@@ -167,17 +167,17 @@ export default function EfahrzeueModal({
   }
 
   return (
-    <div className="h-max w-screen bg-white/80 fixed  top-24 left-0 z-50 flex  flex-col justify-center items-center pb-52  ">
-      <div className="relative border-green-400 border-2 w-3/4 h-3/4 flex flex-row bg-white rounded-lg shadow m-10">
-        <div className="  overflow-hidden	 w-1/2 items-center   p-2 ">
+    <div className="h-screen w-screen bg-white/80 fixed  top-2 md:top-24 left-0 z-50 flex  flex-col justify-center items-center   ">
+     <div className="relative border-green-400 border-2 w-11/12 lg:w-3/4 h-3/4 flex flex-col lg:flex-row bg-white rounded-lg shadow lg:m-10 mt-0 md:pb-[120px] lg:pb-[80px] pb-0  md:m-10">
+        <div className="  overflow-hidden w-full lg:w-1/2 items-center  p-2 order-2 lg:order-1">
           <img
-            className="rounded-l-lg h-auto pt-10 object-cover"
+            className="rounded-lg h-full md:pt-10 object-cover max-h-[190px] md:max-h-[250px] lg:max-h-full"
             src={imageUrls}
             alt=""
           />
         </div>
-        <div className="my-4   border-x border-gray-300 "></div>
-        <div className="  w-1/2 p-4  ">
+        <div className="hidden lg:block my-4 border-x border-gray-300 order-2"></div>
+        <div className="w-full lg:w-1/2 p-2 lg:order-3">
           <button
             onClick={() => closeModle()}
             type="button"
@@ -199,8 +199,7 @@ export default function EfahrzeueModal({
             </svg>
             <span className="right-0 sr-only"> Close modal</span>
           </button>
-
-          <div className=" flex flex-col bg-white pt-24 w-3/4 max-h-full  ">
+          <div className="flex flex-col bg-white pt-2 md:pt-24 w-full md:w-3/4 max-h-full overflow-x-auto">
             <table className="min-w-full text-center text-sm font-light">
               <thead className="border-b bg-gray-500 font-medium text-white">
                 <tr>
@@ -241,12 +240,12 @@ export default function EfahrzeueModal({
               </tbody>
             </table>
           </div>
-
+        </div>
           {/* reservation button  */}
-          <div className=" py-2  flex items-center justify-center pt-10">
+          <div className="md:absolute static md:left-2/4 left-auto md:bottom-8 bottom-auto md:-translate-x-1/2 py-2 gap-4  flex flex-col lg:flex-row items-center justify-center pt-3 md:pt-10 order-3 pb-6 md:pb-0">
             <button
               type="button"
-              className={`inline-block rounded-xl p-2 text-sm font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0  w-fit m-auto  tracking-wider  mt-14  shadow-md shadow-gray-400     text-white  hover:scale-105 ${
+              className={`inline-block rounded-xl p-2 text-sm font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0  w-fit m-auto  tracking-wider  shadow-md shadow-gray-400     text-white  hover:scale-105 ${
                 isReserved
                   ? "bg-red-600  "
                   : "bg-green-500 "
@@ -265,10 +264,8 @@ export default function EfahrzeueModal({
                 : "Reservieren"}
             </button>
             {isReserved && (
-              <div className="flex items-center justify-center gap-4 mt-14">
+              <>
                 <span className="text-red-600 ">{timeLeft !== null ? formatTimeLeft(timeLeft) : ""}</span>
-                
-
                 <button
                   type="button"
                   className="bg-green-500   inline-block rounded-xl p-2  text-sm font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0  w-fit m-auto  tracking-wider   shadow-md shadow-gray-400    text-white  hover:scale-105"
@@ -280,11 +277,11 @@ export default function EfahrzeueModal({
                 >
                   go to booking
                 </button>
-              </div>
+                </>
             )}
-
             {authError && (
-              <i className="text-gray-500">
+              <div className=" text-center p-2">
+              <i className="text-gray-500 mt-2 ">
                 Anmeldung ist erförderlich!{" "}
                 <a className="text-green-500 px-3" onClick={goToLogin}>
                   Login
@@ -294,12 +291,15 @@ export default function EfahrzeueModal({
                   register
                 </a>
               </i>
+              </div>
             )}
           </div>
-        </div>
       </div>
     </div>
   );
 }
 
+/* 
+
+ */
 

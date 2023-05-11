@@ -27,10 +27,10 @@ function AboutUs() {
   return (
     <div className=" flex  h-full flex-col container mx-auto top-24 pb-28  about-us-container">
       <div className="flex flex-col text-center bg-white bg-opacity-90  ">
-        <h1 className="text-green-600 text-6xl p-6   ">
+        <h1 className="text-green-600 text-3xl lg:text-6xl lg:p-6 pt-10  ">
           Green <span className=" text-gray-600">Wheels</span> Team{" "}
         </h1>
-        <p className="font-sans text-xl text-center mx-10">
+        <p className="font-sans text-left  lg:text-xl lg:text-center mx-10">
           Willkommen auf unserer Teamseite! Wir sind ein engagiertes Team von
           Entwicklern, die sich dafür einsetzen, die Umwelt zu schützen, indem
           wir moderne und ökologische Transportlösungen anbieten. Wir glauben,

@@ -8,7 +8,7 @@ export default function Contact() {
 
 return (
 
-<div className="flex flex-col justify-center items-center  h-full mb-10 mt-24 w-screen">
+<div className="flex flex-col justify-center items-center  h-full mb-10 mt-16 w-screen">
 
 
 <div className="container  h-full flex items-center   mb-12 max-w-4xl mx-auto flex-col md:flex-row">
@@ -49,8 +49,10 @@ return (
 
 </div>
 
+<div className="container">
 <div className="w-3/4  m-auto  py-4 "> 
 <Map />
+</div>
 </div>
 </div>
 

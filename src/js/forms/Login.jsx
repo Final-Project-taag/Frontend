@@ -41,8 +41,8 @@ function Login() {
             console.log(resp);
 
             authStore.authenticate(resp.data);
-            // localStorage.setItem('token', resp.data.token);
-            // sessionStorage.setItem('token', resp.data.token);
+            localStorage.setItem('token', resp.data.token);
+            //sessionStorage.setItem('token', resp.data.token);
 
             setUsername('');
             setPassword('');
@@ -75,7 +75,7 @@ function Login() {
 
     return (
 
-    <div className="flex justify-center items-center w-screen h-screen py-3"
+    <div className="flex justify-center items-center w-screen h-screen px-3"
             style={{
                 backgroundImage: "url('public/images/bg für Login.jpg')",
                 backgroundPosition: "center",
@@ -98,25 +98,25 @@ function Login() {
          // sonst das normale Loginformular
          notVerified
          ? msgs={errors}
-         : <form className="w-full max-w-md flex-col items-center justify-center  shadow-xl border rounded px-10 py-5" onSubmit={loginSubmitHandler}>
+         : <form className="w-screen  lg:max-w-md flex-col items-center justify-center  lg:shadow-xl lg:border rounded px-10 py-5" onSubmit={loginSubmitHandler}>
 
              {(errors.length > 0) && (<ul style={{backgroundColor: 'rgba(255,0,0,0.5)', border: '1px solid red'}}>{errorBox}</ul>)}
              <div className="mb-6 ">
-                 <label className="block text-green-500 text-xl  mb-2" htmlFor="username">
+                 <label className="block text-green-500 text-2xl  mb-2" htmlFor="username">
                      Username
                  </label>
-                 <input className="w-full shadow appearance-none  rounded  py-2 px-3 text-gray-700 mb-3 leading-tight " id="username" type="text" placeholder="Username" value={username} onChange={(evt) => setUsername(evt.target.value)}/>
+                 <input className="w-full border shadow appearance-none  rounded  py-2 px-3 text-gray-700 mb-3 leading-tight " id="username" type="text" placeholder="Username" value={username} onChange={(evt) => setUsername(evt.target.value)}/>
              </div>
 
              <div className="mb-6">
-                 <label  className="block text-green-500 text-xl   mb-2" htmlFor="password">
+                 <label  className="block text-green-500 text-2xl   mb-2" htmlFor="password">
                      Password
                  </label>
-                 <input className="w-full shadow appearance-none  rounded  py-2 px-3 text-gray-700 mb-3 leading-tight " id="password" type="password" placeholder="******************" value={password} onChange={(evt) => setPassword(evt.target.value)}/>
+                 <input className="w-full border shadow appearance-none  rounded  py-2 px-3 text-gray-700 mb-3 leading-tight " id="password" type="password" placeholder="******************" value={password} onChange={(evt) => setPassword(evt.target.value)}/>
              </div>
 
              <div className="flex items-center justify-evenly">
-                 <button   className="bg-green-600 hover:bg-gray-800-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" type="submit">
+                 <button   className="bg-green-600 w-fit text-2xl rounded-md hover:bg-gray-700 text-white font-bold py-1 px-2  focus:outline-none focus:shadow-outline" type="submit">
                      Sign In
                  </button>
                  
