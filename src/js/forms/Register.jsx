@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
+
+
 function Register(props) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -12,12 +14,13 @@ function Register(props) {
   const [registerSuccessful, setRegisterSuccessful] = useState(false);
   const navigate = useNavigate();
 
+
   const handleGoToLoginClick = () => {
     navigate("/login");
   };
+
   function submitHandler(evt) {
     evt.preventDefault();
-
     // Erstelle Objekt fuer den Body des Requests
     let registrationData = {
       username: username,
@@ -37,18 +40,23 @@ function Register(props) {
       })
       .catch((error) => {
         console.error(error);
-
         setErrors([error.response.data.message.split(",")]);
       });
   }
 
   const successMsg = (
-    <div className=" mt-36 pt-10  flex  flex-col justify-center items-center  border-green-500 border-2 pb-8  shadow-xl shadow-gray-400  rounded-lg ">
-      <h1 className="text-3xl text-center   bg-white text-gray-500 ">
-      Die Registrierung ist erfolgreich geschafft! <br />
-      Bitte auf die unten gelikten knüpf klicken.
-      </h1>
-
+    <h1 className="text-3xl text-center   bg-white text-gray-500">
+      Register successful! <br />
+      We've sent you an e-mail to verify your e-mail address. Please follow the
+      provided link. <br />
+      <button
+        onClick={() => {}}
+        className="button-85 inline-block align-baseline text-sm "
+        role="button"
+      >
+        Resend E-Mail
+      </button>
+      <br />
       <button
         onClick={handleGoToLoginClick}
         className=" w-fit m-auto  tracking-wider  mt-14 rounded-2xl shadow-md shadow-gray-400  bg-green-600 p-3   font-bold text-white  hover:scale-105 "
@@ -64,7 +72,7 @@ function Register(props) {
   });
 
   return (
-    <div className=" h-full pt-18 justify-center items-center max-w-screen-sm my-5  bg-white  ">
+    <div className=" background-register  pt-20 justify-center items-center max-w-screen-m my-5  bg-white  ">
       {registerSuccessful ? (
         successMsg
       ) : (
@@ -84,7 +92,6 @@ function Register(props) {
               value={username}
               onChange={(evt) => setUsername(evt.target.value)}
             />
-
             <label
               className="block text-gray-700 text-sm font-bold m-0"
               htmlFor="fullname"
@@ -99,7 +106,6 @@ function Register(props) {
               value={fullname}
               onChange={(evt) => setFullname(evt.target.value)}
             />
-
             <label
               className="block text-gray-700 text-sm font-bold m-0"
               htmlFor="email"
@@ -114,7 +120,6 @@ function Register(props) {
               value={email}
               onChange={(evt) => setEmail(evt.target.value)}
             />
-
             <label
               className="block text-gray-700 text-sm font-bold m-0"
               htmlFor="city"
@@ -129,7 +134,6 @@ function Register(props) {
               value={city}
               onChange={(evt) => setCity(evt.target.value)}
             />
-
             <label
               className="block text-gray-700 text-sm font-bold m-0"
               htmlFor="password"
@@ -168,5 +172,4 @@ function Register(props) {
     </div>
   );
 }
-
 export default Register;

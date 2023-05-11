@@ -25,9 +25,8 @@ const developers = [
 
 function AboutUs() {
   return (
-    <div className=" flex  h-screen flex-col container mx-auto   relative bg-cover bg-center bg-[url('/images/189330836_l_normal_none.jpg')] ">
-
-      <div className="flex   flex-col text-center bg-white  bg-opacity-90  mt-24 ">
+    <div className=" flex  h-screen flex-col container mx-auto   relative bg-cover bg-center bg-[url('/images/189330836_l_normal_none.jpg')]">
+      <div className="flex flex-col text-center bg-white bg-opacity-90  ">
         <h1 className="text-green-600 text-6xl p-6   ">
           Green <span className=" text-gray-600">Wheels</span> Team{" "}
         </h1>
@@ -48,10 +47,10 @@ function AboutUs() {
           zukünftige Generationen zu bewahren.
         </p>
 
-        <div className="flex  items-center mt-24 ">
-          <div className="flex flex-row flex-wrap  justify-center">
+        <div className="flex  items-center mt-24">
+          <div className="flex flex-row flex-wrap justify-center">
             {developers.map((developer) => (
-              <div className="w-52 mx-4 mb-6 "  key={developer.name}>
+              <div className="w-52 mx-4 mb-6" key={developer.name}>
                 <p className="text-green-600 text-xl  text-center">
                   {developer.name}
                 </p>

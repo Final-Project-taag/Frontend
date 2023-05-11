@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import useAuthStore from "../hooks/useAuthStore";
 
-export default function EfahrzeueModal({
+export default function EfahrzeugModal({
   imageUrls,
   name,
   type,
@@ -104,8 +104,7 @@ export default function EfahrzeueModal({
     const startDate = new Date();
 
     const reservationDuration = 60 * 60 * 1000; // 1 Stunde in Millisekunden
-    const reservedUntil = new Date(Date.now() + reservationDuration);
-    const endDate = reservedUntil;
+    const endDate = startDate.getTime() + reservationDuration
 
     try {
       const response = await fetch("http://localhost:8081/reservations", {
@@ -120,7 +119,7 @@ export default function EfahrzeueModal({
           endDate,
           createdAt: new Date(),
           reserved: true,
-          reservedUntil,
+
         }),
       });
       if (!response.ok) {
@@ -261,8 +260,8 @@ export default function EfahrzeueModal({
               {quantity === 0
                 ? "Nicht verfügbar"
                 : isReserved
-                ? "resirviern störnern"
-                : "Reservieren"}
+                  ? "Reservierung Stornieren"
+                  : "Reservieren"}
             </button>
             {isReserved && (
               <div className="flex items-center justify-center gap-4 mt-14">
@@ -273,7 +272,6 @@ export default function EfahrzeueModal({
                   type="button"
                   className="bg-green-500   inline-block rounded-xl p-2  text-sm font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0  w-fit m-auto  tracking-wider   shadow-md shadow-gray-400    text-white  hover:scale-105"
                   onClick={() => {
-                    /*  handleBooking(); */
                     goToBooking(vehicleId);
                   }}
                   disabled={quantity === 0}
