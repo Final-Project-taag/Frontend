@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import useAuthStore from "../hooks/useAuthStore";
 
-export default function EfahrzeueModal({
+export default function EfahrzeugModal({
   imageUrls,
   name,
   type,
@@ -74,7 +74,7 @@ export default function EfahrzeueModal({
       new Date(startDate.getTime() + durationInHours * 60 * 60 * 1000)
     );
   };
- 
+  // Funktion zur Berechnung des Gesamtpreises
   // Funktion zur Berechnung des Gesamtpreises
   const calculateTotalPrice = (startDate, endDate) => {
     if (startDate && endDate) {
@@ -104,11 +104,10 @@ export default function EfahrzeueModal({
     const startDate = new Date();
 
     const reservationDuration = 60 * 60 * 1000; // 1 Stunde in Millisekunden
-    const reservedUntil = new Date(Date.now() + reservationDuration);
-    const endDate = reservedUntil;
+    const endDate = startDate.getTime() + reservationDuration
 
     try {
-      const response = await fetch("http://localhost:8081/reservations", {
+      const response = await fetch("http://localhost:8082/reservations", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -120,7 +119,7 @@ export default function EfahrzeueModal({
           endDate,
           createdAt: new Date(),
           reserved: true,
-          reservedUntil,
+
         }),
       });
       if (!response.ok) {
@@ -140,7 +139,7 @@ export default function EfahrzeueModal({
     try {
       const token = localStorage.getItem("token"); // Replace with your token management method
       const response = await axios.delete(
-        `http://localhost:8081/reservations/${reservationId}`,
+        `http://localhost:8082/reservations/${reservationId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -176,6 +175,7 @@ export default function EfahrzeueModal({
             alt=""
           />
         </div>
+        
         <div className="h-full border-x border-gray-300 "></div>
         <div className="  w-1/2 p-4  ">
           <button
@@ -246,11 +246,10 @@ export default function EfahrzeueModal({
           <div className=" py-2 ">
             <button
               type="button"
-              className={`inline-block rounded px-6  pt-2.5 pb-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0 ${
-                isReserved
+              className={`inline-block rounded px-6  pt-2.5 pb-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0 ${isReserved
                   ? "bg-red-600 text-white"
                   : "bg-slate-200 text-green-900 shadow-[0_4px_9px_-4px_#3b71ca] hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-              }`}
+                }`}
               onClick={
                 isReserved
                   ? () => deleteReservation(reservation._id)
@@ -261,8 +260,8 @@ export default function EfahrzeueModal({
               {quantity === 0
                 ? "Nicht verfügbar"
                 : isReserved
-                ? "resirviern störnern"
-                : "Reservieren"}
+                  ? "Reservierung Stornieren"
+                  : "Reservieren"}
             </button>
             {isReserved && (
               <div className="ml-4 text-red-600">
@@ -272,7 +271,6 @@ export default function EfahrzeueModal({
                   type="button"
                   className="bg-slate-200 px-6 pt-2.5 pb-2 text-green-900 shadow-[0_4px_9px_-4px_#3b71ca] text-xs font-medium uppercase hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
                   onClick={() => {
-                    /*  handleBooking(); */
                     goToBooking(vehicleId);
                   }}
                   disabled={quantity === 0}
@@ -284,14 +282,20 @@ export default function EfahrzeueModal({
 
             {authError && (
               <i className="text-red-500">
-                Anmeldung ist erförderlich!{" "}
-                <a className="text-blue-300" onClick={goToLogin}>
-                  Login
-                </a>
+                Anmeldung ist erforderlich!{" "}
+                <button>
+                  <a className="text-blue-300" onClick={goToLogin}>
+                    Login
+                  </a>
+                </button>
+
                 ,{" "}
-                <a className="text-blue-300" onClick={goToRegister}>
-                  register
-                </a>
+                <button>
+                  <a className="text-blue-300" onClick={goToRegister}>
+                    Register
+                  </a>
+                </button>
+
               </i>
             )}
           </div>

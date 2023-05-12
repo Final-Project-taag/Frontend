@@ -1,7 +1,7 @@
 import useQuery from "../hooks/useQuery";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import EmailVerificationForm from "./EmailVerificationForm";
+import EmailVerificationForm from "../forms/EmailVerificationForm";
 // import { redirect } from "react-router-dom";
 
 function EmailVerification() {
@@ -15,7 +15,7 @@ function EmailVerification() {
                 const body = {
                     token: queryParams.get('t')
                 };
-                const resp = await axios.post('http://localhost:8081/auth/verify', body);
+                const resp = await axios.post('http://localhost:8082/auth/verify', body);
 
                 const {redirectTo, message} = resp.data;
                 

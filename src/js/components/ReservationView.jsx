@@ -20,14 +20,24 @@ const ReservationView = () => {
   const handleShowDetails = () => {
     setShowDetails(true);
   };
+  //-------------------------- FORMATdATE------------------------------------------------------------------------//
+  const formatDate = (date) => {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = ("0" + (d.getMonth() + 1)).slice(-2);
+    const day = ("0" + d.getDate()).slice(-2);
+    const hours = ("0" + d.getHours()).slice(-2);
+    const minutes = ("0" + d.getMinutes()).slice(-2);
 
+    return `Datum: ${year}-${month}-${day}, Uhrzeit: ${hours}:${minutes}`;
+  }
 
   //-------------------------------------------------------------------------------------------------------------------//
 
   async function fetchReservations(userId) {
     try {
       const token = localStorage.getItem("token"); // Replace with your token management method
-      const response = await axios.get("http://localhost:8081/reservations", {
+      const response = await axios.get("http://localhost:8082/reservations", {
         headers: { Authorization: `Bearer ${token}` },
       });
       return response.data;
@@ -40,7 +50,7 @@ const ReservationView = () => {
   const fetchVehicleDetails = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8081/vehicles/${vehicleId}` // Verwende die Fahrzeug-ID in der URL
+        `http://localhost:8082/vehicles/${vehicleId}` // Verwende die Fahrzeug-ID in der URL
       );
       setVehicle(response.data);
     } catch (error) {
@@ -63,16 +73,16 @@ const ReservationView = () => {
   }, [userId]);
 
   const isActiveReservation = (reservation) => {
-    const endDate = new Date(reservation.reservedUntil);
+    const endDate = new Date(reservation.endDate);
     const currentDate = new Date();
     return endDate >= currentDate;
   };
 
-
+  //------------------------------------Löschen-------------------------------------------------------//
   const deleteReservation = async (reservationId) => {
     try {
       const token = localStorage.getItem("token"); // Replace with your token management method
-      await axios.delete(`http://localhost:8081/reservations/${reservationId}`, {
+      await axios.delete(`http://localhost:8082/reservations/${reservationId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setReservations(reservations.filter((res) => res._id !== reservationId));
@@ -80,6 +90,24 @@ const ReservationView = () => {
       console.error("Error deleting reservation:", error);
     }
   };
+  //-----------------------------------UPDATEN-------------------------------------------------//
+
+  const updateReservation = async (reservationId, updatedReservationData) => {
+    try {
+      const token = localStorage.getItem("token"); // Replace with your token management method
+      await axios.put(`http://localhost:8082/reservations/${reservationId}`, updatedReservationData, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const updatedReservations = reservations.map((res) =>
+        res._id === reservationId ? { ...res, ...updatedReservationData } : res
+      );
+      setReservations(updatedReservations);
+    } catch (error) {
+      console.error("Error updating reservation:", error);
+    }
+  };
+
+
   // Funktion zur Berechnung des Startdatums
   const calculateStartDate = (price) => {
     return new Date(Date.now() + vehicle.price * 60 * 60 * 1000);
@@ -110,68 +138,22 @@ const ReservationView = () => {
     return;
   };
   //---------------------------------------Submit Button Funktion für Zahlung--------------------
- 
+
   // Diese Funktion gibt die Reservierungs-ID der aktiven Reservierung zurück, wenn eine vorhanden ist, andernfalls gibt sie null zurück.
   const getActiveReservationId = () => {
     const activeReservations = reservations.filter((reservation) => isActiveReservation(reservation));
-    
+
     if (activeReservations.length > 0) {
       return activeReservations[0]._id;
     }
-  
+
     return null;
   };
-  
-  
-  const handlePayment = async () => {
-    if (!startDate || !endDate ) {
-      alert("Bitte wählen Sie Startzeit, Dauer aus.");
-      return;
-    }
-    //In der handlePayment() Funktion können Sie dann die getActiveReservationId() Funktion verwenden, um die Reservierungs-ID abzurufen und im Zahlungsdatenobjekt zu verwenden:
-    const reservationId = getActiveReservationId();
-    if (!reservationId) {
-      alert("Keine aktive Reservierung gefunden.");
-      return;
-    }
-   // Get the active reservation
-   const reservation = reservations.find((res) => res._id === reservationId);
-   if (!reservation) {
-     alert("Keine Reservierung gefunden.");
-     return;
-   }
-   let totalPrice = calculateTotalPrice(); // Funktion, die den Gesamtpreis berechnet
-
-    const paymentData = {
-      amount: totalPrice,
-      description: `Reservierungs-ID: ${reservation._id}`,
-      reservationId: reservation._id,
-      redirectUrl: "http://localhost:5173/paymentsucess",
-      webhookUrl: "http://localhost:8081/payment/webhook",
-      metadata: {
-        reservationId: reservation._id,
-        userId: userId,
-      },
-    };
-  
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.post("http://localhost:8081/payment/create-payment", paymentData, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-  
-     /*  if (response.data && response.data.redirectUrl) {
-        // Redirect the user to the Mollie checkout page
-        window.location.href = response.data.redirectUrl;
-      } else {
-        throw new Error("Failed to create Mollie payment.");
-      }  */
-    } catch (error) {
-      console.error("Error creating Mollie payment:", error);
-      alert("Fehler bei der Zahlungsabwicklung. Bitte versuchen Sie es später erneut.");
-    }
+  const handlePayment = () => {
+    // Implementieren Sie die Zahlungslogik hier
+    console.log("Zahlung durchgeführt!");
   };
-  
+
 
 
 
@@ -201,10 +183,7 @@ const ReservationView = () => {
 
               <img src={reservation.vehicle.imageUrls[0]} alt="" />
               <p>Reservation ID: {reservation._id}</p>
-              <p>Reservierung von: {reservation.startDate}</p>
-              <p>Reservierung bis: {reservation.reservedUntil}</p>
               <p>Pro Stunde: {reservation.vehicle.price}€</p>
-
 
 
 
@@ -251,13 +230,26 @@ const ReservationView = () => {
                   ))}
                 </select>
 
+                <button
+                  type="button"
+                  className="h-10 bg-blue-400 text-white px-4 rounded-md hover:bg-blue-500 transition-colors duration-300 mb-4 block w-full"
+                  onClick={() => {
+                    if (!startDate || !endDate) {
+                      alert("Bitte wählen Sie Startzeit und Dauer aus.");
+                      return;
+                    }
+                    updateReservation(reservation._id, { startDate: startDate.toISOString(), endDate: endDate.toISOString(), reservedUntil: endDate.toISOString() });
+                  }}
+                >
+                  Buchen
+                </button>
 
                 <div className="font-bold">
                   Gesamtpreis: {totalPrice} €
                 </div>
               </div>
               <div className="w-36 pt-5">
-                <button
+                {/* <button
                   type="submit"
                   className=" h-10 bg-green-400 text-white px-4 rounded-md hover:bg-green-500 transition-colors duration-300 mb-4 block w-full"
                   onClick={() => {
@@ -269,16 +261,16 @@ const ReservationView = () => {
                   }}
                 >
                   Submit
-                </button>
+                </button> */}
               </div>
-            
+
 
             </div>
           );
         })}
       </div>
 
-   
+
 
     </div>
   );

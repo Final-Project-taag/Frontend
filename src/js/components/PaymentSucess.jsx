@@ -12,7 +12,7 @@ const PaymentSuccess = () => {
     const verifyPayment = async () => {
       try {
         // Hier führen Sie einen API-Aufruf durch, um den Zahlungsstatus zu überprüfen und die Reservierungsinformationen zu aktualisieren
-        const response = await axios.get(`http://localhost:8081/payment/payment-update/${reservationId}`, {
+        const response = await axios.get(`http://localhost:8082/payment/payment-update/${reservationId}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
 

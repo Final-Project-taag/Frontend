@@ -25,12 +25,13 @@ const developers = [
 
 function AboutUs() {
   return (
-    <div className=" flex  h-full flex-col container mx-auto top-24 pb-28  about-us-container">
-      <div className="flex flex-col text-center bg-white bg-opacity-90  ">
+    <div className=" flex  h-screen flex-col container mx-auto   relative bg-cover bg-center bg-[url('/images/189330836_l_normal_none.jpg')]  about-us-container">
+
+      <div className="flex   flex-col text-center bg-white  bg-opacity-90  mt-24 ">
         <h1 className="text-green-600 text-6xl p-6   ">
           Green <span className=" text-gray-600">Wheels</span> Team{" "}
         </h1>
-        <p className="font-sans text-xl text-center mx-10">
+        <p className="font-sans text-lg text-center mx-10">
           Willkommen auf unserer Teamseite! Wir sind ein engagiertes Team von
           Entwicklern, die sich dafür einsetzen, die Umwelt zu schützen, indem
           wir moderne und ökologische Transportlösungen anbieten. Wir glauben,
@@ -47,10 +48,10 @@ function AboutUs() {
           zukünftige Generationen zu bewahren.
         </p>
 
-        <div className="flex  items-center pt-16">
-          <div className="flex flex-row flex-wrap justify-center">
+        <div className="flex  items-center mt-24 ">
+          <div className="flex flex-row flex-wrap  justify-center">
             {developers.map((developer) => (
-              <div className="w-56 mx-4 mb-6" key={developer.name}>
+              <div className="w-52 mx-4 mb-6 "  key={developer.name}>
                 <p className="text-green-600 text-xl  text-center">
                   {developer.name}
                 </p>
@@ -72,7 +73,3 @@ function AboutUs() {
 }
 
 export default AboutUs;
-{/* <div className="container mx-auto mt-16">
-<div className="text-center bg-black-500 mb-6">
-  <h1 className="text-start text-xl font-bold ml-12"></h1>
-  <h1 className="text-green-600 text-6xl p-4 font-medium mb-4"> */}

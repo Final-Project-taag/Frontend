@@ -30,9 +30,9 @@ function Register(props) {
 
     // Sende Request an /register endpoint der API
     axios
-      .post("http://localhost:8081/auth/register", registrationData)
+      .post("http://localhost:8082/auth/register", registrationData)
       .then((response) => {
-        console.log(response); // TODO
+        console.log(response);  
         setErrors([]);
         setRegisterSuccessful(true);
       })
