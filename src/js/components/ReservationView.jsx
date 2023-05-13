@@ -37,7 +37,7 @@ const ReservationView = () => {
   async function fetchReservations(userId) {
     try {
       const token = localStorage.getItem("token"); // Replace with your token management method
-      const response = await axios.get("http://localhost:8082/reservations", {
+      const response = await axios.get("http://localhost:8081/reservations", {
         headers: { Authorization: `Bearer ${token}` },
       });
       return response.data;
@@ -50,7 +50,7 @@ const ReservationView = () => {
   const fetchVehicleDetails = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8082/vehicles/${vehicleId}` // Verwende die Fahrzeug-ID in der URL
+        `http://localhost:8081/vehicles/${vehicleId}` // Verwende die Fahrzeug-ID in der URL
       );
       setVehicle(response.data);
     } catch (error) {
@@ -82,7 +82,7 @@ const ReservationView = () => {
   const deleteReservation = async (reservationId) => {
     try {
       const token = localStorage.getItem("token"); // Replace with your token management method
-      await axios.delete(`http://localhost:8082/reservations/${reservationId}`, {
+      await axios.delete(`http://localhost:8081/reservations/${reservationId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setReservations(reservations.filter((res) => res._id !== reservationId));
@@ -95,7 +95,7 @@ const ReservationView = () => {
   const updateReservation = async (reservationId, updatedReservationData) => {
     try {
       const token = localStorage.getItem("token"); // Replace with your token management method
-      await axios.put(`http://localhost:8082/reservations/${reservationId}`, updatedReservationData, {
+      await axios.put(`http://localhost:8081/reservations/${reservationId}`, updatedReservationData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const updatedReservations = reservations.map((res) =>

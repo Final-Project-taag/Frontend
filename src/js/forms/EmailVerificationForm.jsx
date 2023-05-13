@@ -16,7 +16,7 @@ function EmailVerificationForm({msgs}) {
         };
 
         try {
-            const response = await axios.put('http://localhost:8082/auth/verify', body);
+            const response = await axios.put('http://localhost:8081/auth/verify', body);
             setEmailVerificationMsg(response.data.message);
             setEmail('');
             setErrors([]);

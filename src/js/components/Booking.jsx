@@ -30,7 +30,7 @@ const navigate = useNavigate()
 
     try {
       const response = await axios.post(
-        "http://localhost:8082/reservations",
+        "http://localhost:8081/reservations",
         {
           vehicleId,
           startDate,
@@ -60,7 +60,7 @@ const navigate = useNavigate()
     async function fetchVehicle() {
 
       try {
-        const response = await axios.get(`http://localhost:8082/vehicles/${vehicleId}`); // Ändern Sie hier die URL, um die Fahrzeugdetails abzurufen
+        const response = await axios.get(`http://localhost:8081/vehicles/${vehicleId}`); // Ändern Sie hier die URL, um die Fahrzeugdetails abzurufen
         if (response.status === 200) {
           setVehicle(response.data);
         }

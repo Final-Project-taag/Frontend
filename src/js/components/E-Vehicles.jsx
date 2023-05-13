@@ -4,8 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Card from "./E-VehicleDetails";
-import EfahrzeuegModal from "../features/EfahrzeugModal";
-
+import EfahrzeugModal from "../features/EfahrzeugModal";
 // eine Hilfsfunktion aggregateVehicleData, die die Fahrzeugdaten basierend auf den Fahrzeugmodellen gruppiert:
 
 function aggregateVehicleData(vehicles, vehicleCounts) {
@@ -70,7 +69,7 @@ function EVehicles() {
       }
 
       const response = await axios.get(
-        "http://localhost:8082/vehicles?" + queryParams.toString()
+        "http://localhost:8081/vehicles?" + queryParams.toString()
       );
       const aggregatedVehicles = aggregateVehicleData(
         response.data,
@@ -85,7 +84,7 @@ function EVehicles() {
   async function fetchVehicleCounts() {
     try {
       const response = await axios.get(
-        "http://localhost:8082/api/vehicleCounts"
+        "http://localhost:8081/api/vehicleCounts"
       );
       // console.log('Fetched vehicle counts:', response.data); // Neue Zeile
       setVehicleCounts(response.data);

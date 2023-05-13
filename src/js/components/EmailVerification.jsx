@@ -15,7 +15,7 @@ function EmailVerification() {
                 const body = {
                     token: queryParams.get('t')
                 };
-                const resp = await axios.post('http://localhost:8082/auth/verify', body);
+                const resp = await axios.post('http://localhost:8081/auth/verify', body);
 
                 const {redirectTo, message} = resp.data;
                 

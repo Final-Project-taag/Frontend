@@ -107,7 +107,7 @@ export default function EfahrzeugModal({
     const endDate = startDate.getTime() + reservationDuration
 
     try {
-      const response = await fetch("http://localhost:8082/reservations", {
+      const response = await fetch("http://localhost:8081/reservations", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -139,7 +139,7 @@ export default function EfahrzeugModal({
     try {
       const token = localStorage.getItem("token"); // Replace with your token management method
       const response = await axios.delete(
-        `http://localhost:8082/reservations/${reservationId}`,
+        `http://localhost:8081/reservations/${reservationId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -304,3 +304,4 @@ export default function EfahrzeugModal({
     </div>
   );
 }
+ 

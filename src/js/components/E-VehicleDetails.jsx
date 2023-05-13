@@ -37,7 +37,7 @@ function Card({
     async function fetchVehicle() {
       try {
         const response = await axios.get(
-          `http://localhost:8082/vehicles/${vehicleId}`
+          `http://localhost:8081/vehicles/${vehicleId}`
         ); // Ändern Sie hier die URL, um die Fahrzeugdetails abzurufen
         if (response.status === 200) {
           setVehicle(response.data);
