@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import useAuthStore from '../hooks/useAuthStore';
-import { useLocation, useNavigate } from 'react-router-dom';
-/* import EmailVerificationForm from './EmailVerificationForm'; */
+import { useLocation, useNavigate } from 'react-router-dom'; 
+import EmailVerificationForm from './EmailVerificationForm'; 
  
 
 function Login() {
@@ -50,6 +50,7 @@ function Login() {
 
             console.log('Success: token stored in localStorage and sessionStorage');
 
+        
             //die Navigation nach erfolgreicher Anmeldung:
             if (location.state?.from) {
                 navigate(location.state.from);
@@ -60,9 +61,12 @@ function Login() {
 
         } catch (error) {
             console.error(error);
+            console.log("please register first");
+            return;
             if (error.response.status === 403) setNotVerified(true);
             setErrors([error.response.data.message]);
         }
+        
     }
 
     // Login Erfolgsnachricht
@@ -97,7 +101,7 @@ function Login() {
          // Wenn nicht verifiziert, zeige Formular zum Versenden der Verifikationsmail
          // sonst das normale Loginformular
          notVerified
-         ? msgs={errors}
+         ? <EmailVerificationForm msgs={errors}/>
          : <form className="w-full max-w-lg flex-col items-center justify-center bg-black shadow-md rounded px-10 py-5" onSubmit={loginSubmitHandler}>
 
              {(errors.length > 0) && (<ul style={{backgroundColor: 'rgba(255,0,0,0.5)', border: '1px solid red'}}>{errorBox}</ul>)}

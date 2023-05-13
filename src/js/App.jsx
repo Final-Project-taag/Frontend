@@ -10,7 +10,7 @@ import AboutUs from "./pages/AboutUs";
 import ContactPage from "./pages/Contact";
 import Booking from "./components/Booking";
 import EVehicles from "./components/E-Vehicles";
-import ReservationView from "./components/ReservationView";
+import ReservationView from "./components/ReservationView.jsx";
 import EmailVerification from "./components/EmailVerification";
 function App() {
 
