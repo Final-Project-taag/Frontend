@@ -45,10 +45,12 @@ function Register(props) {
   }
 
   const successMsg = (
+    <div>
     <h1 className="text-3xl text-center   bg-white text-gray-500">
       Register successful! <br />
       We've sent you an e-mail to verify your e-mail address. Please follow the
       provided link. <br />
+     </h1>
       <button
         onClick={() => {}}
         className="button-85 inline-block align-baseline text-sm "
