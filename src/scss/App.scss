@@ -39,15 +39,37 @@ body {
       }
     }
     
-    .about-us-container {
-      position: relative;
-      background-image: url("/images/189330836_l_normal_none.jpg");
-      background-size: cover;
-      background-position: center;
+  
+    //map disegn classen werden von leaflat importert
+    .leaflet-container {
       
- 
+      height: 70vh;
+      width: 70vw;
+      border-radius: 1rem;
       
     }
+     @media not all and (min-width: 640px) { 
+      
+      .leaflet-container{
+        height: 60vh;
+        width: 80vw;
+
+      }
+     } 
+
+    .cluster-icon {
+      background-color: #333;
+      height: 2em;
+      width: 2em;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      box-shadow: 0 0 0px 5px #fff;
+    }
+    
 
 
 }

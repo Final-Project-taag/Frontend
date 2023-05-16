@@ -45,11 +45,20 @@ function Register(props) {
   }
 
   const successMsg = (
-    <div className=" mt-36 pt-10  flex  flex-col justify-center items-center  border-green-500 border-2 pb-8  shadow-xl shadow-gray-400  rounded-lg ">
-      <h1 className="text-3xl text-center   bg-white text-gray-500 ">
-      Die Registrierung ist erfolgreich geschafft! <br />
-      Bitte auf die unten gelikten knüpf klicken.
-      </h1>
+    <div>
+    <h1 className="text-3xl text-center   bg-white text-gray-500">
+      Register successful! <br />
+      We've sent you an e-mail to verify your e-mail address. Please follow the
+      provided link. <br />
+     </h1>
+      <button
+        onClick={() => {}}
+        className="button-85 inline-block align-baseline text-sm "
+        role="button"
+      >
+        Resend E-Mail
+      </button>
+      <br />
       <button
         onClick={handleGoToLoginClick}
         className=" w-fit m-auto  tracking-wider  mt-14 rounded-2xl shadow-md shadow-gray-400  bg-green-600 p-3   font-bold text-white  hover:scale-105 "
@@ -70,16 +79,6 @@ function Register(props) {
         successMsg
       ) : (
         <form className=" h-fit  pt-18 mt-40 " onSubmit={submitHandler}>
-          {errors.length > 0 && (
-            <ul
-              style={{
-                backgroundColor: "rgba(255,0,0,0.5)",
-                border: "1px solid red",
-              }}
-            >
-              {errorBox}
-            </ul>
-          )}
           <div className=" w-full h-full max-w-lg flex flex-col gap-3 justify-start items-start shadow-xl rounded px-10 py-24 mt-7">
             <label
               className="block text-gray-700 text-sm font-bold m-0"
@@ -144,7 +143,7 @@ function Register(props) {
               Password
             </label>
             <input
-              className="shadow appearance-none  border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              className="shadow appearance-none  border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               id="password"
               type="password"
               placeholder="******************"

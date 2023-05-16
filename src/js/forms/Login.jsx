@@ -98,7 +98,7 @@ function Login() {
          // sonst das normale Loginformular
          notVerified
          ? msgs={errors}
-         : <form className="w-full max-w-lg flex-col items-center justify-center  shadow-xl border rounded px-10 py-5" onSubmit={loginSubmitHandler}>
+         : <form className="w-full max-w-md flex-col items-center justify-center  shadow-xl border rounded px-10 py-5" onSubmit={loginSubmitHandler}>
 
              {(errors.length > 0) && (<ul style={{backgroundColor: 'rgba(255,0,0,0.5)', border: '1px solid red'}}>{errorBox}</ul>)}
              <div className="mb-6 ">

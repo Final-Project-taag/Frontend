@@ -31,29 +31,46 @@ function MainPage() {
     navigate("/e-vehicles");
   };
   return (
+
     <div className='pt-16 h-screen'>
-        <div className="flex justify-between w-full pt-12 pb-20  px-1 h-30 md:w-auto  md:h-[20vh] xl:h-[40vh]"
+        <div className="flex justify-between w-full pt-12	pb-20	 px-1 h-30 md:w-auto  md:h-[20vh] xl:h-[40vh]"
             style={{
                 backgroundImage: "url('/eco-car-forest-road-with-earth-planet.webp')",
                 backgroundPositionY: "bottom",
                 backgroundPosition:"center",
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
-            }}
+            
+            }} 
         ></div>
+
         <div className='w-11/12 lg:w-3/4 flex lg:max-h-full flex-col   text-center mt-10 mb-2'>
                 <h1 className="max-sm:text-4xl md:text-6xl  text-green-600">Green <span className='text-gray-600'>Wheels</span> </h1>
                  <Typewriter  text={introText} />
+    
                 <button onClick={handletovehicle}
                     className="w-fit m-auto  tracking-wider  mt-6
                      rounded-2xl shadow-md shadow-gray-400  bg-green-600 p-3 font-bold  text-white  hover:scale-105"
                     type="button"
                 >
                     zu unsern Fahrzeuge
+                    
                 </button>
+
+                
+    
             </div>
+            
+                
+            
+           
             <div>
+            
             </div>
+           
+
+    
+    
         </div>
     );
 }

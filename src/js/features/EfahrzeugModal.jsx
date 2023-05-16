@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import useAuthStore from "../hooks/useAuthStore";
 
-export default function EfahrzeugModal({
+export default function EfahrzeueModal({
   imageUrls,
   name,
   type,
@@ -17,9 +17,9 @@ export default function EfahrzeugModal({
 }) {
   const [reservation, setReservation] = useState([]);
   const [authError, setAuthError] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(0);
+ 
   const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+ 
   const [timeLeft, setTimeLeft] = useState(null);
   const [isReserved, setIsReserved] = useState(false);
 
@@ -104,7 +104,8 @@ export default function EfahrzeugModal({
     const startDate = new Date();
 
     const reservationDuration = 60 * 60 * 1000; // 1 Stunde in Millisekunden
-    const endDate = startDate.getTime() + reservationDuration
+    const reservedUntil = new Date(Date.now() + reservationDuration);
+    const endDate = reservedUntil;
 
     try {
       const response = await fetch("http://localhost:8081/reservations", {
@@ -119,7 +120,7 @@ export default function EfahrzeugModal({
           endDate,
           createdAt: new Date(),
           reserved: true,
-
+          reservedUntil,
         }),
       });
       if (!response.ok) {
@@ -166,17 +167,17 @@ export default function EfahrzeugModal({
   }
 
   return (
-    <div className="h-screen w-screen bg-white/80 fixed  top-24 left-0 z-50 flex  flex-col justify-center items-center pb-24  ">
-      <div className="relative border-green-400 border-2 w-3/4 h-3/4 flex flex-row bg-white rounded-lg shadow  m-10">
-        <div className="  overflow-hidden	 w-1/2 items-center   p-2 ">
+    <div className="h-screen w-screen bg-white/80 fixed  top-2 md:top-24 left-0 z-50 flex  flex-col justify-center items-center   ">
+     <div className="relative border-green-400 border-2 w-11/12 lg:w-3/4 h-3/4 flex flex-col lg:flex-row bg-white rounded-lg shadow lg:m-10 mt-0 md:pb-[120px] lg:pb-[80px] pb-0  md:m-10">
+        <div className="  overflow-hidden w-full lg:w-1/2 items-center  p-2 order-2 lg:order-1">
           <img
-            className="rounded-l-lg h-full object-cover"
+            className="rounded-lg h-full md:pt-0 object-cover max-h-[190px] md:max-h-[250px] lg:max-h-full"
             src={imageUrls}
             alt=""
           />
         </div>
-        <div className="h-full border-x border-gray-300 "></div>
-        <div className="  w-1/2 p-4  ">
+        <div className="hidden lg:block mt-4 border-x border-gray-300 order-2"></div>
+        <div className="w-full lg:w-1/2 p-2 lg:order-3">
           <button
             onClick={() => closeModle()}
             type="button"
@@ -198,8 +199,7 @@ export default function EfahrzeugModal({
             </svg>
             <span className="right-0 sr-only"> Close modal</span>
           </button>
-
-          <div className=" flex flex-col bg-white pt-12 w-3/4 max-h-full  ">
+          <div className="flex flex-col bg-white pt-2 md:pt-24 w-full md:w-3/4 max-h-full overflow-x-auto">
             <table className="min-w-full text-center text-sm font-light">
               <thead className="border-b bg-gray-500 font-medium text-white">
                 <tr>
@@ -240,15 +240,16 @@ export default function EfahrzeugModal({
               </tbody>
             </table>
           </div>
-
+        </div>
           {/* reservation button  */}
-          <div className=" py-2 ">
+          <div className="md:absolute static md:left-2/4 left-auto md:bottom-8 bottom-auto md:-translate-x-1/2 py-2 gap-4  flex flex-col lg:flex-row items-center justify-center pt-3 md:pt-10 order-3 pb-6 md:pb-0">
             <button
               type="button"
-              className={`inline-block rounded px-6  pt-2.5 pb-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0 ${isReserved
-                ? "bg-red-600 text-white"
-                : "bg-slate-200 text-green-900 shadow-[0_4px_9px_-4px_#3b71ca] hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-                }`}
+              className={`inline-block rounded-xl p-2 text-sm font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0  w-fit m-auto  tracking-wider  shadow-md shadow-gray-400     text-white  hover:scale-105 ${
+                isReserved
+                  ? "bg-red-600  "
+                  : "bg-green-500 "
+              }`}
               onClick={
                 isReserved
                   ? () => deleteReservation(reservation._id)
@@ -259,49 +260,45 @@ export default function EfahrzeugModal({
               {quantity === 0
                 ? "Nicht verfügbar"
                 : isReserved
-                  ? "Reservierung Stornieren"
-                  : "Reservieren"}
+                ? "resirviern störnern"
+                : "Reservieren"}
             </button>
             {isReserved && (
-              <div className="ml-4 text-red-600">
-                {timeLeft !== null ? formatTimeLeft(timeLeft) : ""}
-
+              <>
+                <span className="text-red-600 ">{timeLeft !== null ? formatTimeLeft(timeLeft) : ""}</span>
                 <button
                   type="button"
-                  className="bg-slate-200 px-6 pt-2.5 pb-2 text-green-900 shadow-[0_4px_9px_-4px_#3b71ca] text-xs font-medium uppercase hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
+                  className="bg-green-500   inline-block rounded-xl p-2  text-sm font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0  w-fit m-auto  tracking-wider   shadow-md shadow-gray-400    text-white  hover:scale-105"
                   onClick={() => {
+                    /*  handleBooking(); */
                     goToBooking(vehicleId);
                   }}
                   disabled={quantity === 0}
                 >
                   go to booking
                 </button>
+                </>
+            )}
+            {authError && (
+              <div className=" text-center p-2">
+              <p className="text-gray-500 mt-2 ">
+                Anmeldung ist erförderlich!{" "}
+                <a className="text-green-500 cursor-pointer px-3" onClick={goToLogin}>
+                  Login
+                </a>
+                ,
+                <a className="text-green-500 cursor-pointer px-3" onClick={goToRegister}>
+                  register
+                </a>
+              </p>
               </div>
             )}
-
-            {authError && (
-              <i className="text-red-500">
-                Anmeldung ist erforderlich!{" "}
-                <button>
-                  <a className="text-blue-300" onClick={goToLogin}>
-                    Login
-                  </a>
-                </button>
-
-                ,{" "}
-                <button>
-                  <a className="text-blue-300" onClick={goToRegister}>
-                    Register
-                  </a>
-                </button>
-
-              </i>
-            )}
           </div>
-        </div>
       </div>
     </div>
   );
 }
 
+/* 
 
+ */
