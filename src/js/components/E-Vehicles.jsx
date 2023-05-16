@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Card from "./E-VehicleDetails";
-import EfahrzeueModal from "../features/EfahrzeueModal";
+import EfahrzeugModal from "../features/EfahrzeugModal";
 
 // eine Hilfsfunktion aggregateVehicleData, die die Fahrzeugdaten basierend auf den Fahrzeugmodellen gruppiert:
 
@@ -134,7 +134,7 @@ function EVehicles() {
     </div>
 
           {showModal && (
-            <EfahrzeueModal
+            <EfahrzeugModal
               imageUrls={carDetails.imageUrls}
               name={carDetails.name}
               type={carDetails.type}

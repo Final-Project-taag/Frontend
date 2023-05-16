@@ -40,20 +40,22 @@ body {
     }
     
   
-    
+    //map disegn classen werden von leaflat importert
     .leaflet-container {
-      margin: 0 auto;
-      height: 50vh;
-      width: 45vw;
+      
+      height: 70vh;
+      width: 70vw;
       border-radius: 1rem;
+      
     }
-    @media not all and (min-width: 640px) { 
+     @media not all and (min-width: 640px) { 
       
       .leaflet-container{
         height: 60vh;
-        width: 33vh;
+        width: 80vw;
+
       }
-     }
+     } 
 
     .cluster-icon {
       background-color: #333;
@@ -67,5 +69,7 @@ body {
       font-size: 1.2rem;
       box-shadow: 0 0 0px 5px #fff;
     }
+    
+
 
 }

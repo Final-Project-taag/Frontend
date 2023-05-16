@@ -6,8 +6,8 @@ import { Icon, divIcon, point } from "leaflet";
 
 // create custom icon
 const customIcon = new Icon({
-  // iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
-  iconUrl: "../../../public/pin.png",
+   iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
+  
   iconSize: [38, 38], // size of the icon
 });
 
@@ -41,8 +41,8 @@ const markers = [
 
 export default function Map() {
   return (
-   <div className="map-wrapper">
-     <MapContainer center={[49.487457, 8.466040]} zoom={10}>
+    
+    <MapContainer center={[49.487457, 8.466040]} zoom={13}>
       {/* OPEN STREEN MAPS TILES */}
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -61,6 +61,6 @@ export default function Map() {
         ))}
       </MarkerClusterGroup>
     </MapContainer>
-   </div>
+    
   );
 }

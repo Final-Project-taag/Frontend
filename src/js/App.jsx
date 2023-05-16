@@ -11,16 +11,11 @@ import ContactPage from "./pages/Contact";
 import Booking from "./components/Booking";
 import EVehicles from "./components/E-Vehicles";
 import ReservationView from "./components/ReservationView";
-
-
-
-
-
+import PaymentSuccess from "./components/PaymentSucess";
 function App() {
   return (
    
     <div className='h-full'>
- 
       <BrowserRouter>
 
         <Header />
@@ -34,7 +29,9 @@ function App() {
           <Route path='/e-vehicles' element={<EVehicles />} />
           <Route path='/contact' element={<ContactPage />} /> 
           <Route path='/booking/:vehicleId' element={<Booking />} />
+          <Route path='/reservation-view' element={<ReservationView />} />
           <Route path='/reservation-view/:vehicleId' element={<ReservationView />} />
+          <Route path='/paymentsucess' element={<PaymentSuccess/>}></Route>
         </Routes>
 
         {/*  <Footer />  */}

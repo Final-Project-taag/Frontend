@@ -171,12 +171,12 @@ export default function EfahrzeueModal({
      <div className="relative border-green-400 border-2 w-11/12 lg:w-3/4 h-3/4 flex flex-col lg:flex-row bg-white rounded-lg shadow lg:m-10 mt-0 md:pb-[120px] lg:pb-[80px] pb-0  md:m-10">
         <div className="  overflow-hidden w-full lg:w-1/2 items-center  p-2 order-2 lg:order-1">
           <img
-            className="rounded-lg h-full md:pt-10 object-cover max-h-[190px] md:max-h-[250px] lg:max-h-full"
+            className="rounded-lg h-full md:pt-0 object-cover max-h-[190px] md:max-h-[250px] lg:max-h-full"
             src={imageUrls}
             alt=""
           />
         </div>
-        <div className="hidden lg:block my-4 border-x border-gray-300 order-2"></div>
+        <div className="hidden lg:block mt-4 border-x border-gray-300 order-2"></div>
         <div className="w-full lg:w-1/2 p-2 lg:order-3">
           <button
             onClick={() => closeModle()}
@@ -281,16 +281,16 @@ export default function EfahrzeueModal({
             )}
             {authError && (
               <div className=" text-center p-2">
-              <i className="text-gray-500 mt-2 ">
+              <p className="text-gray-500 mt-2 ">
                 Anmeldung ist erförderlich!{" "}
-                <a className="text-green-500 px-3" onClick={goToLogin}>
+                <a className="text-green-500 cursor-pointer px-3" onClick={goToLogin}>
                   Login
                 </a>
                 ,
-                <a className="text-green-500 px-3" onClick={goToRegister}>
+                <a className="text-green-500 cursor-pointer px-3" onClick={goToRegister}>
                   register
                 </a>
-              </i>
+              </p>
               </div>
             )}
           </div>
@@ -302,4 +302,3 @@ export default function EfahrzeueModal({
 /* 
 
  */
-
