@@ -37,8 +37,11 @@ function Card({
   }, [vehicleId]);
 
   return (
+    
     <div className="flex  justify-center items-center w-full  ">
       <div className=" p-4  rounded-lg  border-2  border-green-400 text-center shadow-xl shadow-gray-400   hover:scale-105 transform transition-all duration-500">
+      <h1>Klicken Sie auf den Bild und schauen Sie sich die Details an.</h1>
+
         <a href="#!">
           <div className="flex  p-4  items-center justify-between">
             <p>{name}</p>

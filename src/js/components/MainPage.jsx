@@ -1,8 +1,6 @@
+import { urlencoded } from 'express';
 import { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useAuthStore from '../hooks/useAuthStore';
-import EVehicles from './E-Vehicles';
-import Typewriter from './typeWriterEffect';
 
 
 function MainPage() {

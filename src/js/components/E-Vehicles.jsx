@@ -111,8 +111,8 @@ function EVehicles() {
     maxDriveRangeFilter,
   ]);
 
-  return (<>
-    <div className="flex justify-center  items-center p-6">
+  return ( <>
+    <div className=" justify-center  items-center p-20 w- flex flex-wrap">
       {cars.map((car) => (
         <div
           key={car._id}
