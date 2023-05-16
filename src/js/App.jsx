@@ -34,7 +34,7 @@ function App() {
           <Route path='/paymentsucess' element={<PaymentSuccess/>}></Route>
         </Routes>
 
-        {/*  <Footer />  */}
+        <Footer />
 
       </BrowserRouter>
 

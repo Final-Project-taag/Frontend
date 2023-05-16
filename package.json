@@ -23,7 +23,7 @@
     "react-leaflet-cluster": "^2.1.0",
     "react-leaflet-markercluster": "^3.0.0-rc1",
     "react-modal": "^3.16.1",
-    "react-router-dom": "^6.11.0",
+    "react-router-dom": "^6.11.1",
     "sass": "^1.62.1",
     "scrollscene": "^0.0.24",
     "svg": "^0.1.0",
