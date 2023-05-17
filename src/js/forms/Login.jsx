@@ -37,7 +37,7 @@ function Login() {
             let resp = await axios.post('http://localhost:8081/auth/login', body, {
                 // withCredentials: true
             });
-
+            
             console.log(resp);
 
             authStore.authenticate(resp.data);
@@ -76,12 +76,7 @@ function Login() {
     return (
 
     <div className="flex justify-center items-center w-screen h-screen py-3"
-            style={{
-                backgroundImage: "url('public/images/bg für Login.jpg')",
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat"
-            }}
+          
         >
 {/* Wenn eingeloggt, zeige Erfolgsnachricht */ }
             {authStore.isAuthenticated() && loginSuccess}
