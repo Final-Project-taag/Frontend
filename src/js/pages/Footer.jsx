@@ -1,5 +1,5 @@
 import React from "react";
-import useAuthStore from '../hooks/useAuthStore';
+import useAuthStore from '../hooks/useAuthStore'
 
 const Icons = [
   { name: "logo-facebook", link: "#" },

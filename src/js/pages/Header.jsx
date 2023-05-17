@@ -126,7 +126,7 @@ function Header() {
       </div>
       <Outlet />
       <div
-        className={`mobile-nav flex flex-col px-4 mt-16 lg:pt-36 gap-1  border-b absolute bg-white w-screen ${
+        className={`mobile-nav flex flex-col px-4 pt-24 lg:pt-36 gap-1  border-b absolute bg-white w-screen ${
           mobileNav ? "block" : "hidden"
         }`}
         onClick={(evt) => evt.stopPropagation()}

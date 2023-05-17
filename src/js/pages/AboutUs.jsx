@@ -28,7 +28,7 @@ function AboutUs() {
   return (
     
       <div className=" flex  h-screen flex-col container  bg-cover bg-center md:bg-[url('/images/Bg-About-Us-Team.jpg')]  ">
-        <div className="flex h-screen flex-col text-center bg-white bg-opacity-90   mt-24 ">
+        <div className="flex h-screen flex-col text-center bg-white bg-opacity-90 mt-24 ">
           <h1 className="text-green-600 text-3xl lg:text-6xl lg:p-6 pt-10  ">
             Green <span className=" text-gray-600">Wheels</span> Team{" "}
           </h1>
