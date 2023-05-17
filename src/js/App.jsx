@@ -14,6 +14,7 @@ import Booking from "./components/Booking";
 import EVehicles from "./components/E-Vehicles";
 import ReservationView from "./components/ReservationView";
 import PaymentSuccess from "./components/PaymentSucess";
+import AdminAdd from "./pages/AdminView";
 
 function App() {
   const [theme, setTheme] = useState(null);
@@ -59,7 +60,9 @@ function App() {
           <Route path='/booking/:vehicleId' element={<Booking />} />
           <Route path='/reservation-view' element={<ReservationView />} />
           <Route path='/reservation-view/:vehicleId' element={<ReservationView />} />
+          <Route path='/admin-view' element={<AdminAdd />} />
           <Route path='/paymentsucess' element={<PaymentSuccess/>}></Route>
+          
         </Routes>
 
          <Footer /> 

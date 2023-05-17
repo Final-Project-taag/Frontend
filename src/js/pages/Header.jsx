@@ -52,7 +52,8 @@ function Header() {
   }, []);
 
   const navigate = useNavigate();
-  const isAuthenticated = authStore.isAuthenticated(); // Add this line to check authentication status
+  const isAuthenticated = authStore.isAuthenticated(); 
+ 
   const handleRegisterClick = () => {
     navigate("/register");
   };
@@ -91,6 +92,11 @@ function Header() {
             <li className=" font-light lg:text-3xl md:text-xl text-green-600 dark:text-green-500 hover:text-gray-600 hover:scale-105">
               <Link to="/About-us">Über uns</Link>
             </li>
+            {isAuthenticated && (
+            <li className=" font-light lg:text-3xl md:text-xl text-green-600 dark:text-green-500 hover:text-gray-600 hover:scale-105">
+              <Link to="/admin-view">Admin View</Link>
+            </li>
+            )}
           </ul>
         </div>
         <div className=" md:flex items-center justify-center mr-0 hidden w-s">
