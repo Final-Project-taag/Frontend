@@ -4,8 +4,14 @@ import Map from "../features/Map";
 
 export default function Contact() {
   return (
-    <div className="flex flex-col justify-center items-center  h-full mb-10 mt-24 w-3/4">
-      <div className="container  h-full flex items-center   mb-12 max-w-4xl mx-auto flex-col md:flex-row">
+    <div className="flex flex-col justify-center items-center  h-full pt-20  ">
+      <h1 className=" pt-10 text-6xl  text-green-600 dark:text-green-500">
+        Green <span className="text-gray-600  dark:text-gray-400">Wheels</span>{" "}
+      </h1>
+      <p className=" text-center mt-2 text-2xl  dark:text-gray-300 ">
+        Eco Fahrzeuge rental App.
+      </p>
+      <div className="  h-full flex items-center   mb-12 max-w-4xl mx-auto flex-col md:flex-row">
         <div className="max-w-[100%] md:max-w-[50%] w-full mt-16">
           <img
             src="https://investingminister.com/wp-content/uploads/2020/09/carhandshake.jpg"
@@ -14,28 +20,19 @@ export default function Contact() {
           />
         </div>
 
-        <div>
-          <div>
-            <h1 className="text-6xl  text-green-600">
-              Green <span className="text-gray-600">Wheels</span>{" "}
-            </h1>
-          </div>
-          <h2 className="mt-2 text-xl">Eco Fahrzeuge rental App.</h2>
-          <ul className="mt-8">
-            <li>Adresse: </li>
-            <li>Musterstraße 123</li>
-            <li>12345 Musterstadt</li>
-          </ul>
+        <div className=" max-w-4xl">
+          <ul className=" mb-32 text-left text-3xl text-gray-600 dark:text-gray-300">
+            <li>Telefonnummer: 0174 123987</li>
+            <li className="mt-1">Email: service@greenwheels.de</li>
 
-          <ul className="mt-4">
-            <li>Telefonnummer: 01234 123456</li>
-            <li className="mt-1">Email: hallo@superduperseite.de</li>
-            <li></li>
+            <li>
+              Adresse: Friedrichsplatz <br /> 68165 Mannheim
+            </li>
           </ul>
         </div>
       </div>
 
-      <div className="  ">
+      <div className="h-full  mb-12 flex items-center   ">
         <Map />
       </div>
     </div>

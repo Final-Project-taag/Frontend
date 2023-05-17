@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import  { useState,useEffect } from "react";
 import "../scss/App.scss";
+
 
 import Header from "./pages/Header";
 import Footer from "./pages/Footer";
@@ -12,10 +14,36 @@ import Booking from "./components/Booking";
 import EVehicles from "./components/E-Vehicles";
 import ReservationView from "./components/ReservationView";
 import PaymentSuccess from "./components/PaymentSucess";
+
 function App() {
+  const [theme, setTheme] = useState(null);
+
+  useEffect(() => {
+    if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+      setTheme('dark');
+    }
+    else {
+      setTheme('light');
+    }
+  }, [])
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  const handleThemeSwitch = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+ 
   return (
    
-    <div className='h-full'>
+    <div className='h-full bg-gray-100 dark:bg-slate-900 '>
+      
+      
       <BrowserRouter>
 
         <Header />
@@ -34,7 +62,7 @@ function App() {
           <Route path='/paymentsucess' element={<PaymentSuccess/>}></Route>
         </Routes>
 
-        {/*  <Footer />  */}
+         <Footer /> 
 
       </BrowserRouter>
 
@@ -43,3 +71,4 @@ function App() {
 }
 
 export default App;
+/* dark:bg-[#17161C] */

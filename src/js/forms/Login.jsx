@@ -98,25 +98,25 @@ function Login() {
          // sonst das normale Loginformular
          notVerified
          ? msgs={errors}
-         : <form className="w-full max-w-md flex-col items-center justify-center  shadow-xl border rounded px-10 py-5" onSubmit={loginSubmitHandler}>
+         : <form className="w-full max-w-md flex-col items-center justify-center  md:shadow-xl  md:border-2 md:rounded-xl px-10 py-5 " onSubmit={loginSubmitHandler}>
 
              {(errors.length > 0) && (<ul style={{backgroundColor: 'rgba(255,0,0,0.5)', border: '1px solid red'}}>{errorBox}</ul>)}
              <div className="mb-6 ">
-                 <label className="block text-green-500 text-xl  mb-2" htmlFor="username">
+                 <label className=" block text-green-600 dark:text-green-500 text-xl font-base  mb-2" htmlFor="username">
                      Username
                  </label>
                  <input className="w-full shadow appearance-none  rounded  py-2 px-3 text-gray-700 mb-3 leading-tight " id="username" type="text" placeholder="Username" value={username} onChange={(evt) => setUsername(evt.target.value)}/>
              </div>
 
              <div className="mb-6">
-                 <label  className="block text-green-500 text-xl   mb-2" htmlFor="password">
+                 <label  className="block text-green-600 dark:text-green-500 text-xl font-base  mb-2" htmlFor="password">
                      Password
                  </label>
                  <input className="w-full shadow appearance-none  rounded  py-2 px-3 text-gray-700 mb-3 leading-tight " id="password" type="password" placeholder="******************" value={password} onChange={(evt) => setPassword(evt.target.value)}/>
              </div>
 
              <div className="flex items-center justify-evenly">
-                 <button   className="bg-green-600 hover:bg-gray-800-700 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline" type="submit">
+                 <button   className="bg-green-600 hover:bg-gray-800-700 text-white font-bold py-1 px-2 shadow-md rounded-xl focus:outline-none focus:shadow-outline hover:scale-105" type="submit">
                      Sign In
                  </button>
                  

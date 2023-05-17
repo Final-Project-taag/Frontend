@@ -37,15 +37,15 @@ function Card({
   }, [vehicleId]);
 
   return (
-    <div className="flex  justify-center items-center w-full  ">
-      <div className=" p-4  rounded-lg  border-2  border-green-400 text-center shadow-xl shadow-gray-400   hover:scale-105 transform transition-all duration-500">
+    <div className="flex  justify-center items-center m-0 ">
+      <div className=" p-4   rounded-lg  border-2  border-green-400 text-center shadow-md shadow-gray-600  dark:bg-slate-900  md:hover:scale-105 transform transition-all duration-500">
         <a href="#!">
-          <div className="flex  p-4  items-center justify-between">
+          <div className="flex  p-4  dark:text-white tems-center justify-between">
             <p>{name}</p>
             <p>{price} €/Stunde</p>
           </div>
           <img
-            className="rounded-lg  border-gray-400 border-2  object-fill w-96 h-72"
+            className="rounded-lg  border-gray-400 border-2  object-fill w-80 md:w-96 md:h-56 h-64"
             src={imageUrls}
             alt=""
           />

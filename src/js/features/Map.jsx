@@ -23,18 +23,19 @@ const createClusterCustomIcon = function (cluster) {
 // markers
 const markers = [
   {
-    geocode: [49.487209, 8.466680],
-    popUp: "Filiale nr.1 ",
+    geocode: [49.483856, 8.476271],
+    popUp: "Filiale nr.1 am Friedrichsplatz, 68165 Mannheim",
     id: 1
   },
   {
-    geocode: [49.464390, 8.517260],
-    popUp: "Filiale nr.2",
+    geocode: [49.487209, 8.466780],
+    
+    popUp: "Filiale nr.2 am  paradaplatz, 68165 Mannheim",
     id:2
   },
   {
-    geocode: [49.487209, 8.466780],
-    popUp: "Filiale nr.3",
+    geocode: [49.464390, 8.517260],
+    popUp: "Filiale nr.3 , Mannheim  Neuhermsheim",
     id:3
   },
 ];

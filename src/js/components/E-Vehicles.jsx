@@ -112,11 +112,11 @@ function EVehicles() {
   ]);
 
   return (<>
-    <div className="flex justify-center  items-center p-6 md:flex flex-wrap">
+    <div className="flex justify-center  items-center mb-10   h-fit md:h-fit  md:flex flex-wrap">
       {cars.map((car) => (
         <div
           key={car._id}
-          className=" mt-28"
+          className=" mt-24 md:mt-20"
           onClick={() => handleShowModle(car)}
         >
           <Card
