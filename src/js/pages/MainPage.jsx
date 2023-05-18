@@ -35,10 +35,10 @@ function MainPage() {
     <div className='pt-16 h-screen'>
         <div className="flex justify-between w-full pt-12	pb-20	 px-1 h-30 md:w-auto  md:h-[20vh] xl:h-[40vh]"
             style={{
-                backgroundImage: "url('/eco-car-forest-road-with-earth-planet.webp')",
+                backgroundImage: "url('public/images/home.jpg')",
                 backgroundPositionY: "bottom",
                 backgroundPosition:"center",
-                backgroundSize: "cover",
+                backgroundSize: "auto",
                 backgroundRepeat: "no-repeat",
             
             }} 

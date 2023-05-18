@@ -50,21 +50,26 @@ function Header() {
           </Link>
         </div>
         <div className="md:flex justify-center  items-center m-0 hidden">
-          <ul className="flex justify-center items-center gap-5  ">
-            <li className=" font-light lg:text-3xl md:text text-green-600 hover:text-gray-600">
+          <ul className="flex justify-center items-center gap-5 ml-32 ">
+            <li className=" font-light lg:text-3xl md:text-xl text-green-600 dark:text-green-500 hover:text-gray-600 hover:scale-105">
               <Link to="/e-vehicles">E-Fahrzeuge</Link>
             </li>
             {isAuthenticated && (
-              <li className=" font-light lg:text-3xl md:text text-green-600 hover:text-gray-600 hover:scale-105">
+              <li className=" font-light lg:text-3xl md:text-xl text-green-600 dark:text-green-500 hover:text-gray-600 hover:scale-105">
                 <Link to={"/reservation-view/buchungen"}>Buchungen</Link>
               </li>
             )}
-            <li className=" font-light lg:text-3xl md:text text-green-600 hover:text-gray-600 hover:scale-105">
+            <li className=" font-light lg:text-3xl md:text-xl text-green-600 dark:text-green-500 hover:text-gray-600 hover:scale-105">
               <Link to="/contact">Kontakt</Link>
             </li>
-            <li className=" font-light lg:text-3xl md:text text-green-600 hover:text-gray-600 hover:scale-105">
+            <li className=" font-light lg:text-3xl md:text-xl text-green-600 dark:text-green-500 hover:text-gray-600 hover:scale-105">
               <Link to="/About-us">Über uns</Link>
             </li>
+            {isAuthenticated && (
+              <li className=" font-light lg:text-3xl md:text-xl text-green-600 dark:text-green-500 hover:text-gray-600 hover:scale-105">
+                <Link to="/admin/add">Admin View</Link>
+              </li>
+            )}
           </ul>
         </div>
         <div className=" md:flex items-center justify-center mr-0 hidden">
@@ -123,9 +128,8 @@ function Header() {
       </div>
       <Outlet />
       <div
-        className={`mobile-nav flex flex-col px-4 mt-16 lg:pt-36 gap-1  border-b absolute bg-white w-screen ${
-          mobileNav ? "block" : "hidden"
-        }`}
+        className={`mobile-nav flex flex-col px-4 mt-16 lg:pt-36 gap-1  border-b absolute bg-white w-screen ${mobileNav ? "block" : "hidden"
+          }`}
         onClick={(evt) => evt.stopPropagation()}
       >
         <ul className=" list-disc text-left  gap-4 grid grid-cols-2  border-b">
@@ -160,18 +164,18 @@ function Header() {
         )}
         {isAuthenticated && (
           <div className="flex flex-row gap-2 ">
-            <div className= " flex flex-col text-gray-600">
+            <div className=" flex flex-col text-gray-600">
               <UserCircleIcon className="h-8 w-8 text-green-500" />
               {authStore.isAuthenticated()
                 ? authStore.user.fullname
                 : "Anonymous"}
-            <button
-              onClick={(evt) => authStore.logout()}
-              className=" text-2xl text-green-500 font-sans py-1 px-1 rounded focus:outline-none focus:shadow-outline"
-              type="button"
-            >
-              Logout
-            </button>
+              <button
+                onClick={(evt) => authStore.logout()}
+                className=" text-2xl text-green-500 font-sans py-1 px-1 rounded focus:outline-none focus:shadow-outline"
+                type="button"
+              >
+                Logout
+              </button>
             </div>
           </div>
         )}
