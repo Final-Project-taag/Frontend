@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import  { useState,useEffect } from "react";
 import "../scss/App.scss";
+
 
 import Header from "./pages/Header";
 import Footer from "./pages/Footer";
@@ -12,17 +14,46 @@ import Booking from "./components/Booking";
 import EVehicles from "./components/E-Vehicles";
 import ReservationView from "./components/ReservationView";
 import PaymentSuccess from "./components/PaymentSucess";
+import AdminAdd from "./pages/AdminView";
+import AllReservations from "./components/AllReservation";
+import PickupAndReturnLocation from "./components/SelectOrt";
 function App() {
+  const [theme, setTheme] = useState(null);
+
+  useEffect(() => {
+    if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+      setTheme('dark');
+    }
+    else {
+      setTheme('light');
+    }
+  }, [])
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  const handleThemeSwitch = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+ 
   return (
    
-    <div className='h-full'>
+    <div className='h-full bg-gray-100 dark:bg-slate-900 '>
+      
+      
       <BrowserRouter>
 
         <Header />
-
+        <PickupAndReturnLocation />
         <Routes>
 
           <Route path='/' element={<MainPage />} />
+          <Route path='/' element={<PickupAndReturnLocation />}/>
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
           <Route path='/about-us' element={<AboutUs />} />
@@ -31,10 +62,14 @@ function App() {
           <Route path='/booking/:vehicleId' element={<Booking />} />
           <Route path='/reservation-view' element={<ReservationView />} />
           <Route path='/reservation-view/:vehicleId' element={<ReservationView />} />
-          <Route path='/paymentsucess' element={<PaymentSuccess/>}></Route>
+          <Route path='/admin-view' element={<AdminAdd />} />
+          <Route path='/paymentsucess' element={<PaymentSuccess/>}></Route> AllReservations
+          <Route path='/all-reservation' element={<AllReservations />} />
+          <Route path='/all-reservation' element={<AllReservations />} />
+
         </Routes>
 
-        {/*  <Footer />  */}
+         <Footer /> 
 
       </BrowserRouter>
 
@@ -43,3 +78,4 @@ function App() {
 }
 
 export default App;
+/* dark:bg-[#17161C] */

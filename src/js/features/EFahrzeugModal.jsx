@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import useAuthStore from "../hooks/useAuthStore";
 
-export default function EfahrzeueModal({
+export default function EFahrzeugModal({
   imageUrls,
   name,
   type,

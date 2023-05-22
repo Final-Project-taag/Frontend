@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Card from "./E-VehicleDetails";
-import EfahrzeugModal from "../features/EfahrzeugModal";
+import EFahrzeugModal from "../features/EFahrzeugModal";
 
 // eine Hilfsfunktion aggregateVehicleData, die die Fahrzeugdaten basierend auf den Fahrzeugmodellen gruppiert:
 
@@ -111,12 +111,12 @@ function EVehicles() {
     maxDriveRangeFilter,
   ]);
 
-  return ( <>
-    <div className=" justify-center  items-center p-20 w- flex flex-wrap">
+  return (<>
+    <div className="flex justify-center  items-center mb-10    md:h-screen  md:flex flex-wrap">
       {cars.map((car) => (
         <div
           key={car._id}
-          className=" mt-28"
+          className=" mt-24 md:mt-20"
           onClick={() => handleShowModle(car)}
         >
           <Card
@@ -130,7 +130,7 @@ function EVehicles() {
       ))}
     </div>
           {showModal && (
-            <EfahrzeugModal
+            <EFahrzeugModal
               imageUrls={carDetails.imageUrls}
               name={carDetails.name}
               type={carDetails.type}
