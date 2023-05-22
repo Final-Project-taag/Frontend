@@ -45,15 +45,15 @@ function Register(props) {
   }
 
   const successMsg = (
-    <div>
-    <h1 className="text-3xl text-center   bg-white text-gray-500">
-      Register successful! <br />
-      We've sent you an e-mail to verify your e-mail address. Please follow the
-      provided link. <br />
+    <div className="bg-white pb-6">
+    <h1 className="text-3xl text-center py-12  bg-white text-gray-500">
+    Registrierung erfolgreich! <br />
+    Wir haben Ihnen eine E-Mail zur Bestätigung Ihrer E-Mail-Adresse gesendet. Bitte befolgen Sie die
+       angegebenen Link. <br />
      </h1>
       <button
         onClick={() => {}}
-        className="button-85 inline-block align-baseline text-sm "
+        className="flex  button-85 text-sm pt-20 m-auto "
         role="button"
       >
         Resend E-Mail
@@ -61,7 +61,7 @@ function Register(props) {
       <br />
       <button
         onClick={handleGoToLoginClick}
-        className=" w-fit m-auto  tracking-wider  mt-20 rounded-2xl shadow-md shadow-gray-400  bg-green-600 p-3   font-bold text-white  hover:scale-105 "
+        className="flex items-center justify-items-center  w-fit m-auto  tracking-wider  mt-6 mb-12  rounded-2xl shadow-md shadow-gray-400  bg-green-600 p-3   font-bold text-white  hover:scale-105 "
         role="button"
       >
         Go to Login
@@ -109,7 +109,6 @@ function Register(props) {
               onChange={(evt) => setFullname(evt.target.value)}
             />
             <label
-              className="block text-green-500 m-0 font-bold text-md mt-2"
               className="text-green-600 dark:text-green-500 text-xl font-base m-0"
               htmlFor="email"
             >
