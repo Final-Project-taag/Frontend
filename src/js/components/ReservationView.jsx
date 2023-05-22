@@ -163,12 +163,15 @@ const [modalMessage, setModalMessage] = useState("");
       });
     } catch (error) {
       console.error("Error updating reservation:", error);
-      if (error.response && error.response.status === 400) {
-        setModalMessage("Es gibt bereits eine Reservierung in diesem Zeitraum. Bitte wählen Sie einen anderen Zeitraum.");
-        setShowModal(true);
+      if (error.response) {
+        setModalMessage(error.response.data.message);
+      } else {
+        setModalMessage("Es gab einen Fehler bei der Aktualisierung der Reservierung.");
       }
+      setShowModal(true);
     }
   };
+  
   return (
 
     <div className="flex flex-row    pt-20 pb-20" >

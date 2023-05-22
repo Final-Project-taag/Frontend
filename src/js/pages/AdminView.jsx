@@ -10,29 +10,48 @@ function AdminAdd() {
     price: "",
     chargingTime: "",
     quantity: "",
-
+    imageUrls: null, /* erweitern Sie Ihren State um image: null. */
   });
+  const [selectedImage, setSelectedImage] = useState(null); // Zustandsvariable für das ausgewählte Bild
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = function () {
+      setVehicleData({ ...vehicleData, imageUrls: [reader.result] });
+      setSelectedImage(reader.result); // Setzen des ausgewählten Bildes
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      setVehicleData({ ...vehicleData, imageUrls: [""] });
+      setSelectedImage(null); // Entfernen des ausgewählten Bildes
+    }
+  };
 
   const handleChange = (event) => {
     setVehicleData({ ...vehicleData, [event.target.name]: event.target.value });
   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const body = vehicleData;
     try {
       const response = await axios.post(
-        "http://localhost:8081/vehicles",
-        vehicleData,
+        "http://localhost:8081/vehicles", // Ensure this is the correct endpoint for file upload.
+        body,
         {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
       );
       console.log(response.data);
     } catch (error) {
       console.error("Fehler beim Hinzufügen des Fahrzeugs:", error);
     }
-  };
+  }; 
 
   return (
     <div className="h-full md:h-[95vh] pt-20 ">
@@ -139,32 +158,47 @@ function AdminAdd() {
             htmlFor="dropzone-file"
             className="flex flex-col items-center justify-center w-full mt-10 md:h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
           >
+
             <div className="flex flex-col items-center justify-center pt-5 pb-6">
-              <svg
-                aria-hidden="true"
-                className="w-10 h-10 mb-3 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                ></path>
-              </svg>
-              <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                <span className="font-semibold">Click to upload</span> or drag
-                and drop
-              </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
-                SVG, PNG, JPG or GIF (MAX. 800x400px)
-              </p>
+
+              {!selectedImage && (  /* In diesem Code sind die beiden <p>- und svg-Elemente in einer Fragment-Komponente (<>...</>) eingeschlossen, die nur dann angezeigt wird, wenn selectedImage null ist. Andernfalls wird das ausgewählte Bild angezeigt. */
+                <>
+                  <svg
+                    aria-hidden="true"
+                    className="w-10 h-10 mb-3 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                    ></path>
+                  </svg>
+                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                    <span className="font-semibold">Click to upload</span> or drag
+                    and drop
+                  </p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    SVG, PNG, JPG or GIF (MAX. 800x400px)
+                  </p>
+
+
+                </>
+              )}
+
+              {selectedImage && (
+                <img src={selectedImage} alt="Vorschau" />
+              )}
             </div>
-            <input id="dropzone-file" type="file" className="hidden" />
+
+
+            <input id="dropzone-file" type="file" className="hidden" onChange={handleFileChange} />
           </label>
+
           <button
             className="my-10 md:mt-20 bg-green-600 hover:bg-gray-800-700 text-white font-bold py-1 px-2 shadow-md rounded-xl focus:outline-none focus:shadow-outline hover:scale-105"
             type="submit"
@@ -176,6 +210,5 @@ function AdminAdd() {
     </div>
   );
 }
-
 export default AdminAdd;
 
