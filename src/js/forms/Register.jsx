@@ -61,7 +61,7 @@ function Register(props) {
       <br />
       <button
         onClick={handleGoToLoginClick}
-        className=" w-fit m-auto  tracking-wider  mt-14 rounded-2xl shadow-md shadow-gray-400  bg-green-600 p-3   font-bold text-white  hover:scale-105 "
+        className=" w-fit m-auto  tracking-wider  mt-20 rounded-2xl shadow-md shadow-gray-400  bg-green-600 p-3   font-bold text-white  hover:scale-105 "
         role="button"
       >
         Go to Login
@@ -74,14 +74,14 @@ function Register(props) {
   });
 
   return (
-    <div className=" background-register  pt-20 justify-center items-center max-w-screen-m my-5  bg-white  ">
+    <div className="  pt-20 justify-center items-center max-w-screen-m md:my-5  ">
       {registerSuccessful ? (
         successMsg
       ) : (
-        <form className=" h-screen  lg:pt-18 lg:mt-40 mt-10 " onSubmit={submitHandler}>
-          <div className=" w-full h-full max-w-lg flex flex-col gap-3 justify-start items-start lg:shadow-xl rounded px-10 py-24 lg:mt-7">
+        <form className=" md:h-screen  h-[83vh] pt-16 md:pt-20  " onSubmit={submitHandler}>
+          <div className=" w-full  max-w-lg flex flex-col gap-3 justify-start items-start md:shadow-xl  md:border  md:rounded-xl px-10 md:py-14 ">
             <label
-              className="block text-green-500 m-0 font-bold text-md mt-2 "
+              className=" text-green-600 dark:text-green-500  text-xl font-base m-0"
               htmlFor="username"
             >
               Username
@@ -95,7 +95,7 @@ function Register(props) {
               onChange={(evt) => setUsername(evt.target.value)}
             />
             <label
-              className="block text-green-500 m-0 font-bold text-md mt-2  "
+              className="text-green-600 dark:text-green-500 text-xl font-base m-0"
               htmlFor="fullname"
             >
               Full Name
@@ -110,6 +110,7 @@ function Register(props) {
             />
             <label
               className="block text-green-500 m-0 font-bold text-md mt-2"
+              className="text-green-600 dark:text-green-500 text-xl font-base m-0"
               htmlFor="email"
             >
               E-Mail Address
@@ -123,7 +124,7 @@ function Register(props) {
               onChange={(evt) => setEmail(evt.target.value)}
             />
             <label
-              className="block text-green-500 m-0 font-bold text-md mt-2"
+              className="text-green-600 dark:text-green-500 text-xl font-base m-0"
               htmlFor="city"
             >
               City
@@ -137,7 +138,7 @@ function Register(props) {
               onChange={(evt) => setCity(evt.target.value)}
             />
             <label
-              className="block text-green-500 m-0 font-bold text-md mt-2"
+              className="text-green-600 dark:text-green-500 text-xl font-base m-0"
               htmlFor="password"
             >
               Password
@@ -162,7 +163,7 @@ function Register(props) {
             )}
             <div className="flex items-center justify-center pt-4">
               <button
-                className="bg-green-600 w-fit text-2xl rounded-md hover:bg-gray-700 text-white font-bold py-1 px-2  focus:outline-none focus:shadow-outline"
+                className="bg-green-600 hover:bg-gray-800-700 text-white font-bold py-1 px-2 shadow-md rounded-xl focus:outline-none focus:shadow-outline hover:scale-105"
                 type="submit"
               >
                Register

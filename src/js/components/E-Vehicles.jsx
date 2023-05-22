@@ -112,13 +112,11 @@ function EVehicles() {
   ]);
 
   return (<>
-  <div className="mt-24">
-
-    <div className="flex justify-center mt-8 items-center p-6 md:flex flex-wrap">
+    <div className="flex justify-center  items-center mb-10   h-fit md:h-screen  md:flex flex-wrap">
       {cars.map((car) => (
         <div
           key={car._id}
-          className="mt-5"
+          className=" mt-24 md:mt-20"
           onClick={() => handleShowModle(car)}
         >
           <Card
@@ -131,7 +129,7 @@ function EVehicles() {
         </div>
       ))}
     </div>
-    </div>
+    
 
           {showModal && (
             <EfahrzeugModal
