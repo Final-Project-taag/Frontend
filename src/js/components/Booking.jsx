@@ -73,7 +73,6 @@ const navigate = useNavigate()
     
   }, [vehicleId]);
 
-console.log(vehicleId);
 
 
   return (

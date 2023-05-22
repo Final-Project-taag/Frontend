@@ -3,6 +3,8 @@ import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import useAuthStore from "../hooks/useAuthStore";
+import DateTimePicker from 'react-datetime-picker';
+
 
 export default function EfahrzeueModal({
   imageUrls,
@@ -17,9 +19,9 @@ export default function EfahrzeueModal({
 }) {
   const [reservation, setReservation] = useState([]);
   const [authError, setAuthError] = useState(false);
- 
-  const [startDate, setStartDate] = useState(null);
- 
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date(new Date().getTime() + 60 * 60 * 24 * 1000));
+
   const [timeLeft, setTimeLeft] = useState(null);
   const [isReserved, setIsReserved] = useState(false);
 
@@ -100,13 +102,6 @@ export default function EfahrzeueModal({
       alert("Keine Fahrzeuge verfügbar.");
       return;
     }
-
-    const startDate = new Date();
-
-    const reservationDuration = 60 * 60 * 1000; // 1 Stunde in Millisekunden
-    const reservedUntil = new Date(Date.now() + reservationDuration);
-    const endDate = reservedUntil;
-
     try {
       const response = await fetch("http://localhost:8081/reservations", {
         method: "POST",
@@ -118,9 +113,6 @@ export default function EfahrzeueModal({
           vehicleId,
           startDate,
           endDate,
-          createdAt: new Date(),
-          reserved: true,
-          reservedUntil,
         }),
       });
       if (!response.ok) {
@@ -130,7 +122,6 @@ export default function EfahrzeueModal({
       const newReservation = await response.json();
       setIsReserved(true);
       setReservation(newReservation);
-      setTimeout(() => setIsReserved(false), reservationDuration);
     } catch (error) {
       console.error("Fehler bei der Reservierung: ", error);
       alert("Fehler bei der Reservierung. Bitte versuchen Sie es erneut.");
@@ -155,7 +146,7 @@ export default function EfahrzeueModal({
   };
 
   function goToBooking(vehicleId) {
-    navigate(`/reservation-view/${vehicleId}`);
+    navigate(`/reservation-view`);
   }
   function goToLogin() {
     setAuthError(false);
@@ -167,16 +158,23 @@ export default function EfahrzeueModal({
   }
 
   return (
-    <div className="h-screen w-screen bg-white/80 fixed  top-2 md:top-24 left-0 z-50 flex  flex-col justify-center items-center   ">
-     <div className="relative border-green-400 border-2 w-11/12 lg:w-3/4 h-3/4 flex flex-col lg:flex-row bg-white rounded-lg shadow lg:m-10 mt-0 md:pb-[120px] lg:pb-[80px] pb-0  md:m-10">
-        <div className="  overflow-hidden w-full lg:w-1/2 items-center  p-2 order-2 lg:order-1">
+    <div className="h-screen w-screen bg-white/80 fixed  top-2 md:top-20  pb-20 left-0 z-50 flex  flex-col justify-center items-center   ">
+      <div className="relative border-green-400 border-2 w-11/12 lg:w-3/4  md:h-3/4 flex flex-col lg:flex-row bg-white rounded-lg shadow mt-0 md:pb-[120px] lg:pb-[80px] pb-0  ">
+        
+        
+        
+        <div className=" hidden  md:inline-block  w-full lg:w-1/2 items-center  p-2  lg:order-1">
           <img
-            className="rounded-lg h-full md:pt-0 object-cover max-h-[190px] md:max-h-[250px] lg:max-h-full"
+            className="rounded-md h-full w-full md:pt-0 object-cover max-h-[190px] md:max-h-[250px] lg:max-h-full"
             src={imageUrls}
             alt=""
           />
         </div>
+
+
         <div className="hidden lg:block mt-4 border-x border-gray-300 order-2"></div>
+
+
         <div className="w-full lg:w-1/2 p-2 lg:order-3">
           <button
             onClick={() => closeModle()}
@@ -199,6 +197,14 @@ export default function EfahrzeueModal({
             </svg>
             <span className="right-0 sr-only"> Close modal</span>
           </button>
+
+          <div className="   md:hidden  w-full lg:w-1/2 items-center  p-2  lg:order-1">
+          <img
+            className="rounded-md h-full w-full md:pt-0 object-cover max-h-[190px] md:max-h-[250px] lg:max-h-full"
+            src={imageUrls}
+            alt=""
+          />
+        </div>
           <div className="flex flex-col bg-white pt-2 md:pt-24 w-full md:w-3/4 max-h-full overflow-x-auto">
             <table className="min-w-full text-center text-sm font-light">
               <thead className="border-b bg-gray-500 font-medium text-white">
@@ -212,12 +218,7 @@ export default function EfahrzeueModal({
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b dark:border-neutral-500">
-                  <td className="whitespace-nowrap  px-6 py-4">Reichweite:</td>
-                  <td className="whitespace-nowrap  px-6 py-4">
-                    {driveRange} KM/H
-                  </td>
-                </tr>
+                
                 <tr className="border-b dark:border-neutral-500">
                   <td className="whitespace-nowrap  px-6 py-4 ">Ladezeit</td>
                   <td className="whitespace-nowrap  px-6 py-4">
@@ -239,61 +240,86 @@ export default function EfahrzeueModal({
                 </tr>
               </tbody>
             </table>
+            <div className="flex justify-between w-full py-2">
+              <p>Von: </p>{" "}
+              <DateTimePicker
+                className="mr-2 w-4/5  "
+                locale="en"
+                onChange={setStartDate}
+                value={startDate}
+              />
+            </div>
+            <div className="flex justify-between w-full py-2">
+              <p>Bis: </p>{" "}
+              <DateTimePicker
+                className="mr-2 w-4/5"
+                locale="en"
+                onChange={setEndDate}
+                value={endDate}
+              />
+            </div>
           </div>
         </div>
-          {/* reservation button  */}
-          <div className="md:absolute static md:left-2/4 left-auto md:bottom-8 bottom-auto md:-translate-x-1/2 py-2 gap-4  flex flex-col lg:flex-row items-center justify-center pt-3 md:pt-10 order-3 pb-6 md:pb-0">
-            <button
-              type="button"
-              className={`inline-block rounded-xl p-2 text-sm font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0  w-fit m-auto  tracking-wider  shadow-md shadow-gray-400     text-white  hover:scale-105 ${
-                isReserved
-                  ? "bg-red-600  "
-                  : "bg-green-500 "
-              }`}
-              onClick={
-                isReserved
-                  ? () => deleteReservation(reservation._id)
-                  : handleReservation
-              }
-              disabled={quantity === 0}
-            >
-              {quantity === 0
-                ? "Nicht verfügbar"
-                : isReserved
-                ? "resirviern störnern"
-                : "Reservieren"}
-            </button>
-            {isReserved && (
-              <>
-                <span className="text-red-600 ">{timeLeft !== null ? formatTimeLeft(timeLeft) : ""}</span>
-                <button
-                  type="button"
-                  className="bg-green-500   inline-block rounded-xl p-2  text-sm font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0  w-fit m-auto  tracking-wider   shadow-md shadow-gray-400    text-white  hover:scale-105"
-                  onClick={() => {
-                    /*  handleBooking(); */
-                    goToBooking(vehicleId);
-                  }}
-                  disabled={quantity === 0}
-                >
-                  go to booking
-                </button>
-                </>
-            )}
-            {authError && (
-              <div className=" text-center p-2">
+       
+
+        <div className="md:absolute static md:left-2/4 left-auto md:bottom-8 bottom-auto md:-translate-x-1/2 py-2 gap-4  flex flex-col lg:flex-row items-center justify-center pt-3 md:pt-10 order-3 pb-6 md:pb-0">
+          <button
+            type="button"
+            className={`inline-block rounded-xl p-2 text-sm font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0  w-fit m-auto  tracking-wider  shadow-md shadow-gray-400     text-white  hover:scale-105 ${
+              isReserved ? "bg-red-600  " : "bg-green-500 "
+            }`}
+            onClick={
+              isReserved
+                ? () => deleteReservation(reservation._id)
+                : handleReservation
+            }
+            disabled={quantity === 0}
+          >
+            {quantity === 0
+              ? "Nicht verfügbar"
+              : isReserved
+              ? "resirviern störnern"
+              : "Reservieren"}
+          </button>
+          {isReserved && (
+            <>
+              <span className="text-red-600 ">
+                {timeLeft !== null ? formatTimeLeft(timeLeft) : ""}
+              </span>
+              <button
+                type="button"
+                className="bg-green-500   inline-block rounded-xl p-2  text-sm font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0  w-fit m-auto  tracking-wider   shadow-md shadow-gray-400    text-white  hover:scale-105"
+                onClick={() => {
+                  /*  handleBooking(); */
+                  goToBooking(vehicleId);
+                }}
+                disabled={quantity === 0}
+              >
+                go to booking
+              </button>
+            </>
+          )}
+          {authError && (
+            <div className=" text-center p-2">
               <p className="text-gray-500 mt-2 ">
                 Anmeldung ist erförderlich!{" "}
-                <a className="text-green-500 cursor-pointer px-3" onClick={goToLogin}>
+                <a
+                  className="text-green-500 cursor-pointer px-3"
+                  onClick={goToLogin}
+                >
                   Login
                 </a>
                 ,
-                <a className="text-green-500 cursor-pointer px-3" onClick={goToRegister}>
+                <a
+                  className="text-green-500 cursor-pointer px-3"
+                  onClick={goToRegister}
+                >
                   register
                 </a>
               </p>
-              </div>
-            )}
-          </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

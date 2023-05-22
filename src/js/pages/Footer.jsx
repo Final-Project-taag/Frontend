@@ -12,13 +12,13 @@ const Icons = [
 function Footer() {
    const authStore = useAuthStore();
    return ( 
-       <footer className="  bottom-0 md:h-[5vh] pb-2 bg-gray-100 dark:bg-slate-900">
+       <footer className=" fixed w-full z-50 bottom-0 h-fit md:h-[5vh]  bg-gray-100 dark:bg-slate-900">
          <div
-           className="flex flex-col-reverse justify-around md:flex-row item-center
+           className="flex  flex-col-reverse justify-around md:flex-row item-center 
          text-center   px-8 border-t-[1px] border-gray-200"
          >
-           <span className='md:ml-0 pt-2 text-gray-600 dark:text-green-500 '>© 2023 Green Wheels. All rights reserved.</span>
-           <div className=" m-0">
+           <span className='md:ml-0 pb-2 md:pb-0 md:pt-3 md:text-sm text-gray-600 dark:text-green-500 '>© 2023 Green Wheels. All rights reserved.</span>
+           <div className=" m-0 pt-2">
      {Icons.map((icon) => (
        <span
          key={icon.name}

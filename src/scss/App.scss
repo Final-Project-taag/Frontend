@@ -39,8 +39,10 @@ body {
     .leaflet-container {
       
       height: 70vh;
-      width: 70vw;
+      width: 80vw;
       border-radius: 1rem;
+     
+
       
     }
      @media not all and (min-width: 640px) { 
@@ -48,7 +50,7 @@ body {
       .leaflet-container{
         height: 60vh;
         width: 80vw;
-
+        
       }
      } 
 

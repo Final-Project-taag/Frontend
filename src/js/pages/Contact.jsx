@@ -4,11 +4,11 @@ import Map from "../features/Map";
 
 export default function Contact() {
   return (
-    <div className="flex flex-col justify-center items-center  h-full pt-20  ">
-      <h1 className=" pt-10 text-6xl  text-green-600 dark:text-green-500">
+    <div className="flex flex-col justify-center items-center  h-full md:h-screen pt-20   pb-20 ">
+      <h1 className=" pt-10 text-4xl md:text-6xl   text-green-600 dark:text-green-500">
         Green <span className="text-gray-600  dark:text-gray-400">Wheels</span>{" "}
       </h1>
-      <p className=" text-center mt-2 text-2xl  dark:text-gray-300 ">
+      <p className=" text-center mt-2 text-md md:text-2xl  dark:text-gray-300 ">
         Eco Fahrzeuge rental App.
       </p>
       <div className="  h-full flex items-center   mb-12 max-w-4xl mx-auto flex-col md:flex-row">
@@ -21,7 +21,7 @@ export default function Contact() {
         </div>
 
         <div className=" max-w-4xl">
-          <ul className=" mb-32 text-left text-3xl text-gray-600 dark:text-gray-300">
+          <ul className=" pl-2 mb-32 text-left md:pt-0 pt-4 text-xl md:text-3xl text-gray-600 dark:text-gray-300">
             <li>Telefonnummer: 0174 123987</li>
             <li className="mt-1">Email: service@greenwheels.de</li>
 
@@ -32,9 +32,9 @@ export default function Contact() {
         </div>
       </div>
 
-      <div className="h-full  mb-12 flex items-center   ">
-        <Map />
-      </div>
+     {/*  <div className="  relative ">
+         <Map /> 
+      </div> */}
     </div>
   );
 }

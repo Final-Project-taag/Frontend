@@ -38,7 +38,6 @@ function Login() {
                 // withCredentials: true
             });
             
-            console.log(resp);
 
             authStore.authenticate(resp.data);
             // localStorage.setItem('token', resp.data.token);

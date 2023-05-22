@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Card from "./E-VehicleDetails";
+import Card from "../components/E-VehicleDetails";
 import EfahrzeugModal from "../features/EfahrzeugModal";
 
 // eine Hilfsfunktion aggregateVehicleData, die die Fahrzeugdaten basierend auf den Fahrzeugmodellen gruppiert:
@@ -112,7 +112,7 @@ function EVehicles() {
   ]);
 
   return (<>
-    <div className="flex justify-center  items-center mb-10   h-fit md:h-screen  md:flex flex-wrap">
+    <div className="flex justify-center  items-center mb-10   h-fit md:min-h-screen  md:flex flex-wrap pt-10 pb-10">
       {cars.map((car) => (
         <div
           key={car._id}

@@ -11,34 +11,15 @@ import Login from "./forms/Login";
 import AboutUs from "./pages/AboutUs";
 import ContactPage from "./pages/Contact";
 import Booking from "./components/Booking";
-import EVehicles from "./components/E-Vehicles";
-import ReservationView from "./components/ReservationView";
+import EVehicles from "./pages/E-Vehicles";
+import ReservationView from "./pages/ReservationView";
 import PaymentSuccess from "./components/PaymentSucess";
 import AdminAdd from "./pages/AdminView";
+import ClientBookings from "./pages/ClientBookings";
+import BookingList from "./pages/BookingList"
+import ReservationCard from "./components/ReservationCard";
 
 function App() {
-  const [theme, setTheme] = useState(null);
-
-  useEffect(() => {
-    if(window.matchMedia('(prefers-color-scheme: dark)').matches){
-      setTheme('dark');
-    }
-    else {
-      setTheme('light');
-    }
-  }, [])
-
-  useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [theme]);
-
-  const handleThemeSwitch = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
  
   return (
    
@@ -50,7 +31,7 @@ function App() {
         <Header />
 
         <Routes>
-
+          <Route path='/test' element={<ReservationCard />} />
           <Route path='/' element={<MainPage />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
@@ -59,8 +40,8 @@ function App() {
           <Route path='/contact' element={<ContactPage />} /> 
           <Route path='/booking/:vehicleId' element={<Booking />} />
           <Route path='/reservation-view' element={<ReservationView />} />
-          <Route path='/reservation-view/:vehicleId' element={<ReservationView />} />
           <Route path='/admin-view' element={<AdminAdd />} />
+          <Route path='/client-bookings' element={<ClientBookings />} />
           <Route path='/paymentsucess' element={<PaymentSuccess/>}></Route>
           
         </Routes>
@@ -74,4 +55,4 @@ function App() {
 }
 
 export default App;
-/* dark:bg-[#17161C] */
+
