@@ -15,16 +15,24 @@ export const formatDate = (date) => {
     return endDate >= currentDate;
   };
 
-  // export  const calculateStartDate = (price) => {
-  //   return new Date(Date.now() + vehicle.price * 60 * 60 * 1000);
-  // };
+  // get the date-time with 0 min 0 seconds 
+  export  const generateDate = (date  , hours) => {
+    date.setHours(date.getHours() + hours )
+    date.setMinutes(0)
+    date.setSeconds(0)
+    date.setMilliseconds(0)  
+    return date
+  };
 
   export  const calculateTotalPrice = (startDate, endDate, price) => {
+
     if (startDate && endDate) {
-      const durationInHours = (endDate - startDate) / (60 * 60 * 1000);
+      const from = generateDate(startDate, 0)
+      const to = generateDate(endDate, 0)
+      const durationInHours = (to - from) / (60 * 60 * 1000);
       return durationInHours * price;
     }
-    return;
+    return 0;
   };
 
   // Diese Funktion gibt die Reservierungs-ID der aktiven Reservierung zurück, wenn eine vorhanden ist, andernfalls gibt sie null zurück.s

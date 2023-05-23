@@ -3,8 +3,8 @@ import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import useAuthStore from "../hooks/useAuthStore";
-import DateTimePicker from 'react-datetime-picker';
-
+import DateTimePicker from "react-datetime-picker";
+import { calculateTotalPrice , generateDate } from "../utils/helper";
 
 export default function EfahrzeueModal({
   imageUrls,
@@ -19,8 +19,10 @@ export default function EfahrzeueModal({
 }) {
   const [reservation, setReservation] = useState([]);
   const [authError, setAuthError] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date(new Date().getTime() + 60 * 60 * 24 * 1000));
+  const [startDate, setStartDate] = useState(generateDate(new Date(), 1));
+  const [endDate, setEndDate] = useState(
+    generateDate(new Date(), 2)
+  );
 
   const [timeLeft, setTimeLeft] = useState(null);
   const [isReserved, setIsReserved] = useState(false);
@@ -78,13 +80,7 @@ export default function EfahrzeueModal({
   };
   // Funktion zur Berechnung des Gesamtpreises
   // Funktion zur Berechnung des Gesamtpreises
-  const calculateTotalPrice = (startDate, endDate) => {
-    if (startDate && endDate) {
-      const durationInHours = (endDate - startDate) / (60 * 60 * 1000);
-      return durationInHours * price;
-    }
-    return 0;
-  };
+
   // ------------------------------------------------RESERVIERUNG--------------------------------------------//
   const handleReservation = async () => {
     if (!isAuthenticated) {
@@ -159,10 +155,7 @@ export default function EfahrzeueModal({
 
   return (
     <div className="h-screen w-screen bg-white/80 fixed  top-2 md:top-20  pb-20 left-0 z-50 flex  flex-col justify-center items-center   ">
-      <div className="relative border-green-400 border-2 w-11/12 lg:w-3/4  md:h-3/4 flex flex-col lg:flex-row bg-white rounded-lg shadow mt-0 md:pb-[120px] lg:pb-[80px] pb-0  ">
-        
-        
-        
+      <div className="relative border-green-400 border-2 w-11/12 lg:w-3/4  md:h-3/4 flex flex-col lg:flex-row bg-gray-100 dark:bg-slate-800 rounded-lg shadow mt-0 md:pb-[120px] lg:pb-[80px] pb-0  ">
         <div className=" hidden  md:inline-block  w-full lg:w-1/2 items-center  p-2  lg:order-1">
           <img
             className="rounded-md h-full w-full md:pt-0 object-cover max-h-[190px] md:max-h-[250px] lg:max-h-full"
@@ -171,11 +164,9 @@ export default function EfahrzeueModal({
           />
         </div>
 
-
         <div className="hidden lg:block mt-4 border-x border-gray-300 order-2"></div>
 
-
-        <div className="w-full lg:w-1/2 p-2 lg:order-3">
+        <div className="w-full  dark:bg-slate-800 lg:w-1/2 p-2 lg:order-3">
           <button
             onClick={() => closeModle()}
             type="button"
@@ -199,15 +190,15 @@ export default function EfahrzeueModal({
           </button>
 
           <div className="   md:hidden  w-full lg:w-1/2 items-center  p-2  lg:order-1">
-          <img
-            className="rounded-md h-full w-full md:pt-0 object-cover max-h-[190px] md:max-h-[250px] lg:max-h-full"
-            src={imageUrls}
-            alt=""
-          />
-        </div>
-          <div className="flex flex-col bg-white pt-2 md:pt-24 w-full md:w-3/4 max-h-full overflow-x-auto">
-            <table className="min-w-full text-center text-sm font-light">
-              <thead className="border-b bg-gray-500 font-medium text-white">
+            <img
+              className="rounded-md h-full w-full md:pt-0 object-cover max-h-[190px] md:max-h-[250px] lg:max-h-full"
+              src={imageUrls}
+              alt=""
+            />
+          </div>
+          <div className="flex flex-col dark:bg-slate-800 bg-gray-100  text-gray-600  dark:text-gray-200 pt-2 md:pt-24 w-full md:w-3/4 max-h-full overflow-x-auto">
+            <table className="min-w-full text-center text-sm font-light dark:text-gray-200">
+              <thead className="border-b  bg-gray-100 dark:bg-slate-600 font-medium ">
                 <tr>
                   <th scope="col" className=" px-6 py-4">
                     Model:
@@ -218,7 +209,6 @@ export default function EfahrzeueModal({
                 </tr>
               </thead>
               <tbody>
-                
                 <tr className="border-b dark:border-neutral-500">
                   <td className="whitespace-nowrap  px-6 py-4 ">Ladezeit</td>
                   <td className="whitespace-nowrap  px-6 py-4">
@@ -243,7 +233,8 @@ export default function EfahrzeueModal({
             <div className="flex justify-between w-full py-2">
               <p>Von: </p>{" "}
               <DateTimePicker
-                className="mr-2 w-4/5  "
+                format="y-MM-dd h a"
+                className="mr-6 w-4/5  dark:text-gray-200 bg-gray-100 dark:bg-slate-600  "
                 locale="en"
                 onChange={setStartDate}
                 value={startDate}
@@ -252,20 +243,21 @@ export default function EfahrzeueModal({
             <div className="flex justify-between w-full py-2">
               <p>Bis: </p>{" "}
               <DateTimePicker
-                className="mr-2 w-4/5"
+                format="y-MM-dd h a"
+                className="mr-6 w-4/5  dark:text-gray-200 bg-gray-100 dark:bg-slate-600 "
                 locale="en"
                 onChange={setEndDate}
                 value={endDate}
               />
             </div>
+            <p>Total Price: {calculateTotalPrice(startDate, endDate , price).toFixed(2)}€</p>
           </div>
         </div>
-       
 
         <div className="md:absolute static md:left-2/4 left-auto md:bottom-8 bottom-auto md:-translate-x-1/2 py-2 gap-4  flex flex-col lg:flex-row items-center justify-center pt-3 md:pt-10 order-3 pb-6 md:pb-0">
           <button
             type="button"
-            className={`inline-block rounded-xl p-2 text-sm font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0  w-fit m-auto  tracking-wider  shadow-md shadow-gray-400     text-white  hover:scale-105 ${
+            className={`inline-block rounded-lg p-2 px-3 text-base font-medium  leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0  w-fit m-auto  tracking-wider  shadow-md shadow-gray-400     text-gray-100  hover:scale-105 ${
               isReserved ? "bg-red-600  " : "bg-green-500 "
             }`}
             onClick={
@@ -278,7 +270,7 @@ export default function EfahrzeueModal({
             {quantity === 0
               ? "Nicht verfügbar"
               : isReserved
-              ? "resirviern störnern"
+              ? "Reservieren störnern"
               : "Reservieren"}
           </button>
           {isReserved && (
@@ -288,14 +280,14 @@ export default function EfahrzeueModal({
               </span>
               <button
                 type="button"
-                className="bg-green-500   inline-block rounded-xl p-2  text-sm font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0  w-fit m-auto  tracking-wider   shadow-md shadow-gray-400    text-white  hover:scale-105"
+                className="bg-green-500   inline-block rounded-lg p-2 px-3  text-base font-medium  leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0  w-fit m-auto  tracking-wider   shadow-md shadow-gray-400    text-white  hover:scale-105"
                 onClick={() => {
                   /*  handleBooking(); */
                   goToBooking(vehicleId);
                 }}
                 disabled={quantity === 0}
               >
-                go to booking
+                 Zur Buchung
               </button>
             </>
           )}
@@ -307,14 +299,14 @@ export default function EfahrzeueModal({
                   className="text-green-500 cursor-pointer px-3"
                   onClick={goToLogin}
                 >
-                  Login
+                  Anmelden
                 </a>
                 ,
                 <a
                   className="text-green-500 cursor-pointer px-3"
                   onClick={goToRegister}
                 >
-                  register
+                  registrieren
                 </a>
               </p>
             </div>

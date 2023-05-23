@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate} from "react-router-dom";
 
 function AdminAdd() {
   const [vehicleData, setVehicleData] = useState({
@@ -13,6 +14,7 @@ function AdminAdd() {
     imageUrls: null, /* erweitern Sie Ihren State um image: null. */
   });
   const [selectedImage, setSelectedImage] = useState(null); // Zustandsvariable für das ausgewählte Bild
+  const navigate = useNavigate();
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -35,8 +37,7 @@ function AdminAdd() {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const body = vehicleData;
+   const body = vehicleData;
     try {
       const response = await axios.post(
         "http://localhost:8081/vehicles", // Ensure this is the correct endpoint for file upload.
@@ -46,8 +47,9 @@ function AdminAdd() {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }
-      );
-      console.log(response.data);
+      ).then((res)=>{if( res.status ===201) {
+        navigate("/e-vehicles")
+      } })
     } catch (error) {
       console.error("Fehler beim Hinzufügen des Fahrzeugs:", error);
     }
@@ -64,7 +66,7 @@ function AdminAdd() {
             className=" text-green-600 dark:text-green-500  text-xl font-base m-0"
             htmlFor="type"
           >
-            Type:
+            Art:
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="text"
@@ -103,7 +105,7 @@ function AdminAdd() {
             className=" text-green-600 dark:text-green-500  text-xl font-base m-0"
             htmlFor="weight"
           >
-            Weight:
+            Gewicht:
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="number"
@@ -117,7 +119,7 @@ function AdminAdd() {
             className=" text-green-600 dark:text-green-500  text-xl font-base m-0"
             htmlFor="price"
           >
-            Price:
+            Preis :
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="number"
@@ -130,7 +132,7 @@ function AdminAdd() {
             className=" text-green-600 dark:text-green-500  text-xl font-base m-0"
             htmlFor="chargingTime"
           >
-            Charging Time:
+            Ladezeit:
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="number"
@@ -143,7 +145,7 @@ function AdminAdd() {
             className=" text-green-600 dark:text-green-500  text-xl font-base m-0"
             htmlFor="quantity"
           >
-            Quantity:
+            Menge:
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="number"
@@ -153,13 +155,13 @@ function AdminAdd() {
             />
           </label>
         </div>
-        <div className="flex items-center  flex-col  gap 20 justify-center  md:full">
+        <div className="flex items-center  flex-col   justify-center pt-20 h-full md:w-full">
           <label
             htmlFor="dropzone-file"
-            className="flex flex-col items-center justify-center w-full mt-10 h-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+            className="flex flex-col items-center justify-center w-[80%] h-[75%]   border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-100 dark:hover:bg-bray-800 dark:bg-slate-800-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
           >
 
-            <div className="flex  w-full h-full  flex-col items-center justify-center pt-5 pb-6">
+            <div className="flex  overflow-hidden  w-full h-full  flex-col items-center justify-center pt-5 pb-6">
 
               {!selectedImage && (  /* In diesem Code sind die beiden <p>- und svg-Elemente in einer Fragment-Komponente (<>...</>) eingeschlossen, die nur dann angezeigt wird, wenn selectedImage null ist. Andernfalls wird das ausgewählte Bild angezeigt. */
                 <>
@@ -191,7 +193,7 @@ function AdminAdd() {
               )}
 
               {selectedImage && (
-                <img src={selectedImage} alt="Vorschau" />
+               <img  className=" max-h-4/5" src={selectedImage} alt="Vorschau" />
               )}
             </div>
 
@@ -200,9 +202,9 @@ function AdminAdd() {
           </label>
 
           <button
-      /*  todo   onClick={handleSubmit} */
-            className="w-fit m-auto  tracking-wider  md:mt-0
-            rounded-xl  shadow-md dark:shadow-sm shadow-gray-400   bg-green-600 p-3 px-6 font-base  text-gray-200 hover:bg-green-500  hover:scale-110"
+      
+            className="w-fit m-auto  tracking-wider  md:mt-10 
+            rounded-lg  shadow-md dark:shadow-sm shadow-gray-400   bg-green-600 p-3 px-6 font-base  text-gray-200 hover:bg-green-500 "
             type="submit"
           >
             Add Vehicle

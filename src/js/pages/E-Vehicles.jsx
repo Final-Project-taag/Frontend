@@ -43,10 +43,9 @@ function EVehicles() {
 
   const navigate = useNavigate();
 
-
-  function closeModle () {
-    setCarDetails({})
-    setShowModal(false)
+  function closeModle() {
+    setCarDetails({});
+    setShowModal(false);
   }
   async function fetchVehicles() {
     try {
@@ -86,7 +85,6 @@ function EVehicles() {
       const response = await axios.get(
         "http://localhost:8081/api/vehicleCounts"
       );
-      // console.log('Fetched vehicle counts:', response.data); // Neue Zeile
       setVehicleCounts(response.data);
     } catch (error) {
       console.error("Error fetching vehicle counts:", error);
@@ -94,12 +92,9 @@ function EVehicles() {
   }
   function handleShowModle(carDetails) {
     setCarDetails(carDetails);
-    // console.log({carDetails})
     setShowModal(true);
   }
-  //console.log(vehicleCounts);
 
-  //console.log(cars);
   useEffect(() => {
     fetchVehicles();
     fetchVehicleCounts();
@@ -111,38 +106,39 @@ function EVehicles() {
     maxDriveRangeFilter,
   ]);
 
-  return (<>
-    <div className="flex justify-center  items-center mb-10   h-fit md:min-h-screen  md:flex flex-wrap pt-10 pb-10">
-      {cars.map((car) => (
-        <div
-          key={car._id}
-          className=" mt-24 md:mt-20"
-          onClick={() => handleShowModle(car)}
-        >
-          <Card
-            imageUrls={car.imageUrls}
-            name={car.name}
-            price={car.price}
-            vehicleId={car._id} 
-            
-          />
-        </div>
-      ))}
-    </div>
-          {showModal && (
-            <EfahrzeugModal
-              imageUrls={carDetails.imageUrls}
-              name={carDetails.name}
-              type={carDetails.type}
-              driveRange={carDetails.driveRange}
-              price={carDetails.price}
-              chargingTime={carDetails.chargingTime}
-              weight={carDetails.weight}
-              vehicleId={carDetails._id}
-              quantity={carDetails.quantity}
-              closeModle={closeModle}
+  return (
+    <>
+      <div className="flex justify-center  items-center mb-10   h-fit md:min-h-screen  md:flex flex-wrap pt-10 pb-10">
+        {cars.map((car) => (
+          <div
+            key={car._id}
+            className=" mt-24 md:mt-20"
+            onClick={() => handleShowModle(car)}
+          >
+            <Card
+              imageUrls={car.imageUrls}
+              name={car.name}
+              price={car.price}
+              vehicleId={car._id}
             />
-          )}</>
+          </div>
+        ))}
+      </div>
+      {showModal && (
+        <EfahrzeugModal
+          imageUrls={carDetails.imageUrls}
+          name={carDetails.name}
+          type={carDetails.type}
+          driveRange={carDetails.driveRange}
+          price={carDetails.price}
+          chargingTime={carDetails.chargingTime}
+          weight={carDetails.weight}
+          vehicleId={carDetails._id}
+          quantity={carDetails.quantity}
+          closeModle={closeModle}
+        />
+      )}
+    </>
   );
 }
 

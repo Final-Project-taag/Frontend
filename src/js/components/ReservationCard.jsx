@@ -17,12 +17,10 @@ import "react-datetime-picker/dist/DateTimePicker.css";
 import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
 import useAuthStore from "../hooks/useAuthStore";
-/* import calculateTotalPrice from "../utils/helper" */
 
 function reservationCard({ reservation, isBooking, fetchData }) {
   const user = useAuthStore((state) => state.user);
   const isAdmin = user?.role?.name === "admin";
-  console.log(isAdmin, user)
 
   const [startDate, setStartDate] = useState(
     new Date(reservation.startDate || null)
@@ -65,7 +63,12 @@ function reservationCard({ reservation, isBooking, fetchData }) {
         <div className="p-5 grow-1    md:mx-2   w-full ">
           {/* <h5>ID Nummer: {reservation.vehicle._id}</h5> */}
 
-          <h2 className="text-xl font-bold mb-2">{reservation.name}</h2>
+          {isAdmin && <h2 className="text-xl font-bold mb-2">
+            Kunde: {reservation.user.fullname}
+          </h2>}
+          <p>
+            {isBooking ? "Booking Nr. " : "Reservation Nr. "} {reservation._id}{" "}
+          </p>
           <p>E-FahrZeug : {reservation?.vehicle?.name}</p>
           <div className="flex justify-between w-full py-2">
             <p>Von: </p>{" "}
@@ -94,52 +97,56 @@ function reservationCard({ reservation, isBooking, fetchData }) {
                 locale="en"
                 onChange={setEndDate}
                 value={endDate}
+                minDate={startDate}
               />
             )}
           </div>
-          //todo tofixed
+
           <p>Total Price: {reservation?.totalPrice}€</p>
-          {!isAdmin && 
-          <div className="flex  justify-center md:justify-start items-center gap-4 w-fit pt-5">
-            {!isBooking && (
-              <>
-                <button
-                  type="button"
-                  className="w-20 md:w-24  m-auto  tracking-wider  md:mt-0
+         
+          {!isAdmin  && (
+            <>
+             <p>Adress Friedrichsplatz, 68165 Mannheim</p>
+            <div className="flex  justify-center md:justify-start items-center gap-4 w-fit pt-5">
+              {!isBooking && (
+                <>
+                  <button
+                    type="button"
+                    className="w-20 md:w-24  m-auto  tracking-wider  md:mt-0
              rounded-md  shadow-sm dark:shadow-sm shadow-gray-400   bg-green-600 p-2 md:px-6 font-base  text-gray-200 hover:bg-green-500"
-                  onClick={() => confirmBooking(reservation?._id)}
-                >
-                  Buchen
-                </button>
-                <button
-                  type="button"
-                  className="w-20 md:w-24 m-auto  tracking-wider  md:mt-0
+                    onClick={() => confirmBooking(reservation?._id)}
+                  >
+                    Buchen
+                  </button>
+                  <button
+                    type="button"
+                    className="w-20 md:w-24 m-auto  tracking-wider  md:mt-0
              rounded-md  shadow-sm dark:shadow-sm shadow-gray-400   bg-gray-500 p-2 md:px-6 font-base  text-gray-200 hover:bg-green-500"
-                  onClick={handleEditReservation}
-                >
-                  {isEditingMood ? "Save" : "Edit"}
-                </button>
-                <button
+                    onClick={handleEditReservation}
+                  >
+                    {isEditingMood ? "Save" : "Edit"}
+                  </button>
+                  <button
+                    className=" bg-red-500 hover:bg-red-700 w-20 md:w-24  m-auto  tracking-wider  md:mt-0
+             rounded-md  shadow-sm dark:shadow-sm shadow-gray-400   p-2 md:px-6 font-base  text-gray-200 "
+                    onClick={() => deleteItem(reservation?._id)}
+                  >
+                    Delete
+                  </button>
+                </>
+              )}
+            </div>
+            </>
+          )}
+          {isAdmin && isBooking && (
+            <button
               className=" bg-red-500 hover:bg-red-700 w-20 md:w-24  m-auto  tracking-wider  md:mt-0
              rounded-md  shadow-sm dark:shadow-sm shadow-gray-400   p-2 md:px-6 font-base  text-gray-200 "
               onClick={() => deleteItem(reservation?._id)}
             >
               Delete
             </button>
-              
-                </>
-            )}
-            
-            
-            
-          </div>}
-          {isAdmin && isBooking && ( <button
-              className=" bg-red-500 hover:bg-red-700 w-20 md:w-24  m-auto  tracking-wider  md:mt-0
-             rounded-md  shadow-sm dark:shadow-sm shadow-gray-400   p-2 md:px-6 font-base  text-gray-200 "
-              onClick={() => deleteItem(reservation?._id)}
-            >
-              Delete
-            </button>)}
+          )}
         </div>
       </div>
     )

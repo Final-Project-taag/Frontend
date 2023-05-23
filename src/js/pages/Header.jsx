@@ -25,7 +25,7 @@ function Header() {
   return (
     <div className="fixed z-50  h-20 md:flex  items-center border-b top-0 bg-gray-100   dark:bg-slate-900  ">
       <div className="  w-screen  flex justify-center  items-center px-7   ">
-        <div className="flex  w-24 ml-0">
+        <div className="flex  w-24 ml-[-0.7rem] md:ml-0">
           <Link to="/">
             <div  className=" py-1 px-1 ">
               <img
@@ -43,7 +43,7 @@ function Header() {
         />
         }
 
-        <div className="flex items-center  justify-center  m-0 mr-[-0.5rem] mt-[-0.5rem] text-5xl text-green-600 dark:text-green-500 cursor-pointer burger-icon md:hidden">
+        <div className="flex items-center  justify-center  m-0 mr-[-0.5rem]  text-5xl text-green-600 dark:text-green-500 cursor-pointer burger-icon md:hidden">
           <ion-icon className="" onClick={() => setShowNavbar((state)=> {
             
             return !state

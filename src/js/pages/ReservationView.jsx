@@ -74,9 +74,8 @@ const ReservationView = () => {
     // Fetch reservations from the database for the given userId
     fetchData();
   }, [userId]);
-  const fetchData = () =>  {
-  
-   fetchReservations(userId).then((fetchedReservations) => {
+  const fetchData = () => {
+    fetchReservations(userId).then((fetchedReservations) => {
       setReservations(fetchedReservations);
     });
     fetchBookings().then((bookings) => {
@@ -85,7 +84,6 @@ const ReservationView = () => {
   };
   const handlePayment = async () => {
     // Implementieren Sie die Zahlungslogik hier
-    console.log("Zahlung durchgeführt!");
 
     // Nach erfolgreicher Zahlung die Buchung in der Datenbank speichern
     try {
@@ -128,7 +126,11 @@ const ReservationView = () => {
         </h2>
         {reservations?.length &&
           reservations.map((reservation) => (
-            <ReservationCard fetchData={fetchData} key={reservation._id} reservation={reservation} />
+            <ReservationCard
+              fetchData={fetchData}
+              key={reservation._id}
+              reservation={reservation}
+            />
           ))}
       </div>
 
@@ -139,7 +141,7 @@ const ReservationView = () => {
         {bookings?.length &&
           bookings.map((booking) => (
             <ReservationCard
-            fetchData={fetchData}
+              fetchData={fetchData}
               isBooking={true}
               key={booking._id}
               reservation={booking}
@@ -151,5 +153,3 @@ const ReservationView = () => {
 };
 
 export default ReservationView;
-
-

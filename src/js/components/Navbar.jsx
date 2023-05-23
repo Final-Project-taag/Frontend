@@ -54,7 +54,7 @@ function Navbar({ isAdmin , setShowNavbar , handleRegisterClick }) {
     
   ];
   const adminNavigation = [
-    { title: "Fahrzuege hinfüge", url: "/admin-view" },
+    { title: "Fahrzuege hinzufügen", url: "/admin-view" },
     { title: "Kunden Buchungen", url: "/reservation-view" },
   ];
 
