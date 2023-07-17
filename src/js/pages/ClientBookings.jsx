@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, {useState} from "react"
+import axios from "axios"
 
 function ClientBookings() {
   const [vehicleData, setVehicleData] = useState({
@@ -12,34 +12,26 @@ function ClientBookings() {
     quantity: "",
     reserved: false,
     reservedUntil: null,
-  });
+  })
 
-  const handleChange = (event) => {
-    setVehicleData({ ...vehicleData, [event.target.name]: event.target.value });
-  };
+  const handleChange = event => {
+    setVehicleData({...vehicleData, [event.target.name]: event.target.value})
+  }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async event => {
+    event.preventDefault()
 
     try {
-      const response = await axios.post(
-        "http://localhost:8081/vehicles",
-        vehicleData,
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
-      );
+      const response = await axios.post("https://green-projekt.onrender.com/vehicles", vehicleData, {
+        headers: {Authorization: `Bearer ${localStorage.getItem("token")}`},
+      })
     } catch (error) {
-      console.error("Fehler beim Hinzufügen des Fahrzeugs:", error);
+      console.error("Fehler beim Hinzufügen des Fahrzeugs:", error)
     }
-  };
+  }
 
-  return (
-    <div className="h-full md:h-[95vh] pt-20 ">
-      
-    </div>
-  );
+  return <div className="h-full md:h-[95vh] pt-20 "></div>
 }
 
-export default ClientBookings;
+export default ClientBookings
 /*   */

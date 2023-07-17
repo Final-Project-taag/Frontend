@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate} from "react-router-dom";
+import React, {useState} from "react"
+import axios from "axios"
+import {useNavigate} from "react-router-dom"
 
 function AdminAdd() {
   const [vehicleData, setVehicleData] = useState({
@@ -11,49 +11,53 @@ function AdminAdd() {
     price: "",
     chargingTime: "",
     quantity: "",
-    imageUrls: null, /* erweitern Sie Ihren State um image: null. */
-  });
-  const [selectedImage, setSelectedImage] = useState(null); // Zustandsvariable für das ausgewählte Bild
-  const navigate = useNavigate();
+    imageUrls: null /* erweitern Sie Ihren State um image: null. */,
+  })
+  const [selectedImage, setSelectedImage] = useState(null) // Zustandsvariable für das ausgewählte Bild
+  const navigate = useNavigate()
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
+  const handleFileChange = event => {
+    const file = event.target.files[0]
+    const reader = new FileReader()
 
     reader.onloadend = function () {
-      setVehicleData({ ...vehicleData, imageUrls: [reader.result] });
-      setSelectedImage(reader.result); // Setzen des ausgewählten Bildes
-    };
+      setVehicleData({...vehicleData, imageUrls: [reader.result]})
+      setSelectedImage(reader.result) // Setzen des ausgewählten Bildes
+    }
     if (file) {
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file)
     } else {
-      setVehicleData({ ...vehicleData, imageUrls: [""] });
-      setSelectedImage(null); // Entfernen des ausgewählten Bildes
+      setVehicleData({...vehicleData, imageUrls: [""]})
+      setSelectedImage(null) // Entfernen des ausgewählten Bildes
     }
-  };
+  }
 
-  const handleChange = (event) => {
-    setVehicleData({ ...vehicleData, [event.target.name]: event.target.value });
-  };
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-   const body = vehicleData;
+  const handleChange = event => {
+    setVehicleData({...vehicleData, [event.target.name]: event.target.value})
+  }
+  const handleSubmit = async event => {
+    event.preventDefault()
+    const body = vehicleData
     try {
-      const response = await axios.post(
-        "http://localhost:8081/vehicles", // Ensure this is the correct endpoint for file upload.
-        body,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      ).then((res)=>{if( res.status ===201) {
-        navigate("/e-vehicles")
-      } })
+      const response = await axios
+        .post(
+          "https://green-projekt.onrender.com/vehicles", // Ensure this is the correct endpoint for file upload.
+          body,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+        .then(res => {
+          if (res.status === 201) {
+            navigate("/e-vehicles")
+          }
+        })
     } catch (error) {
-      console.error("Fehler beim Hinzufügen des Fahrzeugs:", error);
+      console.error("Fehler beim Hinzufügen des Fahrzeugs:", error)
     }
-  }; 
+  }
 
   return (
     <div className="h-full md:h-[95vh] pt-20 ">
@@ -62,10 +66,7 @@ function AdminAdd() {
         onSubmit={handleSubmit}
       >
         <div className=" ml-2 w-full md:w-96 flex flex-col gap-3 justify-start items-start  md:px-0 md:py-14">
-          <label
-            className=" text-green-600 dark:text-green-500  text-xl font-base m-0"
-            htmlFor="type"
-          >
+          <label className=" text-green-600 dark:text-green-500  text-xl font-base m-0" htmlFor="type">
             Art:
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -75,10 +76,7 @@ function AdminAdd() {
               required
             />
           </label>
-          <label
-            className=" text-green-600 dark:text-green-500  text-xl font-base m-0"
-            htmlFor="name"
-          >
+          <label className=" text-green-600 dark:text-green-500  text-xl font-base m-0" htmlFor="name">
             Name:
             <input
               className="shadow appearance-none border rounded md:max-w-screen- w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -88,10 +86,7 @@ function AdminAdd() {
               required
             />
           </label>
-          <label
-            className=" text-green-600 dark:text-green-500  text-xl font-base m-0"
-            htmlFor="driveRange"
-          >
+          <label className=" text-green-600 dark:text-green-500  text-xl font-base m-0" htmlFor="driveRange">
             Drive Range:
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -101,10 +96,7 @@ function AdminAdd() {
               required
             />
           </label>
-          <label
-            className=" text-green-600 dark:text-green-500  text-xl font-base m-0"
-            htmlFor="weight"
-          >
+          <label className=" text-green-600 dark:text-green-500  text-xl font-base m-0" htmlFor="weight">
             Gewicht:
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -115,10 +107,7 @@ function AdminAdd() {
             />
           </label>
 
-          <label
-            className=" text-green-600 dark:text-green-500  text-xl font-base m-0"
-            htmlFor="price"
-          >
+          <label className=" text-green-600 dark:text-green-500  text-xl font-base m-0" htmlFor="price">
             Preis :
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -128,10 +117,7 @@ function AdminAdd() {
               required
             />
           </label>
-          <label
-            className=" text-green-600 dark:text-green-500  text-xl font-base m-0"
-            htmlFor="chargingTime"
-          >
+          <label className=" text-green-600 dark:text-green-500  text-xl font-base m-0" htmlFor="chargingTime">
             Ladezeit:
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -141,10 +127,7 @@ function AdminAdd() {
               required
             />
           </label>
-          <label
-            className=" text-green-600 dark:text-green-500  text-xl font-base m-0"
-            htmlFor="quantity"
-          >
+          <label className=" text-green-600 dark:text-green-500  text-xl font-base m-0" htmlFor="quantity">
             Menge:
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -160,10 +143,8 @@ function AdminAdd() {
             htmlFor="dropzone-file"
             className="flex flex-col items-center justify-center w-[80%] h-[75%]   border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-100 dark:hover:bg-bray-800 dark:bg-slate-800-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
           >
-
             <div className="flex  overflow-hidden  w-full h-full  flex-col items-center justify-center pt-5 pb-6">
-
-              {!selectedImage && (  /* In diesem Code sind die beiden <p>- und svg-Elemente in einer Fragment-Komponente (<>...</>) eingeschlossen, die nur dann angezeigt wird, wenn selectedImage null ist. Andernfalls wird das ausgewählte Bild angezeigt. */
+              {!selectedImage /* In diesem Code sind die beiden <p>- und svg-Elemente in einer Fragment-Komponente (<>...</>) eingeschlossen, die nur dann angezeigt wird, wenn selectedImage null ist. Andernfalls wird das ausgewählte Bild angezeigt. */ && (
                 <>
                   <svg
                     aria-hidden="true"
@@ -181,28 +162,19 @@ function AdminAdd() {
                     ></path>
                   </svg>
                   <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                    <span className="font-semibold">Click to upload</span> or drag
-                    and drop
+                    <span className="font-semibold">Click to upload</span> or drag and drop
                   </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
-                    SVG, PNG, JPG or GIF (MAX. 800x400px)
-                  </p>
-
-
+                  <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                 </>
               )}
 
-              {selectedImage && (
-               <img  className=" max-h-4/5" src={selectedImage} alt="Vorschau" />
-              )}
+              {selectedImage && <img className=" max-h-4/5" src={selectedImage} alt="Vorschau" />}
             </div>
-
 
             <input id="dropzone-file" type="file" className="hidden" onChange={handleFileChange} />
           </label>
 
           <button
-      
             className="w-fit m-auto  tracking-wider  md:mt-10 
             rounded-lg  shadow-md dark:shadow-sm shadow-gray-400   bg-green-600 p-3 px-6 font-base  text-gray-200 hover:bg-green-500 "
             type="submit"
@@ -212,6 +184,6 @@ function AdminAdd() {
         </div>
       </form>
     </div>
-  );
+  )
 }
-export default AdminAdd;
+export default AdminAdd

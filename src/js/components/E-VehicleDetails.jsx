@@ -1,40 +1,24 @@
-import React, { useState, useEffect } from "react";
-import "react-datepicker/dist/react-datepicker.css";
-import axios from "axios";
+import React, {useState, useEffect} from "react"
+import "react-datepicker/dist/react-datepicker.css"
+import axios from "axios"
 
-function Card({
-  imageUrls,
-  name,
-  type,
-  driveRange,
-  price,
-  chargingTime,
-  vehicleId,
-  quantity,
-}) {
-
-  const [vehicle, setVehicle] = useState(null);
-
+function Card({imageUrls, name, type, driveRange, price, chargingTime, vehicleId, quantity}) {
+  const [vehicle, setVehicle] = useState(null)
 
   useEffect(() => {
     async function fetchVehicle() {
       try {
-        const response = await axios.get(
-          `http://localhost:8081/vehicles/${vehicleId}`
-        ); // Ändern Sie hier die URL, um die Fahrzeugdetails abzurufen
+        const response = await axios.get(`https://green-projekt.onrender.com/vehicles/${vehicleId}`) // Ändern Sie hier die URL, um die Fahrzeugdetails abzurufen
         if (response.status === 200) {
-          setVehicle(response.data);
+          setVehicle(response.data)
         }
       } catch (error) {
-        console.error(
-          "Error fetching vehicle:",
-          error.response ? error.response.data : error
-        );
+        console.error("Error fetching vehicle:", error.response ? error.response.data : error)
       }
     }
 
-    fetchVehicle();
-  }, [vehicleId]);
+    fetchVehicle()
+  }, [vehicleId])
 
   return (
     <div className="flex  justify-center items-center m-0 ">
@@ -44,15 +28,10 @@ function Card({
             <p>{name}</p>
             <p>{price} €/Stunde</p>
           </div>
-          <img
-            className="rounded-lg  border-gray-400 border  object-fill w-80 md:w-96 md:h-56 h-64"
-            src={imageUrls}
-            alt=""
-          />
+          <img className="rounded-lg  border-gray-400 border  object-fill w-80 md:w-96 md:h-56 h-64" src={imageUrls} alt="" />
         </a>
       </div>
-      </div>
-     
-  );
+    </div>
+  )
 }
-export default Card;
+export default Card

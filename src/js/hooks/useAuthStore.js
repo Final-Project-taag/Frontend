@@ -1,23 +1,23 @@
-import { create } from "zustand";
-import axios from "axios";
+import {create} from "zustand"
+import axios from "axios"
 
-const useAuthStore = create((set) => ({
+const useAuthStore = create(set => ({
   // Speicherort fuer user objekt
   user: null,
 
   isAuthenticated: function () {
-    return this.user !== null;
+    return this.user !== null
 
     // let resp = await axios.get('/auth/validate-token', {withCredentials: true});
   },
 
   // Methode zum Speichern des users und des tokens
-  authenticate: (user) => {
+  authenticate: user => {
     // Speichere token im localStorage
-    localStorage.setItem("token", user.token);
+    localStorage.setItem("token", user.token)
 
     // Speichere user Objekt im store
-    set({ user: user }); // setze neuen user
+    set({user: user}) // setze neuen user
   },
 
   // Methode zum Holen des gespeicherten tokens
@@ -26,27 +26,27 @@ const useAuthStore = create((set) => ({
   // Methode zum Ausloggen (loeschen des users und des tokens)
   logout: () => {
     // entferne token aus localStorage
-    localStorage.removeItem("token");
+    localStorage.removeItem("token")
 
     // entferne user Objekt aus user Store
-    set({ user: null });
+    set({user: null})
   },
   loadUser: async () => {
     if (localStorage.getItem("token")) {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("token")
       try {
-        const res = await axios.get("http://localhost:8081/auth/auth", {
+        const res = await axios.get("https://green-projekt.onrender.com/auth/auth", {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-        });
-        set({ user: res.data });
+        })
+        set({user: res.data})
       } catch (err) {
-        console.log(err);
+        console.log(err)
       }
     }
   },
-}));
+}))
 
-export default useAuthStore;
+export default useAuthStore

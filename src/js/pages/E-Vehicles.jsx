@@ -1,126 +1,104 @@
-import React from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import Card from "../components/E-VehicleDetails";
-import EfahrzeugModal from "../features/EfahrzeugModal";
+import React from "react"
+import axios from "axios"
+import {useNavigate} from "react-router-dom"
+import {useState, useEffect} from "react"
+import Card from "../components/E-VehicleDetails"
+import EfahrzeugModal from "../features/EfahrzeugModal"
 
 // eine Hilfsfunktion aggregateVehicleData, die die Fahrzeugdaten basierend auf den Fahrzeugmodellen gruppiert:
 
 function aggregateVehicleData(vehicles, vehicleCounts) {
-  const aggregatedVehicles = {};
+  const aggregatedVehicles = {}
 
-  vehicles.forEach((vehicle) => {
-    const vehicleKey = `${vehicle.name}-${vehicle.type}-${vehicle.driveRange}-${vehicle.price}-${vehicle.chargingTime}`;
+  vehicles.forEach(vehicle => {
+    const vehicleKey = `${vehicle.name}-${vehicle.type}-${vehicle.driveRange}-${vehicle.price}-${vehicle.chargingTime}`
 
     if (!aggregatedVehicles[vehicleKey]) {
       aggregatedVehicles[vehicleKey] = {
         ...vehicle,
         count: 0,
         _id: vehicle._id,
-      };
+      }
     }
 
     if (vehicleCounts[vehicle._id] !== undefined) {
-      aggregatedVehicles[vehicleKey].count += vehicleCounts[vehicle._id];
+      aggregatedVehicles[vehicleKey].count += vehicleCounts[vehicle._id]
     }
-  });
+  })
 
-  return Object.values(aggregatedVehicles);
+  return Object.values(aggregatedVehicles)
 }
 
 function EVehicles() {
-  const [vehicleCounts, setVehicleCounts] = useState({});
-  const [showModal, setShowModal] = useState(false);
-  const [carDetails, setCarDetails] = useState({});
-  const [cars, setCars] = useState([]);
+  const [vehicleCounts, setVehicleCounts] = useState({})
+  const [showModal, setShowModal] = useState(false)
+  const [carDetails, setCarDetails] = useState({})
+  const [cars, setCars] = useState([])
 
-  const [typeFilter, setTypeFilter] = useState("");
-  const [minPriceFilter, setMinPriceFilter] = useState("");
-  const [maxPriceFilter, setMaxPriceFilter] = useState("");
-  const [minDriveRangeFilter, setMinDriveRangeFilter] = useState("");
-  const [maxDriveRangeFilter, setMaxDriveRangeFilter] = useState("");
+  const [typeFilter, setTypeFilter] = useState("")
+  const [minPriceFilter, setMinPriceFilter] = useState("")
+  const [maxPriceFilter, setMaxPriceFilter] = useState("")
+  const [minDriveRangeFilter, setMinDriveRangeFilter] = useState("")
+  const [maxDriveRangeFilter, setMaxDriveRangeFilter] = useState("")
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   function closeModle() {
-    setCarDetails({});
-    setShowModal(false);
+    setCarDetails({})
+    setShowModal(false)
   }
   async function fetchVehicles() {
     try {
-      const queryParams = new URLSearchParams();
+      const queryParams = new URLSearchParams()
 
       if (typeFilter) {
-        queryParams.append("type", typeFilter);
+        queryParams.append("type", typeFilter)
       }
       if (minPriceFilter) {
-        queryParams.append("minPrice", minPriceFilter);
+        queryParams.append("minPrice", minPriceFilter)
       }
       if (maxPriceFilter) {
-        queryParams.append("maxPrice", maxPriceFilter);
+        queryParams.append("maxPrice", maxPriceFilter)
       }
       if (minDriveRangeFilter) {
-        queryParams.append("minDriveRange", minDriveRangeFilter);
+        queryParams.append("minDriveRange", minDriveRangeFilter)
       }
       if (maxDriveRangeFilter) {
-        queryParams.append("maxDriveRange", maxDriveRangeFilter);
+        queryParams.append("maxDriveRange", maxDriveRangeFilter)
       }
 
-      const response = await axios.get(
-        "http://localhost:8081/vehicles?" + queryParams.toString()
-      );
-      const aggregatedVehicles = aggregateVehicleData(
-        response.data,
-        vehicleCounts
-      );
-      setCars(aggregatedVehicles);
+      const response = await axios.get("https://green-projekt.onrender.com/vehicles?" + queryParams.toString())
+      const aggregatedVehicles = aggregateVehicleData(response.data, vehicleCounts)
+      setCars(aggregatedVehicles)
     } catch (error) {
-      console.error("Error fetching vehicles:", error);
+      console.error("Error fetching vehicles:", error)
     }
   }
   //Fahrzeugzahlen vom Backend abrufen
   async function fetchVehicleCounts() {
     try {
-      const response = await axios.get(
-        "http://localhost:8081/api/vehicleCounts"
-      );
-      setVehicleCounts(response.data);
+      const response = await axios.get("https://green-projekt.onrender.com/api/vehicleCounts")
+      setVehicleCounts(response.data)
     } catch (error) {
-      console.error("Error fetching vehicle counts:", error);
+      console.error("Error fetching vehicle counts:", error)
     }
   }
   function handleShowModle(carDetails) {
-    setCarDetails(carDetails);
-    setShowModal(true);
+    setCarDetails(carDetails)
+    setShowModal(true)
   }
 
   useEffect(() => {
-    fetchVehicles();
-    fetchVehicleCounts();
-  }, [
-    typeFilter,
-    minPriceFilter,
-    maxPriceFilter,
-    minDriveRangeFilter,
-    maxDriveRangeFilter,
-  ]);
+    fetchVehicles()
+    fetchVehicleCounts()
+  }, [typeFilter, minPriceFilter, maxPriceFilter, minDriveRangeFilter, maxDriveRangeFilter])
 
   return (
     <>
       <div className="flex justify-center  items-center mb-10   h-fit md:min-h-screen  md:flex flex-wrap pt-10 pb-10">
-        {cars.map((car) => (
-          <div
-            key={car._id}
-            className=" mt-24 md:mt-20"
-            onClick={() => handleShowModle(car)}
-          >
-            <Card
-              imageUrls={car.imageUrls}
-              name={car.name}
-              price={car.price}
-              vehicleId={car._id}
-            />
+        {cars.map(car => (
+          <div key={car._id} className=" mt-24 md:mt-20" onClick={() => handleShowModle(car)}>
+            <Card imageUrls={car.imageUrls} name={car.name} price={car.price} vehicleId={car._id} />
           </div>
         ))}
       </div>
@@ -139,7 +117,7 @@ function EVehicles() {
         />
       )}
     </>
-  );
+  )
 }
 
-export default EVehicles;
+export default EVehicles

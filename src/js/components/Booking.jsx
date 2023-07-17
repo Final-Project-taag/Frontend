@@ -1,84 +1,76 @@
-import React from "react";
+import React from "react"
 
-import axios from "axios";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { useState, useEffect } from "react";
+import axios from "axios"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
+import {useState, useEffect} from "react"
 
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import {useParams} from "react-router-dom"
+import {useNavigate} from "react-router-dom"
 
 function Booking() {
-
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [vehicle, setVehicle] = useState("");
+  const [startDate, setStartDate] = useState(null)
+  const [endDate, setEndDate] = useState(null)
+  const [vehicle, setVehicle] = useState("")
   const vehicleId = useParams()
-const navigate = useNavigate()
+  const navigate = useNavigate()
 
   async function handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
     // Handle reservation submission and navigate back to the vehicle list
 
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token")
     if (!token) {
-      alert("Bitte anmelden, um eine Reservierung vorzunehmen.");
-      return;
+      alert("Bitte anmelden, um eine Reservierung vorzunehmen.")
+      return
     }
-
-
 
     try {
       const response = await axios.post(
-        "http://localhost:8081/reservations",
+        "https://green-projekt.onrender.com/reservations",
         {
           vehicleId,
           startDate,
           endDate,
-         
         },
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
-      );
+      )
 
-      alert("Reservierung erfolgreich!");
-      navigate('/reservation-view'); // Redirect to the reservation-view page
-    } 
-     
-    catch (error) {
-      console.error(error);
-      alert("Reservierung fehlgeschlagen.");
+      alert("Reservierung erfolgreich!")
+      navigate("/reservation-view") // Redirect to the reservation-view page
+    } catch (error) {
+      console.error(error)
+      alert("Reservierung fehlgeschlagen.")
     }
   }
-/*    navigate('/reservation-view')
- */   // Fetch vehicle data when the component is mounted
+  /*    navigate('/reservation-view')
+   */ // Fetch vehicle data when the component is mounted
   useEffect(() => {
-
     async function fetchVehicle() {
-
       try {
-        const response = await axios.get(`http://localhost:8081/vehicles/${vehicleId}`); // Ändern Sie hier die URL, um die Fahrzeugdetails abzurufen
+        const response = await axios.get(`https://green-projekt.onrender.com/vehicles/${vehicleId}`) // Ändern Sie hier die URL, um die Fahrzeugdetails abzurufen
         if (response.status === 200) {
-          setVehicle(response.data);
+          setVehicle(response.data)
         }
       } catch (error) {
-        console.error("Error fetching vehicle:", error.response ? error.response.data : error);
+        console.error("Error fetching vehicle:", error.response ? error.response.data : error)
       }
     }
 
-    fetchVehicle();
-    
-  }, [vehicleId]);
-
-
+    fetchVehicle()
+  }, [vehicleId])
 
   return (
     <div className="flex flex-col min-h-screen bg-white  mx-12 mt-5 border border-solid border-stone-800 rounded-md">
       <h1 className="bg-gray-600 text-green-400 text-center text-4xl py-4 font-bold mb-10 rounded-md">GreenWheels Reservierung</h1>
-      <form className="flex flex-row gap-4 bg-white p-6 rounded-md shadow-lg border-2 border-solid border-black w-5/6 mx-auto" onSubmit={handleSubmit}>
+      <form
+        className="flex flex-row gap-4 bg-white p-6 rounded-md shadow-lg border-2 border-solid border-black w-5/6 mx-auto"
+        onSubmit={handleSubmit}
+      >
         <div className="flex flex-col">
           <label htmlFor="start-date" className="font-bold mb-1">
             Buchung von:
@@ -86,7 +78,7 @@ const navigate = useNavigate()
           <DatePicker
             id="start-date"
             selected={startDate}
-            onChange={(date) => setStartDate(date)}
+            onChange={date => setStartDate(date)}
             showTimeSelect
             timeFormat="HH:mm"
             timeIntervals={15}
@@ -101,7 +93,7 @@ const navigate = useNavigate()
           <DatePicker
             id="end-date"
             selected={endDate}
-            onChange={(date) => setEndDate(date)}
+            onChange={date => setEndDate(date)}
             showTimeSelect
             timeFormat="HH:mm"
             timeIntervals={15}
@@ -151,12 +143,6 @@ const navigate = useNavigate()
         </div>
       )}
     </div>
-  );
-      }
-  export default Booking;
-
-
-       
-
-
-
+  )
+}
+export default Booking
