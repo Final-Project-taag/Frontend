@@ -29,7 +29,7 @@ function Register(props) {
 
     // Sende Request an /register endpoint der API
     axios
-      .post("https://green-projekt.onrender.com/auth/register", registrationData)
+      .post("https://green-wheels-backend.onrender.com/auth/register", registrationData)
       .then(response => {
         console.log(response) // TODO
         setErrors([])

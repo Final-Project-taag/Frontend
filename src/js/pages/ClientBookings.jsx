@@ -22,7 +22,7 @@ function ClientBookings() {
     event.preventDefault()
 
     try {
-      const response = await axios.post("https://green-projekt.onrender.com/vehicles", vehicleData, {
+      const response = await axios.post("https://green-wheels-backend.onrender.com/vehicles", vehicleData, {
         headers: {Authorization: `Bearer ${localStorage.getItem("token")}`},
       })
     } catch (error) {

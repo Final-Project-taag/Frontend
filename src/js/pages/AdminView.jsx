@@ -41,7 +41,7 @@ function AdminAdd() {
     try {
       const response = await axios
         .post(
-          "https://green-projekt.onrender.com/vehicles", // Ensure this is the correct endpoint for file upload.
+          "https://green-wheels-backend.onrender.com/vehicles", // Ensure this is the correct endpoint for file upload.
           body,
           {
             headers: {

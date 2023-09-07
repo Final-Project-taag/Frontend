@@ -35,7 +35,7 @@ const useAuthStore = create(set => ({
     if (localStorage.getItem("token")) {
       const token = localStorage.getItem("token")
       try {
-        const res = await axios.get("https://green-projekt.onrender.com/auth/auth", {
+        const res = await axios.get("https://green-wheels-backend.onrender.com/auth/auth", {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

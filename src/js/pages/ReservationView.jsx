@@ -94,7 +94,7 @@ const ReservationView = () => {
         totalPrice,
       }
 
-      const response = await axios.post("https://green-projekt.onrender.com/booking", bookingData, {
+      const response = await axios.post("https://green-wheels-backend.onrender.com/booking", bookingData, {
         headers: {Authorization: `Bearer ${token}`},
       })
       setIsBooked(true)

@@ -85,7 +85,7 @@ export default function EfahrzeueModal({imageUrls, name, type, driveRange, price
       return
     }
     try {
-      const response = await fetch("https://green-projekt.onrender.com/reservations", {
+      const response = await fetch("https://green-wheels-backend.onrender.com/reservations", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -112,7 +112,7 @@ export default function EfahrzeueModal({imageUrls, name, type, driveRange, price
   const deleteReservation = async reservationId => {
     try {
       const token = localStorage.getItem("token") // Replace with your token management method
-      const response = await axios.delete(`https://green-projekt.onrender.com/reservations/${reservationId}`, {
+      const response = await axios.delete(`https://green-wheels-backend.onrender.com/reservations/${reservationId}`, {
         headers: {Authorization: `Bearer ${token}`},
       })
       if (response.status === 200) {

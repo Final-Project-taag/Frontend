@@ -12,7 +12,7 @@ const PaymentSuccess = () => {
     const verifyPayment = async () => {
       try {
         // Hier führen Sie einen API-Aufruf durch, um den Zahlungsstatus zu überprüfen und die Reservierungsinformationen zu aktualisieren
-        const response = await axios.get(`https://green-projekt.onrender.com/payment/payment-update/${reservationId}`, {
+        const response = await axios.get(`https://green-wheels-backend.onrender.com/payment/payment-update/${reservationId}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

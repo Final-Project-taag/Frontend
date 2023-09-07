@@ -67,7 +67,7 @@ function EVehicles() {
         queryParams.append("maxDriveRange", maxDriveRangeFilter)
       }
 
-      const response = await axios.get("https://green-projekt.onrender.com/vehicles?" + queryParams.toString())
+      const response = await axios.get("https://green-wheels-backend.onrender.com/vehicles?" + queryParams.toString())
       const aggregatedVehicles = aggregateVehicleData(response.data, vehicleCounts)
       setCars(aggregatedVehicles)
     } catch (error) {
@@ -77,7 +77,7 @@ function EVehicles() {
   //Fahrzeugzahlen vom Backend abrufen
   async function fetchVehicleCounts() {
     try {
-      const response = await axios.get("https://green-projekt.onrender.com/api/vehicleCounts")
+      const response = await axios.get("https://green-wheels-backend.onrender.com/api/vehicleCounts")
       setVehicleCounts(response.data)
     } catch (error) {
       console.error("Error fetching vehicle counts:", error)

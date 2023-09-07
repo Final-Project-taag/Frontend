@@ -22,7 +22,7 @@ function MainPage() {
   const introText =
     " Entdecken Sie mit uns die Zukunft der Mobilität - einfach, bequem und umweltbewusst. Buchen Sie Ihre nächste Fahrt mit unseren Elektrofahrzeugen und tragen Sie dazu bei, unseren Planeten zu schonen und die Lebensqualität in unseren Städten zu verbessern. Machen Sie den ersten Schritt in eine nachhaltige Zukunft und erleben Sie Mobilität neu !"
   useEffect(() => {
-    fetch("https://green-projekt.onrender.com/vehicles")
+    fetch("https://green-wheels-backend.onrender.com/vehicles")
       .then(response => response.json())
       .then(data => setVehicles(data))
       .catch(error => console.error(error))

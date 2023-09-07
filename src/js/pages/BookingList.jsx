@@ -8,7 +8,7 @@ export default function BookingList() {
   async function fetchBookings() {
     try {
       const token = localStorage.getItem("token") // Replace with your token management method
-      const response = await axios.get("https://green-projekt.onrender.com/booking", {
+      const response = await axios.get("https://green-wheels-backend.onrender.com/booking", {
         headers: {Authorization: `Bearer ${token}`},
       })
       setBookings(response.data)

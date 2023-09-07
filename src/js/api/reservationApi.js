@@ -3,7 +3,7 @@ import axios from "axios"
 export async function fetchReservations(userId) {
   try {
     const token = localStorage.getItem("token") // Replace with your token management method
-    const response = await axios.get("https://green-projekt.onrender.com/reservations", {
+    const response = await axios.get("https://green-wheels-backend.onrender.com/reservations", {
       headers: {Authorization: `Bearer ${token}`},
     })
     return response.data
@@ -16,7 +16,7 @@ export async function fetchReservations(userId) {
 export const deleteReservation = async reservationId => {
   try {
     const token = localStorage.getItem("token") // Replace with your token management method
-    await axios.delete(`https://green-projekt.onrender.com/reservations/${reservationId}`, {
+    await axios.delete(`https://green-wheels-backend.onrender.com/reservations/${reservationId}`, {
       headers: {Authorization: `Bearer ${token}`},
     })
   } catch (error) {
@@ -29,7 +29,7 @@ export const deleteReservation = async reservationId => {
 export const getActiveReservations = async () => {
   try {
     const token = localStorage.getItem("token") // Stellen Sie sicher, dass der Token dort gespeichert ist
-    const response = await axios.get("https://green-projekt.onrender.com/reservations/active", {
+    const response = await axios.get("https://green-wheels-backend.onrender.com/reservations/active", {
       headers: {Authorization: `Bearer ${token}`},
     })
 
@@ -43,7 +43,7 @@ export const getActiveReservations = async () => {
 export const updateReservation = async (reservationId, updatedReservationData) => {
   try {
     const token = localStorage.getItem("token") // Replace with your token management method
-    await axios.put(`https://green-projekt.onrender.com/reservations/${reservationId}`, updatedReservationData, {
+    await axios.put(`https://green-wheels-backend.onrender.com/reservations/${reservationId}`, updatedReservationData, {
       headers: {Authorization: `Bearer ${token}`},
     })
     //  setReservations(updatedReservations);
@@ -56,7 +56,7 @@ export const bookReservation = async reservationId => {
   try {
     const token = localStorage.getItem("token") // Replace with your token management method
     await axios.post(
-      `https://green-projekt.onrender.com/booking/`,
+      `https://green-wheels-backend.onrender.com/booking/`,
       {reservationId},
       {
         headers: {Authorization: `Bearer ${token}`},
@@ -70,7 +70,7 @@ export const bookReservation = async reservationId => {
 export const confirmReservation = async reservationId => {
   try {
     const token = localStorage.getItem("token") // Replace with your token management method
-    await axios.put(`https://green-projekt.onrender.com/reservations/book/${reservationId}`, {
+    await axios.put(`https://green-wheels-backend.onrender.com/reservations/book/${reservationId}`, {
       headers: {Authorization: `Bearer ${token}`},
     })
   } catch (error) {

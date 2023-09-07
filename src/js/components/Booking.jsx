@@ -27,7 +27,7 @@ function Booking() {
 
     try {
       const response = await axios.post(
-        "https://green-projekt.onrender.com/reservations",
+        "https://green-wheels-backend.onrender.com/reservations",
         {
           vehicleId,
           startDate,
@@ -52,7 +52,7 @@ function Booking() {
   useEffect(() => {
     async function fetchVehicle() {
       try {
-        const response = await axios.get(`https://green-projekt.onrender.com/vehicles/${vehicleId}`) // Ändern Sie hier die URL, um die Fahrzeugdetails abzurufen
+        const response = await axios.get(`https://green-wheels-backend.onrender.com/vehicles/${vehicleId}`) // Ändern Sie hier die URL, um die Fahrzeugdetails abzurufen
         if (response.status === 200) {
           setVehicle(response.data)
         }
