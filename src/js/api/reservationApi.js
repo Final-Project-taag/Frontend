@@ -56,7 +56,7 @@ export const bookReservation = async reservationId => {
   try {
     const token = localStorage.getItem("token") // Replace with your token management method
     await axios.post(
-      `https://green-projekt.onrender.combooking/`,
+      `https://green-projekt.onrender.com/booking/`,
       {reservationId},
       {
         headers: {Authorization: `Bearer ${token}`},
@@ -70,7 +70,7 @@ export const bookReservation = async reservationId => {
 export const confirmReservation = async reservationId => {
   try {
     const token = localStorage.getItem("token") // Replace with your token management method
-    await axios.put(`https://green-projekt.onrender.comreservations/book/${reservationId}`, {
+    await axios.put(`https://green-projekt.onrender.com/reservations/book/${reservationId}`, {
       headers: {Authorization: `Bearer ${token}`},
     })
   } catch (error) {

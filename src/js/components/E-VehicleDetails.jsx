@@ -22,13 +22,13 @@ function Card({imageUrls, name, type, driveRange, price, chargingTime, vehicleId
 
   return (
     <div className="flex  justify-center items-center m-0 ">
-      <div className=" p-4   rounded-lg  border-2  border-green-500 dark:border-green-600 text-center shadow-md shadow-gray-600  dark:shadow-sm bg-slate-100 dark:bg-slate-800  md:hover:scale-105 transform transition-all duration-300">
+      <div className="  p-2  rounded-lg  border  border-green-500 dark:border-green-700 text-center shadow-md shadow-gray-600  dark:shadow-sm bg-slate-100 dark:bg-slate-800 scale-95 md:hover:scale-100 transform transition-all duration-300">
         <a href="#!">
-          <div className="flex  p-4  dark:text-white tems-center justify-between">
-            <p>{name}</p>
-            <p>{price} €/Stunde</p>
+          <div className="flex py-2 dark:text-white items-center justify-between text-base font-light">
+            <p className="text-center">{name}</p>
+            <p className="text-center">{price} €/Stunde</p>
           </div>
-          <img className="rounded-lg  border-gray-400 border  object-fill w-80 md:w-96 md:h-56 h-64" src={imageUrls} alt="" />
+          <img className="rounded-sm  border-gray-500 border  object-fill w-screen md:w-[400px] md:h-64 h-64" src={imageUrls} alt="" />
         </a>
       </div>
     </div>

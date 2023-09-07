@@ -30,7 +30,7 @@ function AboutUs() {
         <h1 className="text-green-600  dark:text-green-500  text-3xl lg:text-6xl lg:p-6 pt-10  ">
           Green <span className=" text-gray-600">Wheels</span> Team{" "}
         </h1>
-        <p className="font-sans tracking-wider text-left  md:text-2xl lg:text-center mx-10 dark:text-gray-300">
+        <p className="font-sans tracking-wider text-left  md:text-lg lg:text-center mx-10 dark:text-gray-300">
           Willkommen auf unserer Teamseite! Wir sind ein engagiertes Team von
           Entwicklern, die sich dafür einsetzen, die Umwelt zu schützen, indem
           wir moderne und ökologische Transportlösungen anbieten. Wir glauben,

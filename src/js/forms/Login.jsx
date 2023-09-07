@@ -1,71 +1,76 @@
-import {useState, useEffect} from "react"
-import axios from "axios"
-import useAuthStore from "../hooks/useAuthStore"
-import {useLocation, useNavigate} from "react-router-dom"
-/* import EmailVerificationForm from './EmailVerificationForm'; */
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import useAuthStore from '../hooks/useAuthStore';
+import { useLocation, useNavigate } from 'react-router-dom';
+/* import EmailVerificationForm from './EmailVerificationForm'; 
+ */ 
 
 function Login() {
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-  const [errors, setErrors] = useState([])
-  const [notVerified, setNotVerified] = useState(false)
-  const authStore = useAuthStore()
-  const navigate = useNavigate()
-  const location = useLocation()
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [errors, setErrors] = useState([]);
+    const [notVerified, setNotVerified] = useState(false);
+    const authStore = useAuthStore();
+    const navigate = useNavigate();
+    const location = useLocation();
 
-  async function loginSubmitHandler(evt) {
-    evt.preventDefault()
 
-    let body = {
-      username: username,
-      password: password,
+    
+    async function loginSubmitHandler(evt) {
+        evt.preventDefault();
+
+        let body = {
+            username: username,
+            password: password
+        };
+
+        if ((username.length < 1) || password.length < 1) {
+            let errorsSet = new Set(errors);
+
+            errorsSet.add('Username and password must not be empty');
+
+            setErrors([...errorsSet]);
+            return;
+        }
+
+        try {
+            let resp = await axios.post('https://green-projekt.onrender.com/auth/login', body, {
+                // withCredentials: true
+            });
+            
+
+            authStore.authenticate(resp.data);
+            //localStorage.setItem('token', resp.data.token);
+            // sessionStorage.setItem('token', resp.data.token);
+
+            setUsername('');
+            setPassword('');
+            setErrors([]);
+
+            console.log('Success: token stored in localStorage and sessionStorage');
+
+            //die Navigation nach erfolgreicher Anmeldung:
+            if (location.state?.from) {
+                navigate(location.state.from);
+            } else {
+                // Navigiere zur E-Vehicles-Seite
+                navigate('/e-vehicles');
+            }
+
+        } catch (error) {
+            console.error(error);
+            if (error.response.status === 403) setNotVerified(true);
+            setErrors([error.response.data.message]);
+        }
     }
 
-    if (username.length < 1 || password.length < 1) {
-      let errorsSet = new Set(errors)
+    // Login Erfolgsnachricht
+    const loginSuccess = <p style={{ color: 'green' }}>Login successful!</p>;
 
-      errorsSet.add("Username and password must not be empty")
-
-      setErrors([...errorsSet])
-      return
-    }
-
-    try {
-      let resp = await axios.post("https://green-projekt.onrender.com/auth/login", body, {
-        // withCredentials: true
-      })
-
-      authStore.authenticate(resp.data)
-      // localStorage.setItem('token', resp.data.token);
-      // sessionStorage.setItem('token', resp.data.token);
-
-      setUsername("")
-      setPassword("")
-      setErrors([])
-
-      console.log("Success: token stored in localStorage and sessionStorage")
-
-      //die Navigation nach erfolgreicher Anmeldung:
-      if (location.state?.from) {
-        navigate(location.state.from)
-      } else {
-        // Navigiere zur E-Vehicles-Seite
-        navigate("/e-vehicles")
-      }
-    } catch (error) {
-      console.error(error)
-      if (error.response.status === 403) setNotVerified(true)
-      setErrors([error.response.data.message])
-    }
-  }
-
-  // Login Erfolgsnachricht
-  const loginSuccess = <p style={{color: "green"}}>Login successful!</p>
-
-  // Fehleranzeige
-  const errorBox = errors.map((error, idx) => {
-    return <li key={idx}>{error}</li>
-  })
+    // Fehleranzeige
+    const errorBox = errors.map((error, idx) => {
+        return <li key={idx}>{error}</li>;
+    });
 
   return (
     <div className="flex justify-center items-center w-screen h-screen py-3">

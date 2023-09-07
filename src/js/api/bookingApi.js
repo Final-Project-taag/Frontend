@@ -3,7 +3,7 @@ import axios from "axios"
 export async function fetchBookings() {
   try {
     const token = localStorage.getItem("token") // Replace with your token management method
-    const response = await axios.get("https://green-projekt.onrender.combooking", {
+    const response = await axios.get("https://green-projekt.onrender.com/booking", {
       headers: {Authorization: `Bearer ${token}`},
     })
     return response.data
@@ -16,7 +16,7 @@ export async function fetchBookings() {
 export const deleteBooking = async bookingId => {
   try {
     const token = localStorage.getItem("token") // Replace with your token management method
-    await axios.delete(`https://green-projekt.onrender.combooking/${bookingId}`, {
+    await axios.delete(`https://green-projekt.onrender.com/booking/${bookingId}`, {
       headers: {Authorization: `Bearer ${token}`},
     })
   } catch (error) {

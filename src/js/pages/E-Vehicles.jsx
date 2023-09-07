@@ -95,9 +95,9 @@ function EVehicles() {
 
   return (
     <>
-      <div className="flex justify-center  items-center mb-10   h-fit md:min-h-screen  md:flex flex-wrap pt-10 pb-10">
+      <div className="flex justify-center  items-center mb-10  gap-4 md:gap-12 h-fit md:min-h-screen  md:flex flex-wrap pt-24 pb-20 px-4">
         {cars.map(car => (
-          <div key={car._id} className=" mt-24 md:mt-20" onClick={() => handleShowModle(car)}>
+          <div key={car._id} className=" flex md:flex-col " onClick={() => handleShowModle(car)}>
             <Card imageUrls={car.imageUrls} name={car.name} price={car.price} vehicleId={car._id} />
           </div>
         ))}
