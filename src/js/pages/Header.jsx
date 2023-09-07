@@ -23,7 +23,7 @@ function Header() {
 
   
   return (
-    <div className="fixed z-50  h-20 md:h-fit md:flex  items-center border-b top-0 bg-gray-100   dark:bg-slate-900  ">
+    <div className="fixed z-50  h-20 md:flex  items-center border-b top-0 bg-gray-100   dark:bg-slate-900  ">
       <div className="  w-screen  flex justify-center  items-center px-7   ">
         <div className="flex  w-24 ml-[-0.7rem] md:ml-0">
           <Link to="/">
